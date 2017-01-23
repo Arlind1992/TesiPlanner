@@ -20,20 +20,24 @@ using namespace planner;
 bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::Cell cinit
 		,vector<rrt_planning::Cell>& result){
 
+	std::cout<<"1"<<std::endl;
 	std::vector<rrt_planning::Cell> toCheck;
 	toCheck.push_back(cinit);
-	std::set<rrt_planning::Cell> checked;
+	std::vector<rrt_planning::Cell> checked;
 	Graph::Node node=graph.addNode();
 	//TODO probably don't need it so delete
 	cellNode[cinit]=node;
+
+	std::vector<rrt_planning::Cell>::iterator it;
+
 	//TODO maybe delete
 	nodeCell[node]=cinit;
 	while(!toCheck.empty()){
+		std::cout<<"2"<<std::endl;
 		rrt_planning::Cell cell=toCheck.front();
 		toCheck.erase(toCheck.begin());
-		checked.insert(cell);
+		checked.push_back(cell);
 		std::vector<rrt_planning::Cell> comm_cells=grid->commCells(cell,Tmax,cgoal);
-		std::vector<rrt_planning::Cell>::iterator it;
 		for(it=comm_cells.begin();it<comm_cells.end();it++){
 			if(!searchCell(checked,*it)){
 				std::vector<rrt_planning::Cell> pathTo;
@@ -48,8 +52,12 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 						//TODO maybe delete
 						nodeCell[node]=*it;
 					}
+				    if(!searchCell(toCheck,*it)){
 
-					toCheck.push_back(*it);
+				    	toCheck.push_back(*it);
+					}
+
+
 					Graph::Node toconnect=cellNode[cell];
 					Graph::Edge edge=graph.addEdge(node,toconnect);
 					length[edge]=distance;
@@ -57,6 +65,8 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 				}
 			}
 		}
+
+		comm_cells.clear();
 
 	}
 	try{
@@ -99,8 +109,10 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 
 	return true;
 }
-bool planner::Planner::searchCell(std::set<rrt_planning::Cell> cells,rrt_planning::Cell toSearch){
+bool planner::Planner::searchCell(std::vector<rrt_planning::Cell> cells,rrt_planning::Cell toSearch){
 	for(rrt_planning::Cell cell :cells){
+		 std::cout<<"inside 1"<<std::endl;
+
 		if(cell.first==toSearch.first&&cell.second==toSearch.second){
 			return true;
 		}
@@ -108,6 +120,9 @@ bool planner::Planner::searchCell(std::set<rrt_planning::Cell> cells,rrt_plannin
 	return false;
 }
  void planner::Planner::stampVector(std::vector<Cell> cells){
+	 if(cells.empty()){
+		 std::cout<<"empty"<<std::endl;
+	 }
 	std::cout<<std::endl;
 	 for(Cell c:cells){
 		std::cout<<"("<<c.first<<","<<c.second<<")"<<std::endl;

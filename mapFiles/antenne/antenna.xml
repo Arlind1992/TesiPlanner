@@ -45,4 +45,9 @@
         <posY>39</posY>
         <maxTransmitionSpeed>8</maxTransmitionSpeed>
     </antenna>
+    <antenna>
+        <posX>39</posX>
+        <posY>6</posY>
+        <maxTransmitionSpeed>1</maxTransmitionSpeed>
+    </antenna>
 </antenne>

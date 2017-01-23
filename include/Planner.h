@@ -40,7 +40,7 @@ private :
     /*
      * helper functions
      */
-     bool searchCell(std::set<rrt_planning::Cell> cells,rrt_planning::Cell toSearch);
+     bool searchCell(std::vector<rrt_planning::Cell> cells,rrt_planning::Cell toSearch);
 
 
 

@@ -214,16 +214,24 @@ std::vector<Cell> Grid::commCells(const Cell& s,int radius,const Cell& cgoal){
 	for(int i = starti; i <= endi; i++)
 	    for(int j = startj; j <= endj; j++)
 	    {
+	    	if(!(s.first==i&&s.second==j)){
+
 	    	rrt_planning::Cell cell(i,j);
 	        if((map.isComm(cell)||((cgoal.first==cell.first)&&(cgoal.second==cell.second)))&&(heuristic(cell,s)<radius)){
+	        	if(map.isFree(cell)){
 	        	comm.push_back(cell);
-	        }
+	        	}
+	        	}
+	    	}
 	    }
 	    return comm;
 }
 
 double Grid::pathCost(vector<Cell> path){
 	double result=0;
+	if(path.size()==0){
+		return 0;
+	}
 	for (unsigned int it = 0 ; it < path.size()-1; it++){
 		result=result+heuristic(path[it],path[it+1]);
 	}

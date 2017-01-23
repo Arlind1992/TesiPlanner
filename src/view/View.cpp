@@ -78,11 +78,11 @@ bool View::Draw(){
 			         				}
 			         }
 			         if(!this->startMessageShown){
-			        	 SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,"","Select the first cell where to start the algorithm",window);
+			        	 SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,"","Select the cell where to start the algorithm",window);
 			        	 startMessageShown=true;
 			         }else{
 			        	 if(this->startSelected && !this->endMessageShown){
-			        		 SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,"","Select the first cell where to end the algorithm",window);
+			        		 SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,"","Select the cell where to end the algorithm",window);
 			        		 endMessageShown=true;
 			        	 }
 			         }
@@ -102,7 +102,12 @@ bool View::Draw(){
 			                	  this->handleInput(event);
 			                	  if(this->endSelected&&!this->solution){
 			                		  SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,"","Solution Not Found",window);
-			                		  this->endSelected=false;
+			                		  this->endMessageShown=false;
+			                		  					this->startMessageShown=false;
+			                		  					this->startSelected=false;
+			                		  					this->endSelected=false;
+			                		  					this->solution=false;
+			                		  					this->vecSolution.clear();
 			                	  }
 			                	  break;
 			              }
