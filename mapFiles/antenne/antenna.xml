@@ -50,4 +50,19 @@
         <posY>6</posY>
         <maxTransmitionSpeed>1</maxTransmitionSpeed>
     </antenna>
+    <antenna>
+        <posX>98</posX>
+        <posY>99</posY>
+        <maxTransmitionSpeed>5</maxTransmitionSpeed>
+    </antenna>
+    <antenna>
+        <posX>0</posX>
+        <posY>0</posY>
+        <maxTransmitionSpeed>8</maxTransmitionSpeed>
+    </antenna>
+    <antenna>
+        <posX>99</posX>
+        <posY>0</posY>
+        <maxTransmitionSpeed>6</maxTransmitionSpeed>
+    </antenna>
 </antenne>

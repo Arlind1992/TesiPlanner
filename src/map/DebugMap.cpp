@@ -39,9 +39,9 @@ bool DebugMap::isFree(const rrt_planning::Cell& s)
     else
     	return false;
 }
-bool DebugMap::isComm(const rrt_planning::Cell& s){
-	int speed;
-	if(this->comm->getSpeed(s.first,s.second,speed)){
+bool DebugMap::isComm(const rrt_planning::Cell& s,int* speed){
+	bool toverify=this->comm->getSpeed(s.first,s.second,speed);
+	if(toverify){
 		return true;
 	}else{
 		return false;

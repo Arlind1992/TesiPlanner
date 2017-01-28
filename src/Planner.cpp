@@ -16,11 +16,10 @@ using namespace rrt_planning;
 using namespace lemon;
 using namespace planner;
 
-
+//TODO make map 50 per 50
 bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::Cell cinit
 		,vector<rrt_planning::Cell>& result){
 
-	std::cout<<"1"<<std::endl;
 	std::vector<rrt_planning::Cell> toCheck;
 	toCheck.push_back(cinit);
 	std::vector<rrt_planning::Cell> checked;
@@ -32,8 +31,9 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 
 	//TODO maybe delete
 	nodeCell[node]=cinit;
+	int numi=0;
 	while(!toCheck.empty()){
-		std::cout<<"2"<<std::endl;
+		numi++;
 		rrt_planning::Cell cell=toCheck.front();
 		toCheck.erase(toCheck.begin());
 		checked.push_back(cell);
@@ -41,8 +41,10 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 		for(it=comm_cells.begin();it<comm_cells.end();it++){
 			if(!searchCell(checked,*it)){
 				std::vector<rrt_planning::Cell> pathTo;
+			//TODO stampa tempi di theta*
 				planner.makePlan(cell,*it,pathTo);
 				double distance=grid->pathCost(pathTo);
+
 				if(distance<=Tmax){
 					try{
 						node=cellNode.at(*it);
@@ -111,8 +113,6 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 }
 bool planner::Planner::searchCell(std::vector<rrt_planning::Cell> cells,rrt_planning::Cell toSearch){
 	for(rrt_planning::Cell cell :cells){
-		 std::cout<<"inside 1"<<std::endl;
-
 		if(cell.first==toSearch.first&&cell.second==toSearch.second){
 			return true;
 		}

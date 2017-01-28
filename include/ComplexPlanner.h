@@ -14,12 +14,12 @@
 #include "grid/Cell.h"
 #include "rrt_planning/ThetaStarPlanner.h"
 #include <lemon/list_graph.h>
-
+typedef lemon::ListDigraph DiGraph;
 namespace planner {
 
 class ComplexPlanner{
 public:
-	ComplexPlanner(rrt_planning::Grid* grid,int buffer):grid(grid),planner(grid),length(graph),buffer(0){
+	ComplexPlanner(rrt_planning::Grid* grid):grid(grid),planner(grid),length(graph),buffer(0),discretizationPar(1){
 
 	}
 	virtual ~ComplexPlanner();
@@ -29,24 +29,42 @@ public:
 
 private:
 
+
 		/*
 		 * Attributes
 		 */
 		rrt_planning::Grid* grid;
 	    //graph that is going to be used to find the optimal path
-	    lemon::ListGraph graph;
+	    lemon::ListDigraph graph;
+	    //maybe i need this complex case graph
+	    DiGraph complexCaseGraph;
 	    rrt_planning::ThetaStarPlanner planner;
-	    Graph::EdgeMap<double> length;
-	    std::map<Graph::Arc,std::vector<rrt_planning::Cell> > edgePath;
-	    std::map<Graph::Node,rrt_planning::Cell> nodeCell;
-	    //TODO probably don't need it so delete
-	    std::map<rrt_planning::Cell,Graph::Node> cellNode;
-	    int buffer;
+	    DiGraph::ArcMap<double> length;
+	    std::map<DiGraph::Arc,std::vector<rrt_planning::Cell> > arcPath;
+	    std::map<DiGraph::Node,rrt_planning::Cell> nodeCell;
+	    std::map<rrt_planning::Cell,DiGraph::Node> cellNode;
 
+	    //map to keep track the node from the graph of the simple
+	    //problem case from which the expanded nodes came from
+	    std::map<std::vector<DiGraph::Node>,DiGraph::Node> vecToNode;
+	    //map to get the expanded nodes from the node on the normal graph
+	    std::map<std::vector<DiGraph::Node>,DiGraph::Node> nodeToVec;
+	    //map to indicate if an arc is a moving arc or not
+	    std::map<DiGraph::Arc,bool> isMoving;
+	    //map to get from a couple of nodes the arc connecting them
+	    std::map<std::pair<DiGraph::Node,DiGraph::Node>,DiGraph::Arc> nodesToArc;
+	    int buffer;
+	    int discretizationPar;
 	    /*
 	     * helper functions
 	     */
-	     bool searchCell(std::set<rrt_planning::Cell> cells,rrt_planning::Cell toSearch);
+	     bool searchCell(std::vector<rrt_planning::Cell> cells,rrt_planning::Cell toSearch);
+
+	     /*
+	      * function to create the complex case graph with the expanded communication nodes and
+	      * their connections
+	      */
+	     void createComplexGraph();
 
 
 };

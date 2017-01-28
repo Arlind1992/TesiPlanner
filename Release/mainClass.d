@@ -13,6 +13,8 @@ mainClass.o: ../mainClass.cpp \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/grid/Grid.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/rrt_planning/theta/PriorityQueue.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/rrt_planning/theta/FrontierNode.h \
+ /home/arlind/Desktop/DiffProj/TesiPlanner/include/ComplexPlanner.h \
+ /home/arlind/Desktop/DiffProj/TesiPlanner/include/Planner.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/FileReader/FileReader.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/map/DebugMap.h
 
@@ -43,6 +45,10 @@ mainClass.o: ../mainClass.cpp \
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/rrt_planning/theta/PriorityQueue.h:
 
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/rrt_planning/theta/FrontierNode.h:
+
+/home/arlind/Desktop/DiffProj/TesiPlanner/include/ComplexPlanner.h:
+
+/home/arlind/Desktop/DiffProj/TesiPlanner/include/Planner.h:
 
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/FileReader/FileReader.h:
 

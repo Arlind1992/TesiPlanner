@@ -75,7 +75,7 @@ bool ThetaStarPlanner::makePlan(Cell start,Cell goal,std::vector<Cell>& path)
         if(s == s_goal) break;
 
         for(auto s_next: grid->getNeighbors(s))
-            if(closed.count(s_next) == 0)
+        	if(closed.count(s_next) == 0)
             {
                 if(!open.contains(s_next))
                 {

@@ -37,7 +37,7 @@ public:
     DebugMap(MatrixDyn* mat,CommGrid* comm);
 
     virtual bool isFree(const Cell& s) override;
-    virtual bool isComm(const Cell& s) override;
+    virtual bool isComm(const Cell& s,int* speed) override;
 
     ~DebugMap();
 

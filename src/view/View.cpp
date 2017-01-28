@@ -324,7 +324,8 @@ void View::handleInput(SDL_Event event){
 					endSelected=true;
 					//find a way to select the Tmax
 					std::cout<<"deri te zgjidhja"<<std::endl;
-					this->solution=this->plan->makePlan(end,TMAX,start,this->vecSolution);
+					//this->solution=this->plan->makePlan(end,TMAX,start,this->vecSolution);
+					this->solution=this->complexPlan->makePlan(end,TMAX,start,this->vecSolution);
 					planner::Planner::stampVector(vecSolution);
 					std::cout<<"mbas zgjidhjes"<<std::endl;
 
@@ -350,6 +351,9 @@ void View::handleInput(SDL_Event event){
 
 void View::setPlanner(planner::Planner* plan){
 	this->plan=plan;
+}
+void View::setComplexPlanner(planner::ComplexPlanner* cmpPlaner){
+	this->complexPlan=cmpPlaner;
 }
 
 

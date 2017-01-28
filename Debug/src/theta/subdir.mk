@@ -4,20 +4,20 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../mainClass.cpp 
+../src/theta/PriorityQueue.cpp 
 
 OBJS += \
-./mainClass.o 
+./src/theta/PriorityQueue.o 
 
 CPP_DEPS += \
-./mainClass.d 
+./src/theta/PriorityQueue.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-%.o: ../%.cpp
+src/theta/%.o: ../src/theta/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I"/home/arlind/Desktop/DiffProj/TesiPlanner/include" -O3 -Wall -c -fmessage-length=0 -std=c++11 -g3 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I/home/arlind/Downloads/tinyxml -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

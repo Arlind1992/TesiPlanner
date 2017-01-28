@@ -10,6 +10,7 @@
 #include <SDL2/SDL.h>
 #include "grid/CommGrid.h"
 #include "Planner.h"
+#include "ComplexPlanner.h"
 #define WIDTH 1000
 #define HEIGHT 600
 #define BPP 4
@@ -26,6 +27,7 @@ public:
 	void setSol(bool sol);
 	void setVecSol(std::vector<Cell> vecSolution);
 	void setPlanner(planner::Planner* plan);
+	void setComplexPlanner(planner::ComplexPlanner* cmpPlaner);
 
 
 private:
@@ -79,6 +81,7 @@ private:
 
     //Planner
     planner::Planner* plan;
+    planner::ComplexPlanner* complexPlan;
 
 
 

@@ -57,7 +57,7 @@ vector<Cell> Grid::getNeighbors(const Cell& s)
         {
             if(i == 0 && j == 0) continue;
             if(X+i < 0 || Y+j < 0 ||
-                    X+i > maxX || Y+j > maxY)
+                    X+i > maxX-1 || Y+j > maxY-1)
                 continue;
             Cell pos;
             pos.first= X+i;
@@ -216,8 +216,9 @@ std::vector<Cell> Grid::commCells(const Cell& s,int radius,const Cell& cgoal){
 	    {
 	    	if(!(s.first==i&&s.second==j)){
 
+	    		int speed;
 	    	rrt_planning::Cell cell(i,j);
-	        if((map.isComm(cell)||((cgoal.first==cell.first)&&(cgoal.second==cell.second)))&&(heuristic(cell,s)<radius)){
+	    	if((map.isComm(cell,&speed)||((cgoal.first==cell.first)&&(cgoal.second==cell.second)))&&(heuristic(cell,s)<radius)){
 	        	if(map.isFree(cell)){
 	        	comm.push_back(cell);
 	        	}
@@ -236,6 +237,11 @@ double Grid::pathCost(vector<Cell> path){
 		result=result+heuristic(path[it],path[it+1]);
 	}
 	return result;
+}
+
+bool Grid::isComm(const Cell& s,int* speed){
+	return this->map.isComm(s,speed);
+
 }
 
 }

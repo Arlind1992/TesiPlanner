@@ -8,6 +8,7 @@
 #include "FileReader/FileReader.h"
 #include "map/DebugMap.h"
 #include "grid/Grid.h"
+#include "ComplexPlanner.h"
 
 
 void printMat(MatrixDyn* mat){
@@ -37,8 +38,10 @@ int main(int argc, char* argv[])
 		DebugMap map(&bl,&grid);
 	Grid gridMap(map,100,100);
 	planner::Planner pl(&gridMap);
+	planner::ComplexPlanner compPl(&gridMap);
 	view::View view;
 	view.setPlanner(&pl);
+	view.setComplexPlanner(&compPl);
 	view.setMat(mat,bl);
 	if(view.Draw()){
 	    std::cout<<"success"<<std::endl;

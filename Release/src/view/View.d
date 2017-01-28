@@ -12,7 +12,9 @@ src/view/View.o: ../src/view/View.cpp \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/rrt_planning/ThetaStarPlanner.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/grid/Grid.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/rrt_planning/theta/PriorityQueue.h \
- /home/arlind/Desktop/DiffProj/TesiPlanner/include/rrt_planning/theta/FrontierNode.h
+ /home/arlind/Desktop/DiffProj/TesiPlanner/include/rrt_planning/theta/FrontierNode.h \
+ /home/arlind/Desktop/DiffProj/TesiPlanner/include/ComplexPlanner.h \
+ /home/arlind/Desktop/DiffProj/TesiPlanner/include/Planner.h
 
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/view/View.h:
 
@@ -41,3 +43,7 @@ src/view/View.o: ../src/view/View.cpp \
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/rrt_planning/theta/PriorityQueue.h:
 
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/rrt_planning/theta/FrontierNode.h:
+
+/home/arlind/Desktop/DiffProj/TesiPlanner/include/ComplexPlanner.h:
+
+/home/arlind/Desktop/DiffProj/TesiPlanner/include/Planner.h:

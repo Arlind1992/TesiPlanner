@@ -9,7 +9,7 @@
 #include <iostream>
 #include <eigen3/Eigen/Dense>
 #include<lemon/dijkstra.h>
-
+//Assumtions : the buffer is starts always at empty
 namespace planner {
 
 ComplexPlanner::~ComplexPlanner() {
@@ -29,16 +29,17 @@ bool planner::ComplexPlanner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_pla
 
 	std::vector<rrt_planning::Cell> toCheck;
 	toCheck.push_back(cinit);
-	std::set<rrt_planning::Cell> checked;
-	Graph::Node node=graph.addNode();
-	//TODO probably don't need it so delete
+	std::vector<rrt_planning::Cell> checked;
+	DiGraph::Node node=graph.addNode();
 	cellNode[cinit]=node;
-	//TODO maybe delete
 	nodeCell[node]=cinit;
+	int i=0;
 	while(!toCheck.empty()){
+		i++;
+		std::cout<<i<<std::endl;
 		rrt_planning::Cell cell=toCheck.front();
 		toCheck.erase(toCheck.begin());
-		checked.insert(cell);
+		checked.push_back(cell);
 		std::vector<rrt_planning::Cell> comm_cells=grid->commCells(cell,Tmax,cgoal);
 		std::vector<rrt_planning::Cell>::iterator it;
 		for(it=comm_cells.begin();it<comm_cells.end();it++){
@@ -52,15 +53,23 @@ bool planner::ComplexPlanner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_pla
 						}catch(const std::out_of_range& oor){
 						node=graph.addNode();
 						cellNode[*it]=node;
-						//TODO maybe delete
 						nodeCell[node]=*it;
 					}
 
-					toCheck.push_back(*it);
-					Graph::Node toconnect=cellNode[cell];
-					Graph::Edge edge=graph.addEdge(node,toconnect);
-					length[edge]=distance;
-					//edgePath[edge]=pathTo;
+						 if(!searchCell(toCheck,*it)){
+
+										    	toCheck.push_back(*it);
+						 }
+						 DiGraph::Node toconnect=cellNode[cell];
+					DiGraph::Arc arc=graph.addArc(toconnect,node);
+					this->nodesToArc[std::make_pair(toconnect,node)]=arc;
+					DiGraph::Arc inverseArc=graph.addArc(node,toconnect);
+					length[inverseArc]=distance;
+					std::vector<rrt_planning::Cell> reversedPath=pathTo;
+					std::reverse(reversedPath.begin(),reversedPath.end());
+					arcPath[inverseArc]=pathTo;
+					length[arc]=distance;
+					arcPath[arc]=pathTo;
 				}
 			}
 		}
@@ -90,23 +99,22 @@ bool planner::ComplexPlanner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_pla
 	i++;
 	}*/
 	std::cout<<"end nodes"<<std::endl;
-
-
-	lemon::Dijkstra<Graph,Graph::EdgeMap<double>> solver(graph,length);
+	this->createComplexGraph();
+	lemon::Dijkstra<DiGraph,DiGraph::ArcMap<double>> solver(this->complexCaseGraph,length);
 	solver.run(cellNode[cinit],cellNode[cgoal]);
-    for (Graph::Node v=cellNode[cgoal];v != cellNode[cinit]; v=solver.predNode(v)) {
-      Graph::Node prevNode=solver.predNode(v);
-    //  Graph::Edge edge= lemon::findEdge(graph,prevNode,v,lemon::INVALID);
-      //std::vector<rrt_planning::Cell> vec=edgePath[edge];
-     // reverse(vec.begin(),vec.end());
-    //  result.insert(result.end(),vec.begin(),vec.end());
+    for (DiGraph::Node v=cellNode[cgoal];v != cellNode[cinit]; v=solver.predNode(v)) {
+      DiGraph::Node prevNode=solver.predNode(v);
+      DiGraph::Arc edge= lemon::findArc(graph,prevNode,v,lemon::INVALID);
+      std::vector<rrt_planning::Cell> vec=arcPath[edge];
+      reverse(vec.begin(),vec.end());
+      result.insert(result.end(),vec.begin(),vec.end());
     }
     reverse(result.begin(),result.end());
     result.erase(unique(result.begin(),result.end()),result.end());
 
 	return true;
 }
-bool planner::ComplexPlanner::searchCell(std::set<rrt_planning::Cell> cells,rrt_planning::Cell toSearch){
+bool planner::ComplexPlanner::searchCell(std::vector<rrt_planning::Cell> cells,rrt_planning::Cell toSearch){
 	for(rrt_planning::Cell cell :cells){
 		if(cell.first==toSearch.first&&cell.second==toSearch.second){
 			return true;
@@ -114,5 +122,67 @@ bool planner::ComplexPlanner::searchCell(std::set<rrt_planning::Cell> cells,rrt_
 	}
 	return false;
 }
+
+void planner::ComplexPlanner::createComplexGraph(){
+	//TODO maybe add rrumbullakimin per siper
+	int numOfNodes=(TMAX/this->discretizationPar)+1;
+	//TODO add nodes for beginning and end cells
+	/*
+	 * for loop that goes through all the nodes of the graph we want to transform
+	 * checks if the cell associated with the node is a communication node
+	 * then transforms it
+	 */
+	for(DiGraph::NodeIt n(graph); n != INVALID; ++n ){
+		int speed;
+		std::vector<DiGraph::Node> vecNodes;
+		if(this->grid->isComm(this->nodeCell[n],&speed)){
+			for(int i=0;i<numOfNodes;i++){
+				DiGraph::Node addNode=this->complexCaseGraph.addNode();
+				vecNodes.push_back(addNode);
+				this->vecToNode[vecNodes]=n;
+				this->nodeToVec[n]=vecNodes;
+			}
+		}
+	}
+	/*
+	 * for loop that creates the connections between the nodes in the
+	 * complex case
+	 */
+	for(DiGraph::NodeIt n(graph); n != INVALID; ++n ){
+			int speed;
+			if(this->grid->isComm(this->nodeCell[n],&speed)){
+			std::vector<DiGraph::Node> vecStartNodes=nodeToVec[n];
+			//for loops to create connections between comm nodes associated to same cell
+			    for(int i=1;i<speed;i++){
+					DiGraph::Arc arc=this->complexCaseGraph.addArc(vecStartNodes.at(i),vecStartNodes.at(0));
+					this->length[arc]=this->discretizationPar;
+					this->isMoving[arc]=false;
+				}
+			    for(int i=0;i<=numOfNodes-speed;i++){
+			    	DiGraph::Arc toadd=this->complexCaseGraph.addArc(vecStartNodes.at(i+speed),vecStartNodes.at(i));
+			    	this->length[toadd]=this->discretizationPar;
+			    	this->isMoving[toadd]=false;
+			    }
+			    //for loop to connect with the other nodes
+				for(DiGraph::OutArcIt out(graph,n);out!=INVALID;++out){
+					//next node in the normal graph connected
+					DiGraph::Node nod=graph.target(out);
+					//normal graph arc from which to receive length and paths
+					DiGraph::Arc normalGraphArc=this->nodesToArc[std::make_pair(n,nod)];
+					std::vector<rrt_planning::Cell> path=this->arcPath[normalGraphArc];
+					int distance=this->length[normalGraphArc];
+					std::vector<DiGraph::Node> vecEndNodes=nodeToVec[nod];
+					for(int j=0;j<numOfNodes-distance;j++){
+						DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecStartNodes.at(j),vecEndNodes.at(j+distance));
+						this->length[addedArc]=distance;
+						this->arcPath[addedArc]=path;
+						this->isMoving[addedArc]=true;
+					}
+				}
+			}
+		}
+}
+
+
 
 } /* namespace planner */

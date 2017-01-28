@@ -17,7 +17,7 @@ public:
 	CommGrid(MatrixDyn* mat):repMatrix(mat){}
 	virtual ~CommGrid();
 	void setMatrix(std::vector<xml::antenna> antenne);
-	bool getSpeed(int x,int y,int& speed);
+	bool getSpeed(int x,int y,int* speed);
 
 private:
 	MatrixDyn* repMatrix;
