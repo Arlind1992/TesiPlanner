@@ -25,6 +25,7 @@ View::View() {
 	this->startSelected=false;
 	this->endSelected=false;
 	this->solution=false;
+	this->complexSolution=false;
 
 
 }
@@ -196,8 +197,10 @@ void View::DrawScreen(SDL_Surface* screen)
 
 	    drawMat(screen,10,10);
 	    if(this->solution){
-	    	this->drawSolution(screen);
+	    	this->drawSolution(screen,this->vecSolution,false);
 	    }
+	    if(this->complexSolution)
+	    	this->drawSolution(screen,this->vecSolutionComplex,true);
 
 	    if(SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
 
@@ -223,20 +226,12 @@ Cell View::pixelToMatCoo(int x,int y){
 	int yMat=y/(this->height/this->numCellV);
 	return std::make_pair(yMat,xMat);
 }
-void View::drawSolution(SDL_Surface *screen){
+void View::drawSolution(SDL_Surface *screen,std::vector<rrt_planning::Cell> vec,bool complex){
 
-	for(int i=0;i<vecSolution.size()-1;i++){
-		Cell cOne=matToPixelCoo(vecSolution[i]);
-		Cell cTwo=matToPixelCoo(vecSolution[i+1]);
-	/*std::cout<<"pixel "<<cOne.first<<std::endl;
-		std::cout<<"pixel "<<cOne.second<<std::endl;
-		std::cout<<"pixel "<<cTwo.first<<std::endl;
-		std::cout<<"pixel "<<cTwo.second<<std::endl;
-
-		//drawLine(screen,76,547,148,619);
-*/
-		drawLine(screen,cOne.first,cOne.second,cTwo.first,cTwo.second);
-
+	for(int i=0;i<vec.size()-1;i++){
+		Cell cOne=matToPixelCoo(vec[i]);
+		Cell cTwo=matToPixelCoo(vec[i+1]);
+		drawLine(screen,cOne.first,cOne.second,cTwo.first,cTwo.second,complex);
 	}
 
 }
@@ -252,7 +247,7 @@ void View::setSol(bool so){
 void View::setVecSol(std::vector<Cell> vec){
 	this->vecSolution=vec;
 }
-void View::drawLine(SDL_Surface* screen,int y1,int x1,int y2,int x2){
+void View::drawLine(SDL_Surface* screen,int y1,int x1,int y2,int x2,bool complex){
 	 // Bresenham's line algorithm
 	SDL_Rect r;
 	r.h=3;
@@ -285,14 +280,22 @@ void View::drawLine(SDL_Surface* screen,int y1,int x1,int y2,int x2){
 	        {
 	        	r.x=y;
 	        	r.y=x;
-	            SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0, 255, 0));
+	        	if(!complex){
+	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0, 255, 0));
+	        	}else{
+	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0,0, 255));
+	        	}
 	        }
 	        else
 
 	        {
 	        	r.x=x;
 	        	r.y=y;
-	            SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0, 255, 0));
+	        	if(!complex){
+	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0, 255, 0));
+	        	}else{
+	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0,0, 255));
+	        	}
 	        }
 
 	        error -= dy;
@@ -324,9 +327,11 @@ void View::handleInput(SDL_Event event){
 					endSelected=true;
 					//find a way to select the Tmax
 					std::cout<<"deri te zgjidhja"<<std::endl;
-					//this->solution=this->plan->makePlan(end,TMAX,start,this->vecSolution);
-					this->solution=this->complexPlan->makePlan(end,TMAX,start,this->vecSolution);
+					this->solution=this->plan->makePlan(end,TMAX,start,this->vecSolution);
+					this->complexSolution=this->complexPlan->makePlan(end,TMAX,start,this->vecSolutionComplex);
 					planner::Planner::stampVector(vecSolution);
+					std::cout<<"zgjidhja komplekse"<<std::endl;
+					planner::Planner::stampVector(this->vecSolutionComplex);
 					std::cout<<"mbas zgjidhjes"<<std::endl;
 
 
@@ -341,6 +346,8 @@ void View::handleInput(SDL_Event event){
 					this->startSelected=false;
 					this->endSelected=false;
 					this->solution=false;
+					this->complexSolution=false;
+					this->vecSolutionComplex.clear();
 					this->vecSolution.clear();
 				}
 

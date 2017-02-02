@@ -218,7 +218,7 @@ std::vector<Cell> Grid::commCells(const Cell& s,int radius,const Cell& cgoal){
 
 	    		int speed;
 	    	rrt_planning::Cell cell(i,j);
-	    	if((map.isComm(cell,&speed)||((cgoal.first==cell.first)&&(cgoal.second==cell.second)))&&(heuristic(cell,s)<radius)){
+	    	if((map.isComm(cell,&speed)||((cgoal.first==cell.first)&&(cgoal.second==cell.second)))&&(heuristic(cell,s)<=radius)){
 	        	if(map.isFree(cell)){
 	        	comm.push_back(cell);
 	        	}

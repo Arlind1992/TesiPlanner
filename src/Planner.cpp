@@ -32,6 +32,7 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 	//TODO maybe delete
 	nodeCell[node]=cinit;
 	int numi=0;
+	int numj=0;
 	while(!toCheck.empty()){
 		numi++;
 		rrt_planning::Cell cell=toCheck.front();
@@ -40,6 +41,7 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 		std::vector<rrt_planning::Cell> comm_cells=grid->commCells(cell,Tmax,cgoal);
 		for(it=comm_cells.begin();it<comm_cells.end();it++){
 			if(!searchCell(checked,*it)){
+				numj++;
 				std::vector<rrt_planning::Cell> pathTo;
 			//TODO stampa tempi di theta*
 				planner.makePlan(cell,*it,pathTo);
@@ -71,32 +73,18 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 		comm_cells.clear();
 
 	}
+	std::cout<<"inside "<<numj<<std::endl;
 	try{
 	cellNode.at(cgoal);
 	}catch(const std::out_of_range& oor){
 		return false;
 	}
-	/*
-	 * test graph TODO delete
-	 * after testing check the length of the path or dijkstra
-	 */
-	for( ListGraph::EdgeIt n(graph); n != INVALID; ++n ){
-	    std::vector<Cell> toPrint=edgePath[n];
-	    this->stampVector(toPrint);
-	    double cost=length[n];
-	    std::cout<<cost<<std::endl;
-		std::cout<<"end"<<std::endl;
+	//count edges
+	int k=0;
+	for(Graph::EdgeIt it(graph);it!=INVALID;++it){
+		k++;
 	}
-	int i=1;
-	std::cout<<"begin nodes"<<std::endl;
-	for( ListGraph::NodeIt n(graph); n != INVALID; ++n ){
-
-		    std::cout<<i<<"-"<<"("<<nodeCell[n].first<<","<<nodeCell[n].second<<")"<<std::endl;
-	i++;
-	}
-	std::cout<<"end nodes"<<std::endl;
-
-
+	std::cout<<"number fo edges"<<k<<std::endl;
 	lemon::Dijkstra<Graph,Graph::EdgeMap<double>> solver(graph,length);
 	solver.run(cellNode[cinit],cellNode[cgoal]);
     for (Graph::Node v=cellNode[cgoal];v != cellNode[cinit]; v=solver.predNode(v)) {
@@ -109,6 +97,27 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
     reverse(result.begin(),result.end());
     result.erase(unique(result.begin(),result.end()),result.end());
 
+    //TODO delete after test
+	/*for(Graph::NodeIt n(graph); n != INVALID; ++n ){
+				std::cout<<graph.id(n)<<std::endl;
+				std::cout<<"representin:"<<"("<<this->nodeCell[n].first<<","<<this->nodeCell[n].second<<")"<<std::endl;
+			}
+   int z=0;
+			for(Graph::ArcIt b(graph);b!=INVALID;++b){
+				std::cout<<"Arc ="<<std::endl;
+				std::cout<<"("<<nodeCell[(graph.source(b))].first<<","<<nodeCell[(graph.source(b))].second<<")"<<"-"<<"("<<nodeCell[(graph.target(b))].first<<","<<nodeCell[(graph.target(b))].second<<")"<<std::endl;
+
+				std::cout<<"distance:"<<this->length[b]<<std::endl;
+					std::cout<<"path:"<<std::endl;
+					Planner::stampVector(this->edgePath[b]);
+					std::cout<<graph.id(b)<<"-id"<<endl;
+					std::cout<<"end Arc"<<std::endl;
+
+					z++;
+
+			}
+			std::cout<<"number of arcs="<<z<<std::endl;
+*/
 	return true;
 }
 bool planner::Planner::searchCell(std::vector<rrt_planning::Cell> cells,rrt_planning::Cell toSearch){

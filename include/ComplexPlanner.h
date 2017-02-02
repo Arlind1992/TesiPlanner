@@ -19,8 +19,8 @@ namespace planner {
 
 class ComplexPlanner{
 public:
-	ComplexPlanner(rrt_planning::Grid* grid):grid(grid),planner(grid),length(graph),buffer(0),discretizationPar(1){
-
+	ComplexPlanner(rrt_planning::Grid* grid):grid(grid),planner(grid),length(graph),buffer(0),discretizationPar(1),lengthComplex(this->complexCaseGraph){
+		this->numberOfNodes=(TMAX/this->discretizationPar)+1;
 	}
 	virtual ~ComplexPlanner();
 	 bool makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::Cell cnit
@@ -43,18 +43,22 @@ private:
 	    std::map<DiGraph::Arc,std::vector<rrt_planning::Cell> > arcPath;
 	    std::map<DiGraph::Node,rrt_planning::Cell> nodeCell;
 	    std::map<rrt_planning::Cell,DiGraph::Node> cellNode;
+	    DiGraph::ArcMap<double> lengthComplex;
 
-	    //map to keep track the node from the graph of the simple
-	    //problem case from which the expanded nodes came from
-	    std::map<std::vector<DiGraph::Node>,DiGraph::Node> vecToNode;
+	    //TODO delete after testing
+	    std::map<DiGraph::Node,DiGraph::Node> complexToNormal;
+
+	    //Variables needed for the complex case graph
+
 	    //map to get the expanded nodes from the node on the normal graph
-	    std::map<std::vector<DiGraph::Node>,DiGraph::Node> nodeToVec;
+	    std::map<DiGraph::Node,std::vector<DiGraph::Node>> nodeToVec;
 	    //map to indicate if an arc is a moving arc or not
 	    std::map<DiGraph::Arc,bool> isMoving;
-	    //map to get from a couple of nodes the arc connecting them
-	    std::map<std::pair<DiGraph::Node,DiGraph::Node>,DiGraph::Arc> nodesToArc;
 	    int buffer;
 	    int discretizationPar;
+	    //parameter to indicate the number of nodes in the complex graph for each node in the simple
+	    //graph
+	    int numberOfNodes;
 	    /*
 	     * helper functions
 	     */
@@ -64,7 +68,16 @@ private:
 	      * function to create the complex case graph with the expanded communication nodes and
 	      * their connections
 	      */
-	     void createComplexGraph();
+	     void createComplexGraph(rrt_planning::Cell* start,rrt_planning::Cell* end);
+	     /*
+	      * functions to help creating the complex graph
+	      */
+	     void createComplexNodes(rrt_planning::Cell* start,rrt_planning::Cell* end);
+	     //create connection between arcs of the same normal graph nodes
+	     void createArcsSameNodes();
+	     void connectDifferentNodes();
+	     void connectFirstCell(rrt_planning::Cell* start);
+	     void lastCellConnection(rrt_planning::Cell* end );
 
 
 };

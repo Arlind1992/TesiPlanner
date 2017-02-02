@@ -58,13 +58,15 @@ private:
 	MatrixDyn toDraw;
 	MatrixDyn blocked;
 	std::vector<Cell> vecSolution;
+	std::vector<Cell> vecSolutionComplex;
 	bool solution;
+	bool complexSolution;
 
 
 	//the functions that actually draw
 	void DrawScreen(SDL_Surface* screen);
 	void drawMat(SDL_Surface *screen, int xCenter, int yCenter);
-	void drawSolution(SDL_Surface *screen);
+	void drawSolution(SDL_Surface *screen,std::vector<Cell> vec,bool complex);
 
 
 	//Helper functions
@@ -72,7 +74,7 @@ private:
 	//moment maximum transmition speed 10
 	int selectColor(SDL_Surface* screen,int power,int blocked);
 
-    void drawLine(SDL_Surface *screen,int x1,int y1,int x2,int y2);
+    void drawLine(SDL_Surface *screen,int x1,int y1,int x2,int y2,bool complex);
     Cell matToPixelCoo(Cell cell);
     Cell pixelToMatCoo(int x,int y);
 
