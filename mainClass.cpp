@@ -42,6 +42,8 @@ int main(int argc, char* argv[])
 	view::View view;
 	view.setPlanner(&pl);
 	view.setComplexPlanner(&compPl);
+	compPl.setFilePath("mapFiles/lemon_graph/graph");
+	compPl.createGraphs();
 	view.setMat(mat,bl);
 	if(view.Draw()){
 	    std::cout<<"success"<<std::endl;

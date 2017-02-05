@@ -11,6 +11,7 @@
 #include<lemon/dijkstra.h>
 #include <lemon/lgf_writer.h>
 #include <lemon/dim2.h>
+#include <lemon/lgf_reader.h>
 //Assumtions : the buffer is starts always at empty
 namespace planner {
 
@@ -76,33 +77,23 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,int Tmax,Cell cinit
 	}catch(const std::out_of_range& oor){
 		return false;
 	}*/
-	this->createNormalGraph();
 
 	this->connectCell(cgoal);
 	this->connectCell(cinit);
 	this->connectCells(cgoal,cinit);
-	digraphWriter(graph, std::cout).nodeMap("point",this->nodePoint).arcMap("length",this->length).run();
-	this->createComplexGraph();
 	this->connectFirstCellComplex(cinit);
 	this->connectGoalCellComplex(cgoal);
+	this->connectComplexCells(cinit,cgoal);
 	lemon::Dijkstra<DiGraph,DiGraph::ArcMap<double>> solver(this->complexCaseGraph,this->lengthComplex);
 	DiGraph::Node firstCompl;
 	DiGraph::Node endCompl;
 	firstCompl=nodeToVec[cellNode[cinit]].at(0);
 	endCompl=nodeToVec[cellNode[cgoal]].at(0);
 	solver.run(firstCompl,endCompl);
-	std::cout<<"ktu"<<std::endl;
 	if(complexCaseGraph.id(solver.predNode(endCompl))==-1){
 		return false;
 	}
-
-	for(DiGraph::NodeIt n(complexCaseGraph); n != INVALID; ++n ){
-			std::cout<<complexCaseGraph.id(n)<<std::endl;
-			std::cout<<"representin:"<<"("<<nodePoint[this->complexToNormal[n]].x<<","<<this->nodePoint[this->complexToNormal[n]].y<<")"<<std::endl;
-		}
 	 std::vector<Cell> vec;
-
-
 	 for (DiGraph::Node v=endCompl;v != firstCompl; v=solver.predNode(v)) {
 		 DiGraph::Node prevNode=solver.predNode(v);
 		 std::cout<<graph.id(prevNode)<<std::endl;
@@ -123,10 +114,6 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,int Tmax,Cell cinit
 
       }
       }
-    std::cout<<"beg id"<<std::endl;
-    for (DiGraph::Node v=endCompl;v != firstCompl; v=solver.predNode(v)) {
-        std::cout<<"node ids"<<this->complexCaseGraph.id(v)<<std::endl;
-    }
     reverse(result.begin(),result.end());
     result.erase(unique(result.begin(),result.end()),result.end());
 	return true;
@@ -173,13 +160,6 @@ void planner::ComplexPlanner::connectFirstCellComplex(Cell cell){
 		DiGraph::Arc addedArc=this->complexCaseGraph.addArc(firstComplexNode,vecEndNodes.at(distance/this->discretizationPar));
 		this->lengthComplex[addedArc]=distance;
 		this->isMoving[addedArc]=true;
-		}else{
-			double distance=this->length[out];
-			DiGraph::Arc addedArc=this->complexCaseGraph.addArc(firstComplexNode,nodeToVec[nod].at(0));
-			this->isMoving[addedArc]=true;
-			this->lengthComplex[addedArc]=distance;
-
-
 		}
 	}
 }
@@ -372,6 +352,29 @@ void planner::ComplexPlanner::connectCells(Cell cell1,Cell cell2){
 			this->length[ar1]=distance;
 		}
 	}
+}
+void planner::ComplexPlanner::connectComplexCells(Cell start,Cell goal){
+		if(lemon::findArc(graph,cellNode[start],cellNode[goal],lemon::INVALID)!=lemon::INVALID){
+			DiGraph::Arc arc=complexCaseGraph.addArc(this->nodeToVec[cellNode[start]].at(0),this->nodeToVec[cellNode[goal]].at(0));
+			this->lengthComplex[arc]=this->length[lemon::findArc(graph,cellNode[start],cellNode[goal],lemon::INVALID)];
+			this->isMoving[arc]=true;
+		}
+}
+
+void planner::ComplexPlanner::createGraphs(){
+	if(FILE *file = fopen(this->filePath, "r")) {
+		fclose(file);
+			DigraphReader<DiGraph>( graph,this->filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
+			this->createCellNode();
+		}else{
+			this->createNormalGraph();
+			DigraphWriter<DiGraph>(graph, this->filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
+	}
+	this->createComplexGraph();
+
+}
+void planner::ComplexPlanner::setFilePath(char* filePath){
+	this->filePath=filePath;
 }
 
 

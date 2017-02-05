@@ -27,7 +27,9 @@ public:
 	virtual ~ComplexPlanner();
 	 bool makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::Cell cnit
 		    		,std::vector<rrt_planning::Cell>& result);
+	 void createGraphs();
 
+     void setFilePath(char* filePath);
 
 private:
 
@@ -46,6 +48,7 @@ private:
 	    std::map<Cell,DiGraph::Node> cellNode;
 	    DiGraph::ArcMap<double> lengthComplex;
 	    std::map<DiGraph::Node,DiGraph::Node> complexToNormal;
+	    char* filePath;
 
 	    //Variables needed for the complex case graph
 
@@ -77,6 +80,7 @@ private:
 	     void connectDifferentNodes();
 	     void connectFirstCellComplex(Cell cell);
 	     void connectGoalCellComplex(Cell goal);
+	     void connectComplexCells(Cell start,Cell goal);
 	     //function to calculate distance based on the discretization parameter
 	     double calculateNum(double distance);
 
@@ -95,6 +99,7 @@ private:
 	     //function to connect directly the first cell with the last cell if
 	     //connection is possible and the cells are not communication cells
 	     void connectCells(Cell cell1,Cell cell2);
+
 
 
 };
