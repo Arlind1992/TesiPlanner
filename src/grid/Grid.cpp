@@ -215,10 +215,8 @@ std::vector<Cell> Grid::commCells(const Cell& s,int radius,const Cell& cgoal){
 	    for(int j = startj; j <= endj; j++)
 	    {
 	    	if(!(s.first==i&&s.second==j)){
-
-	    		int speed;
 	    	rrt_planning::Cell cell(i,j);
-	    	if((map.isComm(cell,&speed)||((cgoal.first==cell.first)&&(cgoal.second==cell.second)))&&(heuristic(cell,s)<=radius)){
+	    	if((map.isComm(cell)||((cgoal.first==cell.first)&&(cgoal.second==cell.second)))&&(heuristic(cell,s)<=radius)){
 	        	if(map.isFree(cell)){
 	        	comm.push_back(cell);
 	        	}
@@ -239,9 +237,59 @@ double Grid::pathCost(vector<Cell> path){
 	return result;
 }
 
-bool Grid::isComm(const Cell& s,int* speed){
-	return this->map.isComm(s,speed);
-
+bool Grid::isComm(const Cell& s){
+	return this->map.isComm(s);
+}
+int Grid::getSpeed(const Cell& s){
+	return this->map.getSpeed(s);
 }
 
+std::vector<Cell> Grid::getCommCells(const Cell& s,int radius){
+	int X = s.first;
+		int Y = s.second;
+
+		vector<Cell> comm;
+		int starti,startj,endi,endj;
+		if(X-radius<0){
+			starti=0;
+		}else{
+			starti=X-radius;
+		}
+		if(Y-radius<0){
+				startj=0;
+			}else{
+				startj=Y-radius;
+		}
+		if(X+radius>=this->maxX){
+				endi=this->maxX-1;
+			}else{
+				endi=X+radius;
+		}
+		if(Y+radius>=this->maxY){
+				endj=this->maxY-1;
+			}else{
+				endj=Y+radius;
+		}
+
+		//Given (X,Y), retrive all the eight-connected free cells
+		for(int i = starti; i <= endi; i++)
+		    for(int j = startj; j <= endj; j++)
+		    {
+		    	if(!(s.first==i&&s.second==j)){
+		    	rrt_planning::Cell cell(i,j);
+		    	if(map.isComm(cell)&&(heuristic(cell,s)<=radius)){
+		        	if(map.isFree(cell)){
+		        	comm.push_back(cell);
+		        		}
+		        	}
+		    	}
+		    }
+		    return comm;
+}
+int Grid::getMaxX(){
+	return maxX;
+}
+int Grid::getMaxY(){
+	return maxY;
+}
 }

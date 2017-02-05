@@ -9,7 +9,7 @@
 #include <lemon/list_graph.h>
 typedef lemon::ListGraph Graph;
 typedef Graph::EdgeMap<int> LengthMap;
-#define TMAX 10
+#define TMAX 5
 namespace planner{
 class Planner{
 public :

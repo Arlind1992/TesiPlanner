@@ -35,7 +35,8 @@ class Map
 
 public:
     virtual bool isFree(const Cell& s) = 0;
-    virtual bool isComm(const Cell& s,int* speed)=0;
+    virtual bool isComm(const Cell& s)=0;
+    virtual int getSpeed(const Cell& s)=0;
 
     inline Bounds getBounds()
     {

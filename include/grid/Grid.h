@@ -44,10 +44,13 @@ public:
     std::vector<Cell> getNeighbors(const Cell& s);
     std::vector<Cell> getObstacles(const Cell& s);
     bool isFree(const Cell& s);
-    bool isComm(const Cell& s,int* speed);
+    bool isComm(const Cell& s);
+    int getSpeed(const Cell& s);
+    std::vector<Cell> getCommCells(const Cell& s,int radious);
     std::vector<Cell> commCells(const Cell& s,int radious,const Cell& cgoal);
-    //TODO implement
     double pathCost(std::vector<Cell> path);
+    int getMaxX();
+    int getMaxY();
 
 private:
     Map& map;

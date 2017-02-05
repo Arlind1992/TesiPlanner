@@ -6,18 +6,8 @@
         <maxTransmitionSpeed>3</maxTransmitionSpeed>
     </antenna>
     <antenna>
-        <posX>5</posX>
-        <posY>32</posY>
-        <maxTransmitionSpeed>5</maxTransmitionSpeed>
-    </antenna>
-    <antenna>
-        <posX>61</posX>
-        <posY>86</posY>
-        <maxTransmitionSpeed>6</maxTransmitionSpeed>
-    </antenna>
-    <antenna>
-        <posX>77</posX>
-        <posY>82</posY>
+        <posX>8</posX>
+        <posY>36</posY>
         <maxTransmitionSpeed>4</maxTransmitionSpeed>
     </antenna>
 </antenne>
