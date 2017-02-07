@@ -326,13 +326,10 @@ void View::handleInput(SDL_Event event){
 									std::cout<<end.second<<std::endl;
 					endSelected=true;
 					//find a way to select the Tmax
-					std::cout<<"deri te zgjidhja"<<std::endl;
-					this->solution=this->plan->makePlan(end,TMAX,start,this->vecSolution);
-					this->complexSolution=this->complexPlan->makePlan(end,TMAX,start,this->vecSolutionComplex);
+					this->solution=this->complexPlan->makeSimplePlan(end,start,this->vecSolution);
+					this->complexSolution=this->complexPlan->makePlan(end,start,this->vecSolutionComplex);
 					planner::Planner::stampVector(vecSolution);
-					std::cout<<"zgjidhja komplekse"<<std::endl;
 					planner::Planner::stampVector(this->vecSolutionComplex);
-					std::cout<<"mbas zgjidhjes"<<std::endl;
 
 
 				}

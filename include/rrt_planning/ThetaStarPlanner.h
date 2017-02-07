@@ -43,7 +43,7 @@ public:
     ThetaStarPlanner(std::string name);
 
     void initialize(std::string name);
-    bool makePlan(Cell start,Cell goal,std::vector<Cell>& path);
+    bool makePlan(Cell start,Cell goal,std::vector<Cell>& path,int buffer);
 
     ~ThetaStarPlanner();
 

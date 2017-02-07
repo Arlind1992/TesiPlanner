@@ -37,7 +37,7 @@ namespace rrt_planning
 const Cell ThetaStarPlanner::S_NULL = make_pair(-1, -1);
 
 ThetaStarPlanner::ThetaStarPlanner(Grid* grid):grid(grid){}
-bool ThetaStarPlanner::makePlan(Cell start,Cell goal,std::vector<Cell>& path)
+bool ThetaStarPlanner::makePlan(Cell start,Cell goal,std::vector<Cell>& path,int buffer)
 {
     clearInstance();
     //Init the position of the special states
@@ -73,6 +73,11 @@ bool ThetaStarPlanner::makePlan(Cell start,Cell goal,std::vector<Cell>& path)
         closed.insert(s);
 
         if(s == s_goal) break;
+
+        //TODO ask it should work
+        if(grid->heuristic(s,s_goal)>buffer){
+        	return false;
+        }
 
         for(auto s_next: grid->getNeighbors(s))
         	if(closed.count(s_next) == 0)

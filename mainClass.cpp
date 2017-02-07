@@ -38,11 +38,11 @@ int main(int argc, char* argv[])
 		DebugMap map(&bl,&grid);
 	Grid gridMap(map,100,100);
 	planner::Planner pl(&gridMap);
-	planner::ComplexPlanner compPl(&gridMap);
+	double disPar=0.1;
+	planner::ComplexPlanner compPl(&gridMap,disPar,30);
 	view::View view;
 	view.setPlanner(&pl);
 	view.setComplexPlanner(&compPl);
-	compPl.setFilePath("mapFiles/lemon_graph/graph");
 	compPl.createGraphs();
 	view.setMat(mat,bl);
 	if(view.Draw()){

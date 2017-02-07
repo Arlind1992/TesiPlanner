@@ -21,15 +21,16 @@ namespace planner {
 
 class ComplexPlanner{
 public:
-	ComplexPlanner(rrt_planning::Grid* grid):grid(grid),planner(grid),length(graph),buffer(0),nodePoint(graph),lengthComplex(this->complexCaseGraph),discretizationPar(1){
-		this->numberOfNodes=(TMAX/this->discretizationPar)+1;
+	static const char* GRAPHFILEPATH;
+	ComplexPlanner(rrt_planning::Grid* grid,double disPar,int buffer):grid(grid),planner(grid),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph),buffer(buffer){
+		this->discretizationPar=disPar;
+		this->numberOfNodes=calculateNum(buffer/this->discretizationPar)+1;
 	}
 	virtual ~ComplexPlanner();
-	 bool makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::Cell cnit
+	 bool makePlan(rrt_planning::Cell cgoal,rrt_planning::Cell cnit
 		    		,std::vector<rrt_planning::Cell>& result);
 	 void createGraphs();
-
-     void setFilePath(char* filePath);
+     bool makeSimplePlan(Cell cgoal,Cell cinit,std::vector<Cell>& result);
 
 private:
 
@@ -48,7 +49,6 @@ private:
 	    std::map<Cell,DiGraph::Node> cellNode;
 	    DiGraph::ArcMap<double> lengthComplex;
 	    std::map<DiGraph::Node,DiGraph::Node> complexToNormal;
-	    char* filePath;
 
 	    //Variables needed for the complex case graph
 
@@ -99,6 +99,8 @@ private:
 	     //function to connect directly the first cell with the last cell if
 	     //connection is possible and the cells are not communication cells
 	     void connectCells(Cell cell1,Cell cell2);
+	     //TODO delete if not necessary connect cells if transmitting while moving is allowed
+	     //void connectMovingTransmission();
 
 
 

@@ -16,7 +16,6 @@ using namespace rrt_planning;
 using namespace lemon;
 using namespace planner;
 
-//TODO make map 50 per 50
 bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::Cell cinit
 		,vector<rrt_planning::Cell>& result){
 
@@ -24,12 +23,10 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 	toCheck.push_back(cinit);
 	std::vector<rrt_planning::Cell> checked;
 	Graph::Node node=graph.addNode();
-	//TODO probably don't need it so delete
 	cellNode[cinit]=node;
 
 	std::vector<rrt_planning::Cell>::iterator it;
 
-	//TODO maybe delete
 	nodeCell[node]=cinit;
 	int numi=0;
 	int numj=0;
@@ -43,8 +40,7 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 			if(!searchCell(checked,*it)){
 				numj++;
 				std::vector<rrt_planning::Cell> pathTo;
-			//TODO stampa tempi di theta*
-				planner.makePlan(cell,*it,pathTo);
+				planner.makePlan(cell,*it,pathTo,TMAX);
 				double distance=grid->pathCost(pathTo);
 
 				if(distance<=Tmax){
@@ -53,7 +49,6 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
 						}catch(const std::out_of_range& oor){
 						node=graph.addNode();
 						cellNode[*it]=node;
-						//TODO maybe delete
 						nodeCell[node]=*it;
 					}
 				    if(!searchCell(toCheck,*it)){
@@ -96,28 +91,6 @@ bool planner::Planner::makePlan(rrt_planning::Cell cgoal,int Tmax,rrt_planning::
     }
     reverse(result.begin(),result.end());
     result.erase(unique(result.begin(),result.end()),result.end());
-
-    //TODO delete after test
-	/*for(Graph::NodeIt n(graph); n != INVALID; ++n ){
-				std::cout<<graph.id(n)<<std::endl;
-				std::cout<<"representin:"<<"("<<this->nodeCell[n].first<<","<<this->nodeCell[n].second<<")"<<std::endl;
-			}
-   int z=0;
-			for(Graph::ArcIt b(graph);b!=INVALID;++b){
-				std::cout<<"Arc ="<<std::endl;
-				std::cout<<"("<<nodeCell[(graph.source(b))].first<<","<<nodeCell[(graph.source(b))].second<<")"<<"-"<<"("<<nodeCell[(graph.target(b))].first<<","<<nodeCell[(graph.target(b))].second<<")"<<std::endl;
-
-				std::cout<<"distance:"<<this->length[b]<<std::endl;
-					std::cout<<"path:"<<std::endl;
-					Planner::stampVector(this->edgePath[b]);
-					std::cout<<graph.id(b)<<"-id"<<endl;
-					std::cout<<"end Arc"<<std::endl;
-
-					z++;
-
-			}
-			std::cout<<"number of arcs="<<z<<std::endl;
-*/
 	return true;
 }
 bool planner::Planner::searchCell(std::vector<rrt_planning::Cell> cells,rrt_planning::Cell toSearch){
