@@ -10,7 +10,8 @@ RM := rm -rf
 -include sources.mk
 -include src/xml/subdir.mk
 -include src/view/subdir.mk
--include src/theta/subdir.mk
+-include src/planners/theta/subdir.mk
+-include src/planners/subdir.mk
 -include src/map/subdir.mk
 -include src/grid/subdir.mk
 -include src/FileReader/subdir.mk

@@ -5,8 +5,8 @@
 
 #include "grid/Grid.h"
 #include "grid/Cell.h"
-#include "rrt_planning/ThetaStarPlanner.h"
 #include <lemon/list_graph.h>
+#include "planners/ThetaStarPlanner.h"
 typedef lemon::ListGraph Graph;
 typedef Graph::EdgeMap<int> LengthMap;
 #define TMAX 30

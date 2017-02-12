@@ -19,7 +19,7 @@ FileReader::~FileReader() {
 	// TODO Auto-generated destructor stub
 }
 void FileReader::reader(MatrixDyn* mat){
-	std::fstream myfile("mapFiles/blocked_map/map.txt");
+	std::fstream myfile("projectFiles/mapFiles/blocked_map/map.txt");
 	int i,j;
 	for(i=0;i<100;i++){
 		for(j=0;j<100;j++){

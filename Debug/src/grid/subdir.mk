@@ -4,15 +4,12 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/grid/CommGrid.cpp \
 ../src/grid/Grid.cpp 
 
 OBJS += \
-./src/grid/CommGrid.o \
 ./src/grid/Grid.o 
 
 CPP_DEPS += \
-./src/grid/CommGrid.d \
 ./src/grid/Grid.d 
 
 

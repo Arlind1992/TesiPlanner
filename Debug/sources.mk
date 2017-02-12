@@ -29,7 +29,8 @@ src \
 src/FileReader \
 src/grid \
 src/map \
-src/theta \
+src/planners \
+src/planners/theta \
 src/view \
 src/xml \
 

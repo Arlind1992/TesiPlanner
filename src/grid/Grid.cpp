@@ -292,4 +292,67 @@ int Grid::getMaxX(){
 int Grid::getMaxY(){
 	return maxY;
 }
+
+
+rrt_planning::Cell Grid::fasterNeighbor(rrt_planning::Cell c){
+	rrt_planning::Cell toReturn=c;
+	for(int i=c.first-1;i<=c.first+1;i++){
+		for(int j=c.second-1;j<=c.second+1;j++){
+			if(i<0||j<0||i>(maxX-1)||j>(maxY-1))
+							continue;
+			int speedIJ=map.getSpeed(std::make_pair(i,j));
+			int speedToReturn=map.getSpeed(std::make_pair(toReturn.first,toReturn.second));
+			if(speedIJ>speedToReturn){
+				toReturn=std::make_pair(i,j);
+			}
+		}
+	}
+	return toReturn;
+}
+
+rrt_planning::Cell Grid::getAntennaCenter(rrt_planning::Cell c){
+	rrt_planning::Cell center=fasterNeighbor(c);
+	if(center.first==c.first&&center.second==c.second){
+		return center;
+	}else{
+		return getAntennaCenter(center);
+	}
+}
+bool Grid::sameAntenna(Cell one,Cell two){
+	Cell aCentOne=getAntennaCenter(one);
+	Cell aCentTwo=getAntennaCenter(two);
+	if(aCentOne.first==aCentTwo.first&&aCentOne.second==aCentTwo.second){
+		return true;
+	}else{
+		return false;
+	}
+
+}
+
+std::vector<Cell> Grid::getFourNeighbours(const Cell& s){
+	std::vector<Cell> toReturn;
+	for(int i=s.first-1;i<=s.first+1;i++){
+		if(i==s.first)
+			continue;
+		if(i<0||i>=this->maxX)
+			continue;
+		if(this->isFree(std::make_pair(i,s.second)))
+			toReturn.push_back(std::make_pair(i,s.second));
+	}
+	for(int i=s.second-1;i<=s.second+1;i++){
+			if(i==s.second)
+				continue;
+			if(i<0||i>=this->maxY)
+				continue;
+			if(this->isFree(std::make_pair(s.first,i)))
+				toReturn.push_back(std::make_pair(s.first,i));
+		}
+	return toReturn;
+
+}
+
+
+
+
+
 }

@@ -25,7 +25,7 @@
 namespace rrt_planning
 {
 
-DebugMap::DebugMap(MatrixDyn* mat,CommGrid* comm)
+DebugMap::DebugMap(MatrixDyn* mat,CommMap* comm)
 {
 repMatrix=mat;
 this->comm=comm;

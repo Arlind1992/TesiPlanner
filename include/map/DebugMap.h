@@ -24,17 +24,17 @@
 #ifndef INCLUDE_RRT_PLANNING_MAP_DEBUGMAP_H_
 #define INCLUDE_RRT_PLANNING_MAP_DEBUGMAP_H_
 
+#include <map/CommMap.h>
 #include "map/Map.h"
 #include "grid/Cell.h"
 #include <eigen3/Eigen/Dense>
-#include "grid/CommGrid.h"
 using namespace Eigen;
 namespace rrt_planning
 {
 class DebugMap : public Map
 {
 public:
-    DebugMap(MatrixDyn* mat,CommGrid* comm);
+    DebugMap(MatrixDyn* mat,CommMap* comm);
 
     virtual bool isFree(const Cell& s) override;
     virtual bool isComm(const Cell& s) override;
@@ -44,7 +44,7 @@ public:
 
 private:
     MatrixDyn* repMatrix;
-    CommGrid* comm;
+    CommMap* comm;
 
 
 };

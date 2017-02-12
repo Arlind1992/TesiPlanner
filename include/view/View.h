@@ -7,14 +7,13 @@
 
 #ifndef VIEW_H_
 #define VIEW_H_
+#include <map/CommMap.h>
+#include <planners/GridPlanner.h>
 #include <SDL2/SDL.h>
-#include "grid/CommGrid.h"
 #include "Planner.h"
 #include "ComplexPlanner.h"
 #define WIDTH 1000
 #define HEIGHT 600
-#define BPP 4
-#define DEPTH 32
 #define CELLSIZE 10
 namespace view {
 
@@ -28,6 +27,8 @@ public:
 	void setVecSol(std::vector<Cell> vecSolution);
 	void setPlanner(planner::Planner* plan);
 	void setComplexPlanner(planner::ComplexPlanner* cmpPlaner);
+	void setComGridPlanner(planner::ComplexPlanner* grPlanner);
+	void setGridPlanner(planner::GridPlanner *pl);
 
 
 private:
@@ -59,14 +60,18 @@ private:
 	MatrixDyn blocked;
 	std::vector<Cell> vecSolution;
 	std::vector<Cell> vecSolutionComplex;
+	std::vector<Cell> vecGrSolution;
+	std::vector<Cell> vecGrComplexSolution;
 	bool solution;
 	bool complexSolution;
+	bool grNSolution;
+	bool grCompSolution;
 
 
 	//the functions that actually draw
 	void DrawScreen(SDL_Surface* screen);
 	void drawMat(SDL_Surface *screen, int xCenter, int yCenter);
-	void drawSolution(SDL_Surface *screen,std::vector<Cell> vec,bool complex);
+	void drawSolution(SDL_Surface *screen,std::vector<Cell> vec,int complex);
 
 
 	//Helper functions
@@ -74,7 +79,7 @@ private:
 	//moment maximum transmition speed 10
 	int selectColor(SDL_Surface* screen,int power,int blocked);
 
-    void drawLine(SDL_Surface *screen,int x1,int y1,int x2,int y2,bool complex);
+    void drawLine(SDL_Surface *screen,int x1,int y1,int x2,int y2,int complex);
     Cell matToPixelCoo(Cell cell);
     Cell pixelToMatCoo(int x,int y);
 
@@ -84,6 +89,8 @@ private:
     //Planner
     planner::Planner* plan;
     planner::ComplexPlanner* complexPlan;
+    planner::ComplexPlanner* grPlanner;
+
 
 
 

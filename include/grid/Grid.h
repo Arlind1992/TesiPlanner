@@ -51,6 +51,8 @@ public:
     double pathCost(std::vector<Cell> path);
     int getMaxX();
     int getMaxY();
+    bool sameAntenna(Cell one,Cell two);
+    std::vector<Cell> getFourNeighbours(const Cell& s);
 
 private:
     Map& map;
@@ -58,6 +60,9 @@ private:
     double gridResolution;	// Cell edges in meters
     int maxX;
     int maxY;
+
+	rrt_planning::Cell getAntennaCenter(rrt_planning::Cell c);
+	rrt_planning::Cell fasterNeighbor(rrt_planning::Cell c);
 };
 
 }

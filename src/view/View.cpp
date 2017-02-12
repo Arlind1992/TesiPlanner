@@ -5,10 +5,10 @@
  *      Author: arlind
  */
 
+#include <map/CommMap.h>
 #include "view/View.h"
 #include <SDL2/SDL.h>
 #include<iostream>
-#include "grid/CommGrid.h"
 #include "Planner.h"
 
 namespace view {
@@ -26,6 +26,8 @@ View::View() {
 	this->endSelected=false;
 	this->solution=false;
 	this->complexSolution=false;
+	this->grCompSolution=false;
+	this->grNSolution=false;
 
 
 }
@@ -115,7 +117,6 @@ bool View::Draw(){
 			         }
 
 }
-			       std::cout<<"vdsklsda"<<std::endl;
 
 
 		        // Close and destroy the window
@@ -196,11 +197,17 @@ void View::DrawScreen(SDL_Surface* screen)
 	    }
 
 	    drawMat(screen,10,10);
+
 	    if(this->solution){
-	    	this->drawSolution(screen,this->vecSolution,false);
+	    	this->drawSolution(screen,this->vecSolution,1);
 	    }
 	    if(this->complexSolution)
-	    	this->drawSolution(screen,this->vecSolutionComplex,true);
+	    	this->drawSolution(screen,this->vecSolutionComplex,2);
+	    if(this->grNSolution)
+	    	this->drawSolution(screen,this->vecGrSolution,3);
+
+	    if(this->grCompSolution)
+	    	this->drawSolution(screen,this->vecGrComplexSolution,4);
 
 	    if(SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
 
@@ -216,6 +223,9 @@ int View::selectColor(SDL_Surface* screen,int power,int blocked){
 	if(blocked==1){
 		return SDL_MapRGB(screen->format,0,0,0);
 	}
+	if(blocked==2){
+		return SDL_MapRGB(screen->format,128,128,128);
+	}
 	if(power==0){
 		return SDL_MapRGB(screen->format, 255, 255, 255);
 	}
@@ -226,7 +236,7 @@ Cell View::pixelToMatCoo(int x,int y){
 	int yMat=y/(this->height/this->numCellV);
 	return std::make_pair(yMat,xMat);
 }
-void View::drawSolution(SDL_Surface *screen,std::vector<rrt_planning::Cell> vec,bool complex){
+void View::drawSolution(SDL_Surface *screen,std::vector<rrt_planning::Cell> vec,int complex){
 
 	for(int i=0;i<vec.size()-1;i++){
 		Cell cOne=matToPixelCoo(vec[i]);
@@ -247,7 +257,7 @@ void View::setSol(bool so){
 void View::setVecSol(std::vector<Cell> vec){
 	this->vecSolution=vec;
 }
-void View::drawLine(SDL_Surface* screen,int y1,int x1,int y2,int x2,bool complex){
+void View::drawLine(SDL_Surface* screen,int y1,int x1,int y2,int x2,int complex){
 	 // Bresenham's line algorithm
 	SDL_Rect r;
 	r.h=3;
@@ -279,23 +289,41 @@ void View::drawLine(SDL_Surface* screen,int y1,int x1,int y2,int x2,bool complex
 	        if(steep)
 	        {
 	        	r.x=y;
-	        	r.y=x;
-	        	if(!complex){
+	        	r.y=x-1;
+	        	switch(complex){
+	        	case 1:
 	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0, 255, 0));
-	        	}else{
+	        		break;
+	        	case 2:
 	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0,0, 255));
+	        		break;
+	        	case 3:
+	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 255,255, 0));
+	        		break;
+	        	case 4:
+	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 127,0, 255));
+	        		break;
 	        	}
 	        }
 	        else
 
 	        {
 	        	r.x=x;
-	        	r.y=y;
-	        	if(!complex){
-	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0, 255, 0));
-	        	}else{
-	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0,0, 255));
-	        	}
+	        	r.y=y-1;
+	        	switch(complex){
+	        		        	case 1:
+	        		        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0, 255, 0));
+	        		        		break;
+	        		        	case 2:
+	        		        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0,0, 255));
+	        		        		break;
+	        		        	case 3:
+	        		        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 255,255, 0));
+	        		        	    break;
+	        		        	case 4:
+	        		        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 127,0, 255));
+	        		        		break;
+	        		        	}
 	        }
 
 	        error -= dy;
@@ -316,22 +344,16 @@ void View::handleInput(SDL_Event event){
 			if(!this->startSelected){
 
 				this->start=this->pixelToMatCoo(x,y);
-				std::cout<<start.first<<std::endl;
-				std::cout<<start.second<<std::endl;
 				startSelected=true;
 			}else{
 				if(!this->endSelected){
 					this->end=this->pixelToMatCoo(x,y);
-					std::cout<<end.first<<std::endl;
-									std::cout<<end.second<<std::endl;
 					endSelected=true;
 					//find a way to select the Tmax
 					this->solution=this->complexPlan->makeSimplePlan(end,start,this->vecSolution);
 					this->complexSolution=this->complexPlan->makePlan(end,start,this->vecSolutionComplex);
-					planner::Planner::stampVector(vecSolution);
-					planner::Planner::stampVector(this->vecSolutionComplex);
-
-
+					this->grNSolution=this->grPlanner->makeSimplePlan(end,start,this->vecGrSolution);
+					this->grCompSolution=this->grPlanner->makePlan(end,start,this->vecGrComplexSolution);
 				}
 			}
 
@@ -344,6 +366,10 @@ void View::handleInput(SDL_Event event){
 					this->endSelected=false;
 					this->solution=false;
 					this->complexSolution=false;
+					this->grCompSolution=false;
+					this->grNSolution=false;
+					this->vecGrComplexSolution.clear();
+					this->vecGrSolution.clear();
 					this->vecSolutionComplex.clear();
 					this->vecSolution.clear();
 				}
@@ -360,5 +386,7 @@ void View::setComplexPlanner(planner::ComplexPlanner* cmpPlaner){
 	this->complexPlan=cmpPlaner;
 }
 
-
+void View::setComGridPlanner(planner::ComplexPlanner* grPlanner){
+	this->grPlanner=grPlanner;
+}
 } /* namespace view */

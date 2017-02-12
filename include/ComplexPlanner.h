@@ -12,19 +12,21 @@
 #include "Planner.h"
 #include "grid/Grid.h"
 #include "grid/Cell.h"
-#include "rrt_planning/ThetaStarPlanner.h"
+#include "planners/AbstractPlanner.h"
 #include <lemon/list_graph.h>
 #include <lemon/dim2.h>
+#include <planners/GridPlanner.h>
 typedef lemon::ListDigraph DiGraph;
 using namespace rrt_planning;
 namespace planner {
 
 class ComplexPlanner{
 public:
-	static const char* GRAPHFILEPATH;
-	ComplexPlanner(rrt_planning::Grid* grid,double disPar,int buffer):grid(grid),planner(grid),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph),buffer(buffer){
+	ComplexPlanner(rrt_planning::Grid* grid,double disPar,AbstractPlanner* planner,char* filePath):grid(grid),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
 		this->discretizationPar=disPar;
 		this->numberOfNodes=calculateNum(buffer/this->discretizationPar)+1;
+		this->planner=planner;
+		this->filePath=filePath;
 	}
 	virtual ~ComplexPlanner();
 	 bool makePlan(rrt_planning::Cell cgoal,rrt_planning::Cell cnit
@@ -39,28 +41,33 @@ private:
 		 * Attributes
 		 */
 		Grid* grid;
-	    //graph that is going to be used to find the optimal path
-	    lemon::ListDigraph graph;
-	    //maybe i need this complex case graph
+	    //graphs that are going to be used to find the optimal path
+		//graph created using the theta* planner
+		lemon::ListDigraph graph;
 	    DiGraph complexCaseGraph;
-	    ThetaStarPlanner planner;
+
+	    //Planners
+	   // ThetaStarPlanner planner;
+	    AbstractPlanner* planner;
+	    //maps for each node for different graphs
 	    DiGraph::ArcMap<double> length;
 	    DiGraph::NodeMap<lemon::dim2::Point<int> > nodePoint;
 	    std::map<Cell,DiGraph::Node> cellNode;
 	    DiGraph::ArcMap<double> lengthComplex;
 	    std::map<DiGraph::Node,DiGraph::Node> complexToNormal;
-
 	    //Variables needed for the complex case graph
 
 	    //map to get the expanded nodes from the node on the normal graph
 	    std::map<DiGraph::Node,std::vector<DiGraph::Node>> nodeToVec;
 	    //map to indicate if an arc is a moving arc or not
 	    std::map<DiGraph::Arc,bool> isMoving;
-	    int buffer;
+	    const int buffer=30;
 	    double discretizationPar;
 	    //parameter to indicate the number of nodes in the complex graph for each node in the simple
 	    //graph
 	    int numberOfNodes;
+
+	    const char* filePath;
 	    /*
 	     * helper functions
 	     */
@@ -99,8 +106,8 @@ private:
 	     //function to connect directly the first cell with the last cell if
 	     //connection is possible and the cells are not communication cells
 	     void connectCells(Cell cell1,Cell cell2);
-	     //TODO delete if not necessary connect cells if transmitting while moving is allowed
-	     //void connectMovingTransmission();
+
+
 
 
 

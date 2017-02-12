@@ -19,7 +19,7 @@ xmlParser::xmlParser() {
 xmlParser::~xmlParser() {
 	// TODO Auto-generated destructor stub
 }
-const char* xmlParser::FILEPATH="mapFiles/antenne/antenna.xml";
+const char* xmlParser::FILEPATH="projectFiles/mapFiles/antenne/antenna.xml";
 
 
 void xmlParser::parse(  )

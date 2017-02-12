@@ -7,8 +7,8 @@
 
 #ifndef TESTFILES_FILEREADER_H_
 #define TESTFILES_FILEREADER_H_
+#include <map/CommMap.h>
 #include <eigen3/Eigen/Dense>
-#include "grid/CommGrid.h"
 
 class FileReader {
 public:

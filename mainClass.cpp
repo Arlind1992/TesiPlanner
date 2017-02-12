@@ -1,15 +1,15 @@
 
+#include <map/CommMap.h>
 #include "xml/xmlParser.h"
 #include <iostream>
 #include <SDL2/SDL.h>
 #include "view/View.h"
-#include "grid/CommGrid.h"
 #include "Planner.h"
 #include "FileReader/FileReader.h"
 #include "map/DebugMap.h"
 #include "grid/Grid.h"
 #include "ComplexPlanner.h"
-
+#include "planners/ThetaStarPlanner.h"
 
 void printMat(MatrixDyn* mat){
 
@@ -25,25 +25,43 @@ void printMat(MatrixDyn* mat){
 int main(int argc, char* argv[])
 {
 
-
-	MatrixDyn mat(100,100);
-	CommGrid grid(&mat);
-	MatrixDyn bl(100,100);
+    char *filePath="projectFiles/lemon_graph/graph";
+    char *filePathGr="projectFiles/lemon_graph/graphGr";
+	//create communication map which has the information about the antennas and the speed of transmittion in
+    //different cells
+    MatrixDyn mat(100,100);
+	CommMap grid(&mat);
 	xml::xmlParser parse;
-		parse.parse();
-		grid.setMatrix(parse.getAntenne());
-	//printMat(&mat);
-		FileReader r;
-		r.reader(&bl);
-		DebugMap map(&bl,&grid);
+	parse.parse();
+	grid.setMatrix(parse.getAntenne());
+	//create blocked matrix which has the information about blocked and free cells
+	MatrixDyn bl(100,100);
+	FileReader r;
+	r.reader(&bl);
+	//create debug map which the actual map that the solver uses to get the information about cells
+	DebugMap map(&bl,&grid);
+	//create grid
 	Grid gridMap(map,100,100);
+
 	planner::Planner pl(&gridMap);
-	double disPar=0.1;
-	planner::ComplexPlanner compPl(&gridMap,disPar,30);
+	//set discretization parameter for the solvers
+	double disPar=1;
+	//create the two different planners that are going to be used to calculate the distance and the path between
+	//two communication nodes
+	ThetaStarPlanner planner(&gridMap);
+	planner::GridPlanner plan(&gridMap);
+	plan.createGraph();
+	//create complex planner one that uses theta* and the other that uses four way grid
+	planner::ComplexPlanner compPl(&gridMap,disPar,&planner,filePath);
+	planner::ComplexPlanner grPlanner(&gridMap,1,&plan,filePathGr);
+	compPl.createGraphs();
+	grPlanner.createGraphs();
+	//create the view
 	view::View view;
 	view.setPlanner(&pl);
 	view.setComplexPlanner(&compPl);
-	compPl.createGraphs();
+	view.setComGridPlanner(&grPlanner);
+	view.setGridPlanner(&plan);
 	view.setMat(mat,bl);
 	if(view.Draw()){
 	    std::cout<<"success"<<std::endl;
