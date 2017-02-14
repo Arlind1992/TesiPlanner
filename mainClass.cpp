@@ -61,7 +61,6 @@ int main(int argc, char* argv[])
 	view.setPlanner(&pl);
 	view.setComplexPlanner(&compPl);
 	view.setComGridPlanner(&grPlanner);
-	view.setGridPlanner(&plan);
 	view.setMat(mat,bl);
 	if(view.Draw()){
 	    std::cout<<"success"<<std::endl;

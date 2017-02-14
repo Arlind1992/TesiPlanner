@@ -25,6 +25,7 @@ ComplexPlanner::~ComplexPlanner() {
 }
 bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 		,vector<Cell>& result){
+	virtualTime=0;
 	if(!grid->isFree(cgoal)||!grid->isFree(cinit)){
 		return false;
 	}
@@ -64,23 +65,31 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 
       }
       }
+	 virtualTime=solver.dist(endCompl);
     reverse(result.begin(),result.end());
     result.erase(unique(result.begin(),result.end()),result.end());
     int stop_s=clock();
     std::cout<<"Time to find solution "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<"mls"<<std::endl;
-
-	return true;
+    graph.erase(cellNode[cinit]);
+    graph.erase(cellNode[cgoal]);
+    complexCaseGraph.erase(firstCompl);
+    complexCaseGraph.erase(endCompl);
+	cellNode.erase(cinit);
+	cellNode.erase(cgoal);
+    return true;
 }
 
 bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<Cell>& result){
 	if(!grid->isFree(cgoal)||!grid->isFree(cinit)){
 			return false;
 		}
+	virtualTime=0;
 	int start_s=clock();
 		this->connectCell(cgoal);
 		this->connectCell(cinit);
 		this->connectCells(cgoal,cinit);
 		lemon::Dijkstra<DiGraph,DiGraph::ArcMap<double>> solver(graph,length);
+
 		DiGraph::Node first=cellNode[cinit];
 		DiGraph::Node end=cellNode[cgoal];
 		solver.run(first,end);
@@ -106,14 +115,20 @@ bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<C
 	    reverse(result.begin(),result.end());
 	    result.erase(unique(result.begin(),result.end()),result.end());
 	    int stop_s=clock();
+	    double totalLength=solver.dist(cellNode[cgoal]);
+	    //calculate the virtual time the robot spends sending information and moving throught the grid
+	    if(totalLength>=buffer){
+	    	virtualTime=totalLength+(totalLength-buffer);
+	    }else{
+	    	virtualTime= totalLength;
+	    }
 	    std::cout<<"Time to find solution normal case "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<"mls"<<std::endl;
-
-		return true;
+	    graph.erase(cellNode[cinit]);
+	    graph.erase(cellNode[cgoal]);
+		cellNode.erase(cinit);
+		cellNode.erase(cgoal);
+	    return true;
 }
-
-
-
-
 
 
 
@@ -372,6 +387,9 @@ void planner::ComplexPlanner::createGraphs(){
 	}
 	this->createComplexGraph();
 
+}
+int planner::ComplexPlanner::getVirtualTime(){
+	return virtualTime;
 }
 
 

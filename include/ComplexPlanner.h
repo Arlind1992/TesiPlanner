@@ -22,7 +22,7 @@ namespace planner {
 
 class ComplexPlanner{
 public:
-	ComplexPlanner(rrt_planning::Grid* grid,double disPar,AbstractPlanner* planner,char* filePath):grid(grid),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
+	ComplexPlanner(rrt_planning::Grid* grid,double disPar,AbstractPlanner* planner,char* filePath):grid(grid),virtualTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
 		this->discretizationPar=disPar;
 		this->numberOfNodes=calculateNum(buffer/this->discretizationPar)+1;
 		this->planner=planner;
@@ -34,6 +34,8 @@ public:
 	 void createGraphs();
      bool makeSimplePlan(Cell cgoal,Cell cinit,std::vector<Cell>& result);
 
+     //function to get the virtual time to be used after every make plan
+     int getVirtualTime();
 private:
 
 
@@ -45,6 +47,7 @@ private:
 		//graph created using the theta* planner
 		lemon::ListDigraph graph;
 	    DiGraph complexCaseGraph;
+	    double virtualTime;
 
 	    //Planners
 	   // ThetaStarPlanner planner;
@@ -106,6 +109,7 @@ private:
 	     //function to connect directly the first cell with the last cell if
 	     //connection is possible and the cells are not communication cells
 	     void connectCells(Cell cell1,Cell cell2);
+
 
 
 
