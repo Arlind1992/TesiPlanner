@@ -12,7 +12,9 @@ src/ComplexPlanner.o: ../src/ComplexPlanner.cpp \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/theta/FrontierNode.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/AbstractPlanner.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/AbstractPlanner.h \
- /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/GridPlanner.h
+ /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/GridPlanner.h \
+ /home/arlind/Desktop/DiffProj/TesiPlanner/include/logger/log.h \
+ /home/arlind/Desktop/DiffProj/TesiPlanner/include/logger/log.h
 
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/ComplexPlanner.h:
 
@@ -41,3 +43,7 @@ src/ComplexPlanner.o: ../src/ComplexPlanner.cpp \
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/AbstractPlanner.h:
 
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/GridPlanner.h:
+
+/home/arlind/Desktop/DiffProj/TesiPlanner/include/logger/log.h:
+
+/home/arlind/Desktop/DiffProj/TesiPlanner/include/logger/log.h:

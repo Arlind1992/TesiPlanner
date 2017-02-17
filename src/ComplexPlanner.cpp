@@ -13,6 +13,7 @@
 #include <lemon/dim2.h>
 #include <lemon/lgf_reader.h>
 #include <typeinfo>
+#include "logger/log.h"
 using namespace std;
 using namespace rrt_planning;
 using namespace lemon;
@@ -25,17 +26,27 @@ ComplexPlanner::~ComplexPlanner() {
 }
 bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 		,vector<Cell>& result){
-	virtualTime=0;
+	int start_s=clock();
+	bool isCommInit=grid->isComm(cinit);
+	bool isCommGoal=grid->isComm(cgoal);
+	movingTime=0;
+	transmittionTime=0;
 	if(!grid->isFree(cgoal)||!grid->isFree(cinit)){
 		return false;
 	}
-	int start_s=clock();
-	this->connectCell(cgoal);
-	this->connectCell(cinit);
-	this->connectCells(cgoal,cinit);
-	this->connectFirstCellComplex(cinit);
-	this->connectGoalCellComplex(cgoal);
-	this->connectComplexCells(cinit,cgoal);
+
+	if(!isCommInit)
+		this->connectCell(cinit);
+	if(!isCommGoal)
+		this->connectCell(cgoal);
+	if(!isCommInit&&!isCommGoal)
+		this->connectCells(cgoal,cinit);
+	if(!isCommInit)
+		this->connectFirstCellComplex(cinit);
+	if(!isCommGoal)
+		this->connectGoalCellComplex(cgoal);
+	if(!isCommGoal&&!isCommInit)
+		this->connectComplexCells(cinit,cgoal);
 	lemon::Dijkstra<DiGraph,DiGraph::ArcMap<double>> solver(this->complexCaseGraph,this->lengthComplex);
 	DiGraph::Node firstCompl;
 	DiGraph::Node endCompl;
@@ -62,32 +73,50 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     	  reverse(vec.begin(),vec.end());
     	  result.insert(result.end(),vec.begin(),vec.end());
     	  vec.clear();
-
+    	  movingTime=movingTime+this->lengthComplex[arc];
+      }else{
+    	  transmittionTime=transmittionTime+this->discretizationPar;
       }
       }
-	 virtualTime=solver.dist(endCompl);
-    reverse(result.begin(),result.end());
+	reverse(result.begin(),result.end());
     result.erase(unique(result.begin(),result.end()),result.end());
     int stop_s=clock();
-    std::cout<<"Time to find solution "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<"mls"<<std::endl;
-    graph.erase(cellNode[cinit]);
-    graph.erase(cellNode[cgoal]);
-    complexCaseGraph.erase(firstCompl);
-    complexCaseGraph.erase(endCompl);
-	cellNode.erase(cinit);
-	cellNode.erase(cgoal);
-    return true;
+    std::cout<<"Computational Time "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<"mls"<<std::endl;
+    if(!grid->isComm(cinit)){
+    	graph.erase(cellNode[cinit]);
+    	complexCaseGraph.erase(firstCompl);
+    	cellNode.erase(cinit);
+    }
+    if(!grid->isComm(cgoal)){
+    	graph.erase(cellNode[cgoal]);
+    	complexCaseGraph.erase(endCompl);
+    	cellNode.erase(cgoal);
+    }
+	this->myfile<<"Complex computational time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 <<"\n";
+	myfile<<"Complex transmittion cost : "<<transmittionTime<<"\n";
+	myfile<<"Complex path cost : "<<movingTime<<"\n";
+
+	return true;
 }
 
 bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<Cell>& result){
+	int start_s=clock();
 	if(!grid->isFree(cgoal)||!grid->isFree(cinit)){
 			return false;
 		}
-	virtualTime=0;
-	int start_s=clock();
-		this->connectCell(cgoal);
-		this->connectCell(cinit);
-		this->connectCells(cgoal,cinit);
+
+
+	double computationalTime=0;
+	movingTime=0;
+		transmittionTime=0;
+		bool isCommInit=grid->isComm(cinit);
+			bool isCommGoal=grid->isComm(cgoal);
+	if(!isCommInit)
+			this->connectCell(cinit);
+		if(!isCommGoal)
+			this->connectCell(cgoal);
+		if(!isCommInit&&!isCommGoal)
+			this->connectCells(cgoal,cinit);
 		lemon::Dijkstra<DiGraph,DiGraph::ArcMap<double>> solver(graph,length);
 
 		DiGraph::Node first=cellNode[cinit];
@@ -108,6 +137,13 @@ bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<C
     	  startCell.first=p2.x;
     	  startCell.second=p2.y;
     	  this->planner->makePlan(startCell,endCell,vec,buffer);
+    	  int s1=clock();
+    	  //TODO ask about arrotondation and think about problem
+    	  if(prevNode!=first){
+    		  transmittionTime=transmittionTime+ceil((buffer-ceil(this->grid->pathCost(vec)))/this->grid->getSpeed(std::make_pair(nodePoint[prevNode].x,nodePoint[prevNode].y)));
+    	  }
+    	  int s2=clock();
+    	  computationalTime=computationalTime+(s2-s1)/double(CLOCKS_PER_SEC)*1000;
     	  reverse(vec.begin(),vec.end());
     	  result.insert(result.end(),vec.begin(),vec.end());
     	  vec.clear();
@@ -115,19 +151,25 @@ bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<C
 	    reverse(result.begin(),result.end());
 	    result.erase(unique(result.begin(),result.end()),result.end());
 	    int stop_s=clock();
-	    double totalLength=solver.dist(cellNode[cgoal]);
+
+	    double movingTime=solver.dist(cellNode[cgoal]);
 	    //calculate the virtual time the robot spends sending information and moving throught the grid
-	    if(totalLength>=buffer){
-	    	virtualTime=totalLength+(totalLength-buffer);
-	    }else{
-	    	virtualTime= totalLength;
-	    }
 	    std::cout<<"Time to find solution normal case "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<"mls"<<std::endl;
-	    graph.erase(cellNode[cinit]);
-	    graph.erase(cellNode[cgoal]);
-		cellNode.erase(cinit);
-		cellNode.erase(cgoal);
-	    return true;
+
+	    if(!grid->isComm(cinit)){
+	        	graph.erase(cellNode[cinit]);
+	        	cellNode.erase(cinit);
+	        }
+	        if(!grid->isComm(cgoal)){
+	        	graph.erase(cellNode[cgoal]);
+	        	cellNode.erase(cgoal);
+	        }
+		this->myfile<<"Normal computational cost: "<<((stop_s-start_s)/double(CLOCKS_PER_SEC)*1000)-computationalTime <<"\n";
+		this->myfile<<"Baseline computational cost: "<<((stop_s-start_s)/double(CLOCKS_PER_SEC)*1000) <<"\n";
+
+		myfile<<"Normal path cost : "<<movingTime<<"\n";
+		myfile<<"Baseline transmition cost : "<<transmittionTime<<"\n";
+		return true;
 }
 
 
@@ -385,13 +427,11 @@ void planner::ComplexPlanner::createGraphs(){
 			this->createNormalGraph();
 			DigraphWriter<DiGraph>(graph, filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
 	}
+	int s1=clock();
 	this->createComplexGraph();
+	int s2=clock();
+	myfile<<"Normal path cost : "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
 
 }
-int planner::ComplexPlanner::getVirtualTime(){
-	return virtualTime;
-}
-
-
 
 } /* namespace planner */

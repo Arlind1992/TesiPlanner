@@ -18,6 +18,7 @@ mainClass.o: ../mainClass.cpp \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/ComplexPlanner.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/Planner.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/AbstractPlanner.h \
+ /home/arlind/Desktop/DiffProj/TesiPlanner/include/logger/log.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/FileReader/FileReader.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/map/DebugMap.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/ThetaStarPlanner.h
@@ -59,6 +60,8 @@ mainClass.o: ../mainClass.cpp \
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/Planner.h:
 
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/AbstractPlanner.h:
+
+/home/arlind/Desktop/DiffProj/TesiPlanner/include/logger/log.h:
 
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/FileReader/FileReader.h:
 

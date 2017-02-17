@@ -16,17 +16,31 @@
 #include <lemon/list_graph.h>
 #include <lemon/dim2.h>
 #include <planners/GridPlanner.h>
+#include "logger/log.h"
+#include <fstream>
+
 typedef lemon::ListDigraph DiGraph;
 using namespace rrt_planning;
 namespace planner {
 
 class ComplexPlanner{
 public:
-	ComplexPlanner(rrt_planning::Grid* grid,double disPar,AbstractPlanner* planner,char* filePath):grid(grid),virtualTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
+	ComplexPlanner(rrt_planning::Grid* grid,double disPar,AbstractPlanner* planner,char* filePath):grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
 		this->discretizationPar=disPar;
 		this->numberOfNodes=calculateNum(buffer/this->discretizationPar)+1;
 		this->planner=planner;
 		this->filePath=filePath;
+
+		std::string str(filePath);
+		if (str.find("theta") != std::string::npos) {
+		    this->casePl="theta*";
+		}else{
+			this->casePl="GridPlanner";
+		}
+		myfile.open(casePl);
+
+
+
 	}
 	virtual ~ComplexPlanner();
 	 bool makePlan(rrt_planning::Cell cgoal,rrt_planning::Cell cnit
@@ -34,8 +48,7 @@ public:
 	 void createGraphs();
      bool makeSimplePlan(Cell cgoal,Cell cinit,std::vector<Cell>& result);
 
-     //function to get the virtual time to be used after every make plan
-     int getVirtualTime();
+
 private:
 
 
@@ -47,7 +60,8 @@ private:
 		//graph created using the theta* planner
 		lemon::ListDigraph graph;
 	    DiGraph complexCaseGraph;
-	    double virtualTime;
+	    double movingTime;
+	    double transmittionTime;
 
 	    //Planners
 	   // ThetaStarPlanner planner;
@@ -110,7 +124,8 @@ private:
 	     //connection is possible and the cells are not communication cells
 	     void connectCells(Cell cell1,Cell cell2);
 
-
+	     char* casePl;
+	     std::ofstream myfile;
 
 
 

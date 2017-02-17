@@ -25,8 +25,8 @@ void printMat(MatrixDyn* mat){
 int main(int argc, char* argv[])
 {
 
-    char *filePath="projectFiles/lemon_graph/graph";
-    char *filePathGr="projectFiles/lemon_graph/graphGr";
+    char *filePath="projectFiles/lemon_graph/thetaGraph";
+    char *filePathGr="projectFiles/lemon_graph/gridGraph";
 	//create communication map which has the information about the antennas and the speed of transmittion in
     //different cells
     MatrixDyn mat(100,100);
@@ -56,6 +56,24 @@ int main(int argc, char* argv[])
 	planner::ComplexPlanner grPlanner(&gridMap,1,&plan,filePathGr);
 	compPl.createGraphs();
 	grPlanner.createGraphs();
+	srand(time(NULL));
+	int x, y,xend,yend;
+	std::vector<Cell> c;
+	for(int i=0;i<10000;i++){
+
+			x = rand()%100;
+			y = rand()%100;
+			xend=rand()%100;
+			yend=rand()%100;
+			if(gridMap.isFree(std::make_pair(x,y))&&gridMap.isFree(std::make_pair(xend,yend))){
+				std::cout<<"("<<x<<","<<y<<")"<<"("<<xend<<","<<yend<<")"<<std::endl;
+				compPl.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
+				compPl.makeSimplePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
+				grPlanner.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
+				grPlanner.makeSimplePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
+			}
+	}
+
 	//create the view
 	view::View view;
 	view.setPlanner(&pl);
