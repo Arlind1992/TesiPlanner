@@ -23,6 +23,7 @@ public:
     ~GridPlanner();
 	virtual bool makePlan(Cell start,Cell goal,std::vector<Cell>& path,int buffer) override;
 	void createGraph();
+	void makePlan(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances);
 private:
 	//TODO add it in the complex planner test it
 	//TODO add graph file

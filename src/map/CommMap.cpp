@@ -24,26 +24,27 @@ bool CommMap::getSpeed(int x,int y,int* speed){
 }
 void CommMap::setSpeed(int xCenter,int yCenter,int speed){
 	int starti,startj,endi,endj;
-		if(xCenter-speed<0){
-			starti=0;
-		}else{
-			starti=xCenter-speed;
-		}
-		if(yCenter-speed<0){
-				startj=0;
+	int maxRad=exp(speed/10);
+		if(xCenter-maxRad<0){
+				starti=0;
 			}else{
-				startj=yCenter-speed;
-		}
-		if(xCenter+speed>=this->repMatrix->rows()){
-				endi=this->repMatrix->rows()-1;
-			}else{
-				endi=xCenter+speed;
-		}
-		if(yCenter+speed>=this->repMatrix->cols()){
-				endj=this->repMatrix->cols()-1;
-			}else{
-				endj=yCenter+speed;
-		}
+				starti=xCenter-maxRad;
+			}
+			if(yCenter-maxRad<0){
+					startj=0;
+				}else{
+					startj=yCenter-maxRad;
+			}
+			if(xCenter+maxRad>=this->repMatrix->rows()){
+					endi=this->repMatrix->rows()-1;
+				}else{
+					endi=xCenter+maxRad;
+			}
+			if(yCenter+maxRad>=this->repMatrix->cols()){
+					endj=this->repMatrix->cols()-1;
+				}else{
+					endj=yCenter+maxRad;
+			}
 
 		//Given (X,Y), retrive all the eight-connected free cells
 		for(int i = starti; i <= endi; i++)
@@ -52,7 +53,11 @@ void CommMap::setSpeed(int xCenter,int yCenter,int speed){
 		    	double xDist=(i-xCenter)*(i-xCenter);
 		    	double yDist=(j-yCenter)*(j-yCenter);
 		    	int distance=sqrt(xDist+yDist);
-		    	int speedForCell=speed-distance;
+		    	if(i==xCenter&&j==yCenter){
+		    		(*repMatrix)(i,j)=speed;
+		    		continue;
+		    	}
+		    	int speedForCell=speed-10*log(distance);
 		    	if(speedForCell>0){
 		    	(*repMatrix)(i,j)=speedForCell;
 		    	}

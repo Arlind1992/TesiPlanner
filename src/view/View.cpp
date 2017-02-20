@@ -197,12 +197,13 @@ void View::DrawScreen(SDL_Surface* screen)
 	    }
 
 	    drawMat(screen,10,10);
-
+/*
 	    if(this->solution){
 	    	this->drawSolution(screen,this->vecSolution,1);
 	    }
 	    if(this->complexSolution)
 	    	this->drawSolution(screen,this->vecSolutionComplex,2);
+	    */
 	    if(this->grNSolution)
 	    	this->drawSolution(screen,this->vecGrSolution,3);
 
@@ -229,7 +230,7 @@ int View::selectColor(SDL_Surface* screen,int power,int blocked){
 	if(power==0){
 		return SDL_MapRGB(screen->format, 255, 255, 255);
 	}
-	return SDL_MapRGB(screen->format, 255, 100-10*power, 100-10*power);
+	return SDL_MapRGB(screen->format, 255, 200-10*power, 200-10*power);
 }
 Cell View::pixelToMatCoo(int x,int y){
 	int xMat=x/(this->width/this->numCellH);
@@ -350,10 +351,12 @@ void View::handleInput(SDL_Event event){
 					this->end=this->pixelToMatCoo(x,y);
 					endSelected=true;
 					//find a way to select the Tmax
-					this->solution=this->complexPlan->makeSimplePlan(end,start,this->vecSolution);
-					this->complexSolution=this->complexPlan->makePlan(end,start,this->vecSolutionComplex);
+					//this->solution=this->complexPlan->makeSimplePlan(end,start,this->vecSolution);
+					//this->complexSolution=this->complexPlan->makePlan(end,start,this->vecSolutionComplex);
 					this->grNSolution=this->grPlanner->makeSimplePlan(end,start,this->vecGrSolution);
 					this->grCompSolution=this->grPlanner->makePlan(end,start,this->vecGrComplexSolution);
+					this->solution=this->grNSolution;
+					this->complexSolution=this->grCompSolution;
 				}
 			}
 

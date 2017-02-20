@@ -13,7 +13,6 @@
 #include <lemon/dim2.h>
 #include <lemon/lgf_reader.h>
 #include <typeinfo>
-#include "logger/log.h"
 using namespace std;
 using namespace rrt_planning;
 using namespace lemon;
@@ -75,13 +74,14 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     	  vec.clear();
     	  movingTime=movingTime+this->lengthComplex[arc];
       }else{
+    	  lemon::dim2::Point<int> p=this->nodePoint[this->complexToNormal[prevNode]];
+    	  std::cout<<"speed"<<grid->getSpeed(std::make_pair(p.x,p.y))<<std::endl;
     	  transmittionTime=transmittionTime+this->discretizationPar;
       }
       }
 	reverse(result.begin(),result.end());
     result.erase(unique(result.begin(),result.end()),result.end());
     int stop_s=clock();
-    std::cout<<"Computational Time "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<"mls"<<std::endl;
     if(!grid->isComm(cinit)){
     	graph.erase(cellNode[cinit]);
     	complexCaseGraph.erase(firstCompl);
@@ -95,7 +95,8 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 	this->myfile<<"Complex computational time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 <<"\n";
 	myfile<<"Complex transmittion cost : "<<transmittionTime<<"\n";
 	myfile<<"Complex path cost : "<<movingTime<<"\n";
-
+	 std::cout<<"transCost "<<transmittionTime<<"mls"<<std::endl;
+		    std::cout<<"path cost"<<movingTime<<std::endl;
 	return true;
 }
 
@@ -104,8 +105,6 @@ bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<C
 	if(!grid->isFree(cgoal)||!grid->isFree(cinit)){
 			return false;
 		}
-
-
 	double computationalTime=0;
 	movingTime=0;
 		transmittionTime=0;
@@ -138,9 +137,20 @@ bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<C
     	  startCell.second=p2.y;
     	  this->planner->makePlan(startCell,endCell,vec,buffer);
     	  int s1=clock();
-    	  //TODO ask about arrotondation and think about problem
+
     	  if(prevNode!=first){
-    		  transmittionTime=transmittionTime+ceil((buffer-ceil(this->grid->pathCost(vec)))/this->grid->getSpeed(std::make_pair(nodePoint[prevNode].x,nodePoint[prevNode].y)));
+    		  int distanceTill=solver.dist(prevNode);
+    		  int vecCost=this->grid->pathCost(vec);
+    		  if(this->grid->isComm(startCell)){
+    		  if(distanceTill+vecCost>buffer){
+    			  if(distanceTill>=buffer){
+    				  transmittionTime=transmittionTime+ceil(vecCost/this->grid->getSpeed(startCell));
+    			  }else{
+    				  transmittionTime=transmittionTime +ceil((vecCost+distanceTill-buffer)/this->grid->getSpeed(startCell));
+    			  }
+
+    		  }
+    		  }
     	  }
     	  int s2=clock();
     	  computationalTime=computationalTime+(s2-s1)/double(CLOCKS_PER_SEC)*1000;
@@ -154,7 +164,8 @@ bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<C
 
 	    double movingTime=solver.dist(cellNode[cgoal]);
 	    //calculate the virtual time the robot spends sending information and moving throught the grid
-	    std::cout<<"Time to find solution normal case "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<"mls"<<std::endl;
+	    std::cout<<"BaseLine "<<transmittionTime<<"mls"<<std::endl;
+	    std::cout<<"path cost"<<movingTime<<std::endl;
 
 	    if(!grid->isComm(cinit)){
 	        	graph.erase(cellNode[cinit]);
@@ -194,7 +205,7 @@ void planner::ComplexPlanner::createComplexGraph(){
 	createArcsSameNodes();
 	connectDifferentNodes();
 	int stop_s=clock();
-	std::cout<<"Time to create complex graph "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<"mls with a discretization parameter "<<this->discretizationPar<<std::endl;
+	this->myfile<<"Time to create complex graph "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<"mls with a discretization parameter "<<this->discretizationPar<<std::endl;
 
 }
 
@@ -329,11 +340,12 @@ void planner::ComplexPlanner::createNormalGraph(){
 	createNodes();
 	createCellNode();
 	connectNormalNodes();
+
 }
 void planner::ComplexPlanner::createNodes(){
 	for(int i=0;i<grid->getMaxX();i++){
 		for(int j=0;j<grid->getMaxY();j++){
-			if(this->grid->isComm(std::make_pair(i,j))&&this->grid->isFree(std::make_pair(i,j))){
+			if(this->grid->isComm(std::make_pair(i,j)) && this->grid->isFree(std::make_pair(i,j))){
 				DiGraph::Node addedNode=graph.addNode();
 				lemon::dim2::Point<int> p(i,j);
 				this->nodePoint[addedNode]=p;
@@ -349,14 +361,18 @@ void planner::ComplexPlanner::createCellNode(){
 	}
 }
 void planner::ComplexPlanner::connectNormalNodes(){
+	//TODO change
 	std::vector<Cell> checked;
+	/*int i=0;
 	for(DiGraph::NodeIt n(graph);n!=INVALID;++n){
 		lemon::dim2::Point<int> p=nodePoint[n];
 		std::vector<Cell> comm=this->grid->getCommCells(std::make_pair(p.x,p.y),buffer);
 		checked.push_back(std::make_pair(p.x,p.y));
 		for(Cell c:comm){
+			i++;
 			std::vector<Cell> path;
 			if(this->searchCell(checked,c)){
+				int s3=clock();
 				if(this->planner->makePlan(std::make_pair(p.x,p.y),c,path,buffer)){
 					double distance=this->grid->pathCost(path);
 					if(distance<=buffer){
@@ -369,10 +385,30 @@ void planner::ComplexPlanner::connectNormalNodes(){
 					path.clear();
 				}
 
+				int s4=clock();
+				std::cout<<i<<" : "<<(s4-s3)/double(CLOCKS_PER_SEC)*1000<<"\n";
+
+
 			}
 		}
 		comm.clear();
+	}*/
+	for(DiGraph::NodeIt n(graph);n!=INVALID;++n){
+		lemon::dim2::Point<int> p=nodePoint[n];
+		std::vector<Cell> cells;
+		std::vector<int> distances;
+		this->planner->makePlan(std::make_pair(p.x,p.y),cells,buffer,distances);
+		for(int i=0;i<cells.size();i++){
+			DiGraph::Node toConnect=this->cellNode[cells.at(i)];
+			DiGraph::Arc conn=graph.addArc(n,toConnect);
+			length[conn]=distances.at(i);
+		}
+		cells.clear();
+		distances.clear();
+
+
 	}
+	//std::cout<<"times :"<<i<<std::endl;
 }
 
 void planner::ComplexPlanner::connectCell(Cell cell){
@@ -420,17 +456,22 @@ void planner::ComplexPlanner::connectComplexCells(Cell start,Cell goal){
 
 void planner::ComplexPlanner::createGraphs(){
 	if(FILE *file = fopen(filePath, "r")) {
+
 		fclose(file);
 			DigraphReader<DiGraph>( graph,filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
 			this->createCellNode();
 		}else{
+			 int s1=clock();
 			this->createNormalGraph();
+			int s2=clock();
+			std::cout<<"time to create normal Graph "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<std::endl;
+			this->myfile<<"time to create normal Graph "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
 			DigraphWriter<DiGraph>(graph, filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
 	}
 	int s1=clock();
 	this->createComplexGraph();
 	int s2=clock();
-	myfile<<"Normal path cost : "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
+	myfile<<"Time to create Complex graph : "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
 
 }
 

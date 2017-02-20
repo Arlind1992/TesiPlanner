@@ -16,7 +16,6 @@
 #include <lemon/list_graph.h>
 #include <lemon/dim2.h>
 #include <planners/GridPlanner.h>
-#include "logger/log.h"
 #include <fstream>
 
 typedef lemon::ListDigraph DiGraph;
@@ -25,7 +24,7 @@ namespace planner {
 
 class ComplexPlanner{
 public:
-	ComplexPlanner(rrt_planning::Grid* grid,double disPar,AbstractPlanner* planner,char* filePath):grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
+	ComplexPlanner(rrt_planning::Grid* grid,double disPar,GridPlanner* planner,char* filePath):grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
 		this->discretizationPar=disPar;
 		this->numberOfNodes=calculateNum(buffer/this->discretizationPar)+1;
 		this->planner=planner;
@@ -65,7 +64,7 @@ private:
 
 	    //Planners
 	   // ThetaStarPlanner planner;
-	    AbstractPlanner* planner;
+	    GridPlanner* planner;
 	    //maps for each node for different graphs
 	    DiGraph::ArcMap<double> length;
 	    DiGraph::NodeMap<lemon::dim2::Point<int> > nodePoint;
@@ -78,7 +77,7 @@ private:
 	    std::map<DiGraph::Node,std::vector<DiGraph::Node>> nodeToVec;
 	    //map to indicate if an arc is a moving arc or not
 	    std::map<DiGraph::Arc,bool> isMoving;
-	    const int buffer=30;
+	    const int buffer=60;
 	    double discretizationPar;
 	    //parameter to indicate the number of nodes in the complex graph for each node in the simple
 	    //graph

@@ -52,13 +52,14 @@ int main(int argc, char* argv[])
 	planner::GridPlanner plan(&gridMap);
 	plan.createGraph();
 	//create complex planner one that uses theta* and the other that uses four way grid
-	planner::ComplexPlanner compPl(&gridMap,disPar,&planner,filePath);
+	//planner::ComplexPlanner compPl(&gridMap,disPar,&planner,filePath);
 	planner::ComplexPlanner grPlanner(&gridMap,1,&plan,filePathGr);
-	compPl.createGraphs();
+	//compPl.createGraphs();
 	grPlanner.createGraphs();
 	srand(time(NULL));
 	int x, y,xend,yend;
 	std::vector<Cell> c;
+	/*
 	for(int i=0;i<10000;i++){
 
 			x = rand()%100;
@@ -72,12 +73,12 @@ int main(int argc, char* argv[])
 				grPlanner.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
 				grPlanner.makeSimplePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
 			}
-	}
+	}*/
 
 	//create the view
 	view::View view;
 	view.setPlanner(&pl);
-	view.setComplexPlanner(&compPl);
+	//view.setComplexPlanner(&compPl);
 	view.setComGridPlanner(&grPlanner);
 	view.setMat(mat,bl);
 	if(view.Draw()){

@@ -17,8 +17,7 @@ src/view/View.o: ../src/view/View.cpp \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/theta/FrontierNode.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/ComplexPlanner.h \
  /home/arlind/Desktop/DiffProj/TesiPlanner/include/Planner.h \
- /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/AbstractPlanner.h \
- /home/arlind/Desktop/DiffProj/TesiPlanner/include/logger/log.h
+ /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/AbstractPlanner.h
 
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/map/CommMap.h:
 
@@ -57,5 +56,3 @@ src/view/View.o: ../src/view/View.cpp \
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/Planner.h:
 
 /home/arlind/Desktop/DiffProj/TesiPlanner/include/planners/AbstractPlanner.h:
-
-/home/arlind/Desktop/DiffProj/TesiPlanner/include/logger/log.h:
