@@ -12,9 +12,8 @@
 #include <SDL2/SDL.h>
 #include "Planner.h"
 #include "ComplexPlanner.h"
-#define WIDTH 1000
+#define WIDTH 800
 #define HEIGHT 600
-#define CELLSIZE 10
 namespace view {
 
 class View {
@@ -70,7 +69,7 @@ private:
 
 	//the functions that actually draw
 	void DrawScreen(SDL_Surface* screen);
-	void drawMat(SDL_Surface *screen, int xCenter, int yCenter);
+	void drawMat(SDL_Surface *screen);
 	void drawSolution(SDL_Surface *screen,std::vector<Cell> vec,int complex);
 
 

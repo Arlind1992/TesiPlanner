@@ -14,12 +14,10 @@
 namespace view {
 
 View::View() {
-	width=WIDTH;
-	height=HEIGHT;
-	this->numCellH=100;
-	this->numCellV=100;
-	this->camCenterX=numCellH/2;
-	this->camCenterY=numCellV/2;
+	width=800;
+	height=600;
+	this->numCellH=200;
+	this->numCellV=150;
 	this->endMessageShown=false;
 	this->startMessageShown=false;
 	this->startSelected=false;
@@ -128,45 +126,14 @@ bool View::Draw(){
 
 		    return true;
 }
-void View::drawMat(SDL_Surface *screen, int xCamCenter, int yCamCenter)
+void View::drawMat(SDL_Surface *screen)
 	{
 	    SDL_FillRect(screen,nullptr,SDL_MapRGB(screen->format, 255, 255, 255));
-	    int maxX=toDraw.rows();
-	    int maxY=toDraw.cols();
-	    int pixelsForMatX;
-	    int pixelsForMatY;
-	    pixelsForMatX=this->width/this->numCellH;
-	    pixelsForMatY=this->height/this->numCellV;
+	    int pixelsForMatX=4;
+	    int pixelsForMatY=4;
 	    int rectX=0,rectY=0;
-	    int begi,endi,begj,endj;
-	    if(xCamCenter<this->numCellH/2){
-	    	begi=0;
-	    	endi=this->numCellH;
-	    }else{
-	    	if(xCamCenter+this->numCellH/2<maxX){
-	    		begi=maxX-this->numCellH;
-	    		endi=maxX;
-	    	}else{
-	    		begi=xCamCenter-this->numCellH/2;
-	    		endi=xCamCenter+this->numCellH/2;
-	    	}
-
-	    }
-	    if(yCamCenter<this->numCellV/2){
-	    	begj=0;
-	    	endj=this->numCellV;
-	    }else{
-	    	if(yCamCenter+this->numCellV/2<maxY){
-	    		begj=maxY-this->numCellV;
-	    		endj=maxY;
-	    	}else{
-	    		begj=yCamCenter-this->numCellV/2;
-	    		endj=yCamCenter-this->numCellV/2;
-	    	}
-	    }
-
-	    for(int i=begi;i<endi;i++){
-	    	for(int j=begj;j<endj;j++){
+	    for(int i=0;i<150;i++){
+	    	for(int j=0;j<200;j++){
 	    		SDL_Rect rect;
 	    		rect.x=rectX;
 	    		rect.y=rectY;
@@ -196,7 +163,7 @@ void View::DrawScreen(SDL_Surface* screen)
 	        if(SDL_LockSurface(screen) < 0) return;
 	    }
 
-	    drawMat(screen,10,10);
+	    drawMat(screen);
 /*
 	    if(this->solution){
 	    	this->drawSolution(screen,this->vecSolution,1);

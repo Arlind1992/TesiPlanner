@@ -29,19 +29,19 @@ int main(int argc, char* argv[])
     char *filePathGr="projectFiles/lemon_graph/gridGraph";
 	//create communication map which has the information about the antennas and the speed of transmittion in
     //different cells
-    MatrixDyn mat(100,100);
+    MatrixDyn mat(150,200);
 	CommMap grid(&mat);
 	xml::xmlParser parse;
 	parse.parse();
 	grid.setMatrix(parse.getAntenne());
 	//create blocked matrix which has the information about blocked and free cells
-	MatrixDyn bl(100,100);
+	MatrixDyn bl(150,200);
 	FileReader r;
 	r.reader(&bl);
 	//create debug map which the actual map that the solver uses to get the information about cells
 	DebugMap map(&bl,&grid);
 	//create grid
-	Grid gridMap(map,100,100);
+	Grid gridMap(map,150,200);
 
 	planner::Planner pl(&gridMap);
 	//set discretization parameter for the solvers

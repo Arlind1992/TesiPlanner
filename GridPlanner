@@ -1,17 +1,1 @@
-time to create normal Graph 1253.27
-Time to create complex graph 5656.27mls with a discretization parameter 1
-Time to create Complex graph : 5656.33
-Normal computational cost: 348.671
-Baseline computational cost: 348.675
-Normal path cost : 122
-Baseline transmition cost : 17
-Complex computational time: 700.309
-Complex transmittion cost : 7
-Complex path cost : 122
-Normal computational cost: 311.719
-Baseline computational cost: 311.723
-Normal path cost : 156
-Baseline transmition cost : 48
-Complex computational time: 693.577
-Complex transmittion cost : 6
-Complex path cost : 156
+Time to create complex graph 4110.54mls with a discretization parameter 1
