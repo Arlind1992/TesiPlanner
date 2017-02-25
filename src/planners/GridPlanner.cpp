@@ -13,7 +13,7 @@ using namespace lemon;
 using namespace rrt_planning;
 namespace planner {
 void GridPlanner::makePlan(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances){
-	GrGraph::Node firstNode=this->cellNode[start];
+	GrGraph::Node firstNode=this->getNodeFromCell(start);
 	lemon::Dijkstra<GrGraph,GrGraph::EdgeMap<int> > solver(this->graph,this->length);
 		solver.run(firstNode);
 	for(GrGraph::NodeIt n(graph);n!=INVALID;++n){
@@ -32,8 +32,8 @@ void GridPlanner::makePlan(Cell start,std::vector<Cell>& cells,int buffer,std::v
 bool GridPlanner::makePlan(Cell start,Cell goal,std::vector<Cell>& path,int buffer){
 
 
-	GrGraph::Node firstNode=this->cellNode[start];
-	GrGraph::Node endNode=this->cellNode[goal];
+	GrGraph::Node firstNode=this->getNodeFromCell(start);
+	GrGraph::Node endNode=this->getNodeFromCell(goal);
 	lemon::Dijkstra<GrGraph,GrGraph::EdgeMap<int> > solver(this->graph,this->length);
 	solver.run(firstNode,endNode);
 	if(graph.id(solver.predNode(endNode))==-1){
@@ -51,7 +51,7 @@ bool GridPlanner::makePlan(Cell start,Cell goal,std::vector<Cell>& path,int buff
 
 void GridPlanner::createGraph(){
 	createNodes();
-	createCellNode();
+	//createCellNode();
 	connectNodes();
 }
 
@@ -66,12 +66,13 @@ void GridPlanner::createNodes(){
 		}
 	}
 }
+/*
 void GridPlanner::createCellNode(){
 	for(GrGraph::NodeIt n(graph);n!=INVALID;++n){
 			lemon::dim2::Point<int> p=nodePoint[n];
 			this->cellNode[std::make_pair(p.x,p.y)]=n;
 		}
-}
+}*/
 
 void GridPlanner::connectNodes(){
 	std::vector<GrGraph::Node> checked;
@@ -79,7 +80,7 @@ void GridPlanner::connectNodes(){
 		std::vector<Cell> neighbourCells=this->grid->getFourNeighbours(std::make_pair(this->nodePoint[n].x,this->nodePoint[n].y));
 		checked.push_back(n);
 		for(Cell c:neighbourCells){
-			GrGraph::Node toConnect=this->cellNode[c];
+			GrGraph::Node toConnect=getNodeFromCell(c);
 			GrGraph::Edge addedEdge=graph.addEdge(n,toConnect);
 			length[addedEdge]=1;
 		}
@@ -88,7 +89,14 @@ void GridPlanner::connectNodes(){
 GridPlanner::~GridPlanner(){
 
 }
-
+//TODO if fixed memory problem delete
+GrGraph::Node GridPlanner::getNodeFromCell(Cell s){
+	for(GrGraph::NodeIt n(graph);n!=INVALID;++n){
+	if(nodePoint[n].x==s.first&&nodePoint[n].y==s.second){
+		return n;
+	}
+	}
+}
 
 
 } /* namespace planner */

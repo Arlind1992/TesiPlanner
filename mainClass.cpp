@@ -29,33 +29,38 @@ int main(int argc, char* argv[])
     char *filePathGr="projectFiles/lemon_graph/gridGraph";
 	//create communication map which has the information about the antennas and the speed of transmittion in
     //different cells
-    MatrixDyn mat(150,200);
+    std::cout<<"here"<<std::endl;
+    MatrixDyn mat(75,100);
 	CommMap grid(&mat);
+	std::cout<<"starting"<<std::endl;
 	xml::xmlParser parse;
 	parse.parse();
-	grid.setMatrix(parse.getAntenne());
+	grid.setMatrix(parse.getAntenne(),true);
 	//create blocked matrix which has the information about blocked and free cells
-	MatrixDyn bl(150,200);
+	MatrixDyn bl(75,100);
 	FileReader r;
+	std::cout<<"std"<<std::endl;
 	r.reader(&bl);
 	//create debug map which the actual map that the solver uses to get the information about cells
 	DebugMap map(&bl,&grid);
 	//create grid
-	Grid gridMap(map,150,200);
+	Grid gridMap(map,75,100);
 
 	planner::Planner pl(&gridMap);
-	//set discretization parameter for the solvers
-	double disPar=1;
 	//create the two different planners that are going to be used to calculate the distance and the path between
 	//two communication nodes
-	ThetaStarPlanner planner(&gridMap);
+	//ThetaStarPlanner planner(&gridMap);
 	planner::GridPlanner plan(&gridMap);
 	plan.createGraph();
 	//create complex planner one that uses theta* and the other that uses four way grid
 	//planner::ComplexPlanner compPl(&gridMap,disPar,&planner,filePath);
-	planner::ComplexPlanner grPlanner(&gridMap,1,&plan,filePathGr);
+	int baseUnit=8;
+	int baseRate=2;
+	const int buff= 20;
+	planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,filePathGr,buff);
 	//compPl.createGraphs();
 	grPlanner.createGraphs();
+
 	srand(time(NULL));
 	int x, y,xend,yend;
 	std::vector<Cell> c;

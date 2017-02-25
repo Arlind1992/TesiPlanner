@@ -22,51 +22,63 @@ bool CommMap::getSpeed(int x,int y,int* speed){
 		return true;
 	}
 }
-void CommMap::setSpeed(int xCenter,int yCenter,int speed){
+void CommMap::setSpeed(int xCenter,int yCenter,int speed,bool discreteCase){
 	int starti,startj,endi,endj;
-	int maxRad=exp(speed/10);
-		if(xCenter-maxRad<0){
-				starti=0;
-			}else{
-				starti=xCenter-maxRad;
-			}
-			if(yCenter-maxRad<0){
-					startj=0;
+		int maxRad=20;
+		std::cout<<maxRad<<std::endl;
+			if(xCenter-maxRad<0){
+					starti=0;
 				}else{
-					startj=yCenter-maxRad;
-			}
-			if(xCenter+maxRad>=this->repMatrix->rows()){
-					endi=this->repMatrix->rows()-1;
-				}else{
-					endi=xCenter+maxRad;
-			}
-			if(yCenter+maxRad>=this->repMatrix->cols()){
-					endj=this->repMatrix->cols()-1;
-				}else{
-					endj=yCenter+maxRad;
-			}
+					starti=xCenter-maxRad;
+				}
+				if(yCenter-maxRad<0){
+						startj=0;
+					}else{
+						startj=yCenter-maxRad;
+				}
+				if(xCenter+maxRad>=this->repMatrix->rows()){
+						endi=this->repMatrix->rows()-1;
+					}else{
+						endi=xCenter+maxRad;
+				}
+				if(yCenter+maxRad>=this->repMatrix->cols()){
+						endj=this->repMatrix->cols()-1;
+					}else{
+						endj=yCenter+maxRad;
+				}
 
-		//Given (X,Y), retrive all the eight-connected free cells
-		for(int i = starti; i <= endi; i++)
-		    for(int j = startj; j <= endj; j++)
-		    {
-		    	double xDist=(i-xCenter)*(i-xCenter);
-		    	double yDist=(j-yCenter)*(j-yCenter);
-		    	int distance=sqrt(xDist+yDist);
-		    	if(i==xCenter&&j==yCenter){
-		    		(*repMatrix)(i,j)=speed;
-		    		continue;
-		    	}
-		    	int speedForCell=speed-10*log(distance);
-		    	if(speedForCell>0){
-		    	(*repMatrix)(i,j)=speedForCell;
-		    	}
-		    }
+			//Given (X,Y), retrive all the eight-connected free cells
+			for(int i = starti; i <= endi; i++)
+			    for(int j = startj; j <= endj; j++)
+			    {
+			    	double xDist=(i-xCenter)*(i-xCenter);
+			    	double yDist=(j-yCenter)*(j-yCenter);
+			    	double distance=sqrt(xDist+yDist);
+			    	if(i==xCenter&&j==yCenter){
+			    		(*repMatrix)(i,j)=speed;
+			    		continue;
+			    	}
+			    	if(distance<=3){
+			    		(*repMatrix)(i,j)=speed;
+			    		continue;
+			    	}
+			    	if(discreteCase){
+			    	int speedForCell=speed-(((int)distance-4)+1)*2;
+			    	if(speedForCell>0){
+			    	(*repMatrix)(i,j)=speedForCell;
+			    	}
+			    	}else{
+			    		int speedForCell=speed-((((int)distance-4)/4)+1)*8;
+			    		if(speedForCell>0){
+			    				    	(*repMatrix)(i,j)=speedForCell;
+			    				    	}
+			    	}
+			    }
 
 }
-void CommMap::setMatrix(std::vector<xml::antenna> antenne){
+void CommMap::setMatrix(std::vector<xml::antenna> antenne,bool discrete){
 	for(xml::antenna a:antenne){
-		setSpeed(a.first.first,a.first.second,a.second);
+		setSpeed(a.first.first,a.first.second,a.second,discrete);
 	}
 }
 

@@ -16,12 +16,12 @@ class CommMap {
 public:
 	CommMap(MatrixDyn* mat):repMatrix(mat){}
 	virtual ~CommMap();
-	void setMatrix(std::vector<xml::antenna> antenne);
+	void setMatrix(std::vector<xml::antenna> antenne,bool discrete);
 	bool getSpeed(int x,int y,int* speed);
 
 private:
 	MatrixDyn* repMatrix;
-	void setSpeed(int xCenter,int yCenter,int Speed);
+	void setSpeed(int xCenter,int yCenter,int Speed,bool discrete);
 };
 
 #endif /* COMMGRID_H_ */

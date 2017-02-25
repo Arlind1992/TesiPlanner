@@ -350,6 +350,20 @@ std::vector<Cell> Grid::getFourNeighbours(const Cell& s){
 
 }
 
+bool Grid::areFourConnected(Cell s1,Cell s2){
+	if(s1.first==s2.first){
+		if(abs(s1.second-s2.second)==1){
+			return true;
+		}
+	}
+	if(s1.second==s2.second){
+		if(abs(s1.first-s2.first)==1){
+			return true;
+		}
+	}
+	return false;
+}
+
 
 
 

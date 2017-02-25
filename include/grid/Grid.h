@@ -53,6 +53,7 @@ public:
     int getMaxY();
     bool sameAntenna(Cell one,Cell two);
     std::vector<Cell> getFourNeighbours(const Cell& s);
+    bool areFourConnected(Cell s1,Cell s2);
 
 private:
     Map& map;

@@ -16,8 +16,8 @@ namespace view {
 View::View() {
 	width=800;
 	height=600;
-	this->numCellH=200;
-	this->numCellV=150;
+	this->numCellH=100;
+	this->numCellV=75;
 	this->endMessageShown=false;
 	this->startMessageShown=false;
 	this->startSelected=false;
@@ -129,11 +129,11 @@ bool View::Draw(){
 void View::drawMat(SDL_Surface *screen)
 	{
 	    SDL_FillRect(screen,nullptr,SDL_MapRGB(screen->format, 255, 255, 255));
-	    int pixelsForMatX=4;
-	    int pixelsForMatY=4;
+	    int pixelsForMatX=8;
+	    int pixelsForMatY=8;
 	    int rectX=0,rectY=0;
-	    for(int i=0;i<150;i++){
-	    	for(int j=0;j<200;j++){
+	    for(int i=0;i<75;i++){
+	    	for(int j=0;j<100;j++){
 	    		SDL_Rect rect;
 	    		rect.x=rectX;
 	    		rect.y=rectY;
@@ -172,10 +172,10 @@ void View::DrawScreen(SDL_Surface* screen)
 	    	this->drawSolution(screen,this->vecSolutionComplex,2);
 	    */
 	    if(this->grNSolution)
-	    	this->drawSolution(screen,this->vecGrSolution,3);
+	    	this->drawSolution(screen,this->vecGrSolution,1);
 
 	    if(this->grCompSolution)
-	    	this->drawSolution(screen,this->vecGrComplexSolution,4);
+	    	this->drawSolution(screen,this->vecGrComplexSolution,2);
 
 	    if(SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
 
@@ -197,12 +197,19 @@ int View::selectColor(SDL_Surface* screen,int power,int blocked){
 	if(power==0){
 		return SDL_MapRGB(screen->format, 255, 255, 255);
 	}
-	return SDL_MapRGB(screen->format, 255, 200-10*power, 200-10*power);
+	return SDL_MapRGB(screen->format, 255, 192-power*6, 192-power*6);
 }
 Cell View::pixelToMatCoo(int x,int y){
 	int xMat=x/(this->width/this->numCellH);
 	int yMat=y/(this->height/this->numCellV);
 	return std::make_pair(yMat,xMat);
+}
+
+void View::drawComplexSolution(SDL_Surface *screen,std::vector<Cell> vec,std::vector<int> buffer){
+	drawSolution(screen,vec,2);
+	for(int i=0;i<(int)buffer.size()-1;i++){
+		addNumberForCell(screen,vec.at(i),buffer.at(1));
+		}
 }
 void View::drawSolution(SDL_Surface *screen,std::vector<rrt_planning::Cell> vec,int complex){
 
@@ -321,7 +328,8 @@ void View::handleInput(SDL_Event event){
 					//this->solution=this->complexPlan->makeSimplePlan(end,start,this->vecSolution);
 					//this->complexSolution=this->complexPlan->makePlan(end,start,this->vecSolutionComplex);
 					this->grNSolution=this->grPlanner->makeSimplePlan(end,start,this->vecGrSolution);
-					this->grCompSolution=this->grPlanner->makePlan(end,start,this->vecGrComplexSolution);
+					this->grCompSolution=this->grPlanner->makePlan(end,start,this->vecGrComplexSolution,stateOfBuffer);
+					//this->grCompSolution=grNSolution;
 					this->solution=this->grNSolution;
 					this->complexSolution=this->grCompSolution;
 				}
@@ -358,5 +366,8 @@ void View::setComplexPlanner(planner::ComplexPlanner* cmpPlaner){
 
 void View::setComGridPlanner(planner::ComplexPlanner* grPlanner){
 	this->grPlanner=grPlanner;
+}
+void View::addNumberForCell(SDL_Surface* screen,Cell s,int i){
+
 }
 } /* namespace view */

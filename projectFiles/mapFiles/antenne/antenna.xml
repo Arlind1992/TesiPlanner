@@ -1,58 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <antenne>
     <antenna>
-        <posX>1</posX>
-        <posY>0</posY>
-        <maxTransmitionSpeed>20</maxTransmitionSpeed>
-    </antenna>
-    <antenna>
-        <posX>8</posX>
-        <posY>36</posY>
-        <maxTransmitionSpeed>20</maxTransmitionSpeed>
-    </antenna>
-    <antenna>
-        <posX>29</posX>
-        <posY>23</posY>
-        <maxTransmitionSpeed>3</maxTransmitionSpeed>
-    </antenna>
-    <antenna>
-        <posX>35</posX>
-        <posY>41</posY>
-        <maxTransmitionSpeed>20</maxTransmitionSpeed>
-    </antenna>
-    <antenna>
-        <posX>35</posX>
-        <posY>67</posY>
-        <maxTransmitionSpeed>20</maxTransmitionSpeed>
-    </antenna>
-    <antenna>
         <posX>53</posX>
-        <posY>40</posY>
-        <maxTransmitionSpeed>20</maxTransmitionSpeed>
+        <posY>22</posY>
+        <maxTransmitionSpeed>32</maxTransmitionSpeed>
     </antenna>
     <antenna>
-        <posX>52</posX>
-        <posY>67</posY>
-        <maxTransmitionSpeed>20</maxTransmitionSpeed>
+        <posX>18</posX>
+        <posY>48</posY>
+        <maxTransmitionSpeed>32</maxTransmitionSpeed>
     </antenna>
     <antenna>
-        <posX>14</posX>
-        <posY>85</posY>
-        <maxTransmitionSpeed>20</maxTransmitionSpeed>
-    </antenna>
-    <antenna>
-        <posX>97</posX>
-        <posY>77</posY>
-        <maxTransmitionSpeed>20</maxTransmitionSpeed>
-    </antenna>
-    <antenna>
-        <posX>98</posX>
-        <posY>33</posY>
-        <maxTransmitionSpeed>20</maxTransmitionSpeed>
-    </antenna>
-    <antenna>
-        <posX>66</posX>
-        <posY>13</posY>
-        <maxTransmitionSpeed>20</maxTransmitionSpeed>
+        <posX>44</posX>
+        <posY>78</posY>
+        <maxTransmitionSpeed>32</maxTransmitionSpeed>
     </antenna>
 </antenne>

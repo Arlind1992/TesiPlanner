@@ -24,9 +24,11 @@ namespace planner {
 
 class ComplexPlanner{
 public:
-	ComplexPlanner(rrt_planning::Grid* grid,double disPar,GridPlanner* planner,char* filePath):grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
-		this->discretizationPar=disPar;
-		this->numberOfNodes=calculateNum(buffer/this->discretizationPar)+1;
+	ComplexPlanner(rrt_planning::Grid* grid,int baseU,int baseR,GridPlanner* planner,char* filePath,const int buffer):grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph),buffer(buffer){
+		this->baseUnit=baseU;
+		this->baseRate=baseR;
+
+		this->numberOfNodes=(buffer*(baseUnit/this->baseRate))+1;
 		this->planner=planner;
 		this->filePath=filePath;
 
@@ -43,13 +45,20 @@ public:
 	}
 	virtual ~ComplexPlanner();
 	 bool makePlan(rrt_planning::Cell cgoal,rrt_planning::Cell cnit
-		    		,std::vector<rrt_planning::Cell>& result);
+		    		,std::vector<rrt_planning::Cell>& result,std::vector<int>& stateOfBuffer);
 	 void createGraphs();
      bool makeSimplePlan(Cell cgoal,Cell cinit,std::vector<Cell>& result);
 
 
 private:
 
+     //program attributes
+     const int buffer;
+     	    int baseUnit;
+     	    int baseRate;
+     	    //parameter to indicate the number of nodes in the complex graph for each node in the simple
+     	    //graph
+     	    int numberOfNodes;
 
 		/*
 		 * Attributes
@@ -59,29 +68,40 @@ private:
 		//graph created using the theta* planner
 		lemon::ListDigraph graph;
 	    DiGraph complexCaseGraph;
-	    double movingTime;
+	    int movingTime;
 	    double transmittionTime;
 
 	    //Planners
-	   // ThetaStarPlanner planner;
 	    GridPlanner* planner;
 	    //maps for each node for different graphs
-	    DiGraph::ArcMap<double> length;
+	    DiGraph::ArcMap<int> length;
 	    DiGraph::NodeMap<lemon::dim2::Point<int> > nodePoint;
 	    std::map<Cell,DiGraph::Node> cellNode;
 	    DiGraph::ArcMap<double> lengthComplex;
 	    std::map<DiGraph::Node,DiGraph::Node> complexToNormal;
+
+	    /*
+	    DiGraph modifiedNGraph;
+	    DiGraph::ArcMap<double> lengthMod;
+	    std::map<DiGraph::Node,DiGraph::Node> modToNormal;
+	    void createModGraph();
+	    void createModNodes();
+	    void connectModSame();
+	    void connectModDifferent();
+	    //map to get the expanded nodes from the node on the normal graph
+	    std::map<DiGraph::Node,std::vector<DiGraph::Node>> nodeToVecNorm;
+	*/
+
+
+
+
 	    //Variables needed for the complex case graph
 
 	    //map to get the expanded nodes from the node on the normal graph
 	    std::map<DiGraph::Node,std::vector<DiGraph::Node>> nodeToVec;
 	    //map to indicate if an arc is a moving arc or not
 	    std::map<DiGraph::Arc,bool> isMoving;
-	    const int buffer=60;
-	    double discretizationPar;
-	    //parameter to indicate the number of nodes in the complex graph for each node in the simple
-	    //graph
-	    int numberOfNodes;
+
 
 	    const char* filePath;
 	    /*
@@ -104,8 +124,7 @@ private:
 	     void connectFirstCellComplex(Cell cell);
 	     void connectGoalCellComplex(Cell goal);
 	     void connectComplexCells(Cell start,Cell goal);
-	     //function to calculate distance based on the discretization parameter
-	     double calculateNum(double distance);
+
 
 	     /*
 	      * functions to create the normal graph read it from a file if the file exists and asign
@@ -125,9 +144,6 @@ private:
 
 	     char* casePl;
 	     std::ofstream myfile;
-
-
-
 
 };
 

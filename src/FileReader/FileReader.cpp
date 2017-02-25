@@ -21,8 +21,8 @@ FileReader::~FileReader() {
 void FileReader::reader(MatrixDyn* mat){
 	std::fstream myfile("projectFiles/mapFiles/blocked_map/map.txt");
 	int i,j;
-	for(i=0;i<150;i++){
-		for(j=0;j<200;j++){
+	for(i=0;i<75;i++){
+		for(j=0;j<100;j++){
 			myfile>> (*mat)(i,j);
 		}
 	}

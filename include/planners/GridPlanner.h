@@ -25,18 +25,17 @@ public:
 	void createGraph();
 	void makePlan(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances);
 private:
-	//TODO add it in the complex planner test it
-	//TODO add graph file
+
 	Grid* grid;
 	GrGraph graph;
 	GrGraph::EdgeMap<int> length;
 	GrGraph::NodeMap<lemon::dim2::Point<int> > nodePoint;
-	std::map<Cell,GrGraph::Node> cellNode;
+	//std::map<Cell,GrGraph::Node> cellNode;
 	void createNodes();
 	void connectNodes();
 	void createCellNode();
 	bool searchNode(std::vector<GrGraph::Node> list,GrGraph::Node tocheck);
-
+	GrGraph::Node getNodeFromCell(Cell s);
 };
 
 } /* namespace planner */

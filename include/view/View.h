@@ -61,6 +61,7 @@ private:
 	std::vector<Cell> vecSolutionComplex;
 	std::vector<Cell> vecGrSolution;
 	std::vector<Cell> vecGrComplexSolution;
+	std::vector<int> stateOfBuffer;
 	bool solution;
 	bool complexSolution;
 	bool grNSolution;
@@ -89,6 +90,9 @@ private:
     planner::Planner* plan;
     planner::ComplexPlanner* complexPlan;
     planner::ComplexPlanner* grPlanner;
+
+    void drawComplexSolution(SDL_Surface *screen,std::vector<Cell> vec,std::vector<int> bufferSt);
+    void addNumberForCell(SDL_Surface *screen,Cell s,int i);
 
 
 
