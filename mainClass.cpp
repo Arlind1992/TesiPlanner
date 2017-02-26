@@ -29,8 +29,8 @@ int main(int argc, char* argv[])
     char *filePath="projectFiles/lemon_graph/thetaGraph";
     char *filePathGr="projectFiles/lemon_graph/gridGraph";
     int baseUnit=8;
-    	int baseRate=8;
-    	const int buff= 85;
+    	int baseRate=2;
+    	const int buff= 30;
 	//create communication map which has the information about the antennas and the speed of transmittion in
     //different cells
     std::cout<<"here"<<std::endl;
