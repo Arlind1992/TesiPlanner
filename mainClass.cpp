@@ -29,14 +29,14 @@ int main(int argc, char* argv[])
     char *filePath="projectFiles/lemon_graph/thetaGraph";
     char *filePathGr="projectFiles/lemon_graph/gridGraph";
     int baseUnit=8;
-    	int baseRate=2;
-    	const int buff= 20;
+    	int baseRate=8;
+    	const int buff= 85;
 	//create communication map which has the information about the antennas and the speed of transmittion in
     //different cells
     std::cout<<"here"<<std::endl;
     MatrixDyn mat(75,100);
 	CommMap grid(&mat);
-	std::cout<<"starting"<<std::endl;
+	std::cout<<"mod"<<std::endl;
 	xml::xmlParser parse;
 	parse.parse();
 	grid.setMatrix(parse.getAntenne(),baseRate);
@@ -63,26 +63,26 @@ int main(int argc, char* argv[])
 
 	//compPl.createGraphs();
 	grPlanner.createGraphs();
-
+/*
 	srand(time(NULL));
-	//int x, y,xend,yend;
+	int x, y,xend,yend;
 	std::vector<Cell> c;
-	/*
-	for(int i=0;i<10000;i++){
+	std::map<Cell,int> buffV;
+	for(int i=0;i<1000;i++){
 
-			x = rand()%100;
+			x = rand()%75;
 			y = rand()%100;
-			xend=rand()%100;
+			xend=rand()%75;
 			yend=rand()%100;
 			if(gridMap.isFree(std::make_pair(x,y))&&gridMap.isFree(std::make_pair(xend,yend))){
 				std::cout<<"("<<x<<","<<y<<")"<<"("<<xend<<","<<yend<<")"<<std::endl;
-				compPl.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
-				compPl.makeSimplePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
-				grPlanner.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
+			//	compPl.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
+				//compPl.makeSimplePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
+				grPlanner.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c,buffV);
 				grPlanner.makeSimplePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
 			}
-	}*/
-
+	}
+*/
 
 	//create the view
 	view::View view;

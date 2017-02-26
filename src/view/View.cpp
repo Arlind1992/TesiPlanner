@@ -321,15 +321,17 @@ void View::handleInput(SDL_Event event){
 					//find a way to select the Tmax
 					//this->solution=this->complexPlan->makeSimplePlan(end,start,this->vecSolution);
 					//this->complexSolution=this->complexPlan->makePlan(end,start,this->vecSolutionComplex);
+					std::cout<<"start ("<<start.first<<","<<start.second<<")"<<std::endl;
+					std::cout<<"end ("<<end.first<<","<<end.second<<")"<<std::endl;
 					this->grNSolution=this->grPlanner->makeSimplePlan(end,start,this->vecGrSolution);
 					this->grCompSolution=this->grPlanner->makePlan(end,start,this->vecGrComplexSolution,stateOfBuffer);
 					//this->grCompSolution=grNSolution;
-					if(grNSolution&&grCompSolution){
+					/*if(grNSolution&&grCompSolution){
 						view::OpenCvView view1(vecGrSolution,vecGrComplexSolution,&stateOfBuffer);
 								view1.setMat(this->toDraw,blocked);
 								view1.Draw();
 								stateOfBuffer.clear();
-					}
+					}*/
 
 					this->solution=this->grNSolution;
 					this->complexSolution=this->grCompSolution;

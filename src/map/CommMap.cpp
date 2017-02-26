@@ -62,6 +62,9 @@ void CommMap::setSpeed(int xCenter,int yCenter,int speed,bool discreteCase){
 			    		(*repMatrix)(i,j)=speed;
 			    		continue;
 			    	}
+			    	if(distance>(double)maxRad){
+			    		continue;
+			    	}
 			    	if(discreteCase){
 			    	int speedForCell=speed-(((int)distance-4)+1)*2;
 			    	if(speedForCell>0){

@@ -13,18 +13,18 @@
 #include "grid/Grid.h"
 #include "grid/Cell.h"
 #include "planners/AbstractPlanner.h"
-#include <lemon/list_graph.h>
+#include <lemon/smart_graph.h>
 #include <lemon/dim2.h>
 #include <planners/GridPlanner.h>
 #include <fstream>
 
-typedef lemon::ListDigraph DiGraph;
+typedef lemon::SmartDigraph DiGraph;
 using namespace rrt_planning;
 namespace planner {
 
 class ComplexPlanner{
 public:
-	ComplexPlanner(rrt_planning::Grid* grid,int baseU,int baseR,GridPlanner* planner,char* filePath,const int buffer):grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph),buffer(buffer){
+	ComplexPlanner(rrt_planning::Grid* grid,int baseU,int baseR,GridPlanner* planner,char* filePath,const int buffer):buffer(buffer),grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
 		this->baseUnit=baseU;
 		this->baseRate=baseR;
 
@@ -66,7 +66,7 @@ private:
 		Grid* grid;
 	    //graphs that are going to be used to find the optimal path
 		//graph created using the theta* planner
-		lemon::ListDigraph graph;
+		DiGraph graph;
 	    DiGraph complexCaseGraph;
 	    int movingTime;
 	    double transmittionTime;
@@ -77,30 +77,13 @@ private:
 	    DiGraph::ArcMap<int> length;
 	    DiGraph::NodeMap<lemon::dim2::Point<int> > nodePoint;
 	    std::map<Cell,DiGraph::Node> cellNode;
-	    DiGraph::ArcMap<double> lengthComplex;
+	    DiGraph::ArcMap<int> lengthComplex;
 	    std::map<DiGraph::Node,DiGraph::Node> complexToNormal;
-
-	    /*
-	    DiGraph modifiedNGraph;
-	    DiGraph::ArcMap<double> lengthMod;
-	    std::map<DiGraph::Node,DiGraph::Node> modToNormal;
-	    void createModGraph();
-	    void createModNodes();
-	    void connectModSame();
-	    void connectModDifferent();
-	    //map to get the expanded nodes from the node on the normal graph
-	    std::map<DiGraph::Node,std::vector<DiGraph::Node>> nodeToVecNorm;
-	*/
-
-
-
 
 	    //Variables needed for the complex case graph
 
 	    //map to get the expanded nodes from the node on the normal graph
 	    std::map<DiGraph::Node,std::vector<DiGraph::Node>> nodeToVec;
-	    //map to indicate if an arc is a moving arc or not
-	    std::map<DiGraph::Arc,bool> isMoving;
 
 
 	    const char* filePath;
@@ -144,6 +127,7 @@ private:
 
 	     char* casePl;
 	     std::ofstream myfile;
+
 
 };
 

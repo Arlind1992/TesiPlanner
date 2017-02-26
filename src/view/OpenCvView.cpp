@@ -105,27 +105,22 @@ void OpenCvView::drawSolution(){
 }
 
 void OpenCvView::drawCompSol(){
-	int test=0;
 	for(int i=0;i<this->vecSolutionComplex.size()-1;i++){
 			Cell cOne=matToPixelCoo(vecSolutionComplex[i]);
 			Cell cTwo=matToPixelCoo(vecSolutionComplex[i+1]);
 		line(image,Point(cOne.second,cOne.first),Point(cTwo.second,cTwo.first),Scalar(255,0,0),2);
 		try{
 			int j = this->stateOfBuffer->at(vecSolutionComplex[i+1]);
-			std::cout<<j<<std::endl;
 			std::string s;
 					std::stringstream out;
 					out << j;
 					s = out.str();
-					std::cout<<"ktu-"<<s<<std::endl;
-					test++;
 					putText(image,s,Point(cTwo.second,cTwo.first),FONT_HERSHEY_COMPLEX_SMALL, 0.5,Scalar(0,0,0));
 
 		}catch(const std::out_of_range& oor){
 
 			}
 			}
-	std::cout<<"-"<<test<<std::endl;
 }
 
 

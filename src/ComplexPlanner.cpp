@@ -16,9 +16,8 @@
 using namespace std;
 using namespace rrt_planning;
 using namespace lemon;
-
+//TODO ask does it gain while transmitting at same position
 namespace planner {
-//TODO fix complex case
 
 ComplexPlanner::~ComplexPlanner() {
 	// TODO Auto-generated destructor stub
@@ -46,7 +45,7 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 		this->connectGoalCellComplex(cgoal);
 	if(!isCommGoal&&!isCommInit)
 		this->connectComplexCells(cinit,cgoal);
-	lemon::Dijkstra<DiGraph,DiGraph::ArcMap<double>> solver(this->complexCaseGraph,this->lengthComplex);
+	lemon::Dijkstra<DiGraph,DiGraph::ArcMap<int>> solver(this->complexCaseGraph,this->lengthComplex);
 	DiGraph::Node firstCompl;
 	DiGraph::Node endCompl;
 	firstCompl=nodeToVec[cellNode[cinit]].at(0);
@@ -59,13 +58,14 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 	 for (DiGraph::Node v=endCompl;v != firstCompl; v=solver.predNode(v)) {
 	 DiGraph::Node prevNode=solver.predNode(v);
 	  DiGraph::Arc arc= lemon::findArc(complexCaseGraph,prevNode,v,lemon::INVALID);
-      if(this->isMoving[arc]){
+      if(this->complexToNormal[prevNode]!=this->complexToNormal[v]){
     	  if(v==endCompl){
     		  stateOfBuffer[std::make_pair(nodePoint[complexToNormal[v]].x,nodePoint[complexToNormal[v]].y)]=buffer;
     	  }else{
     		  stateOfBuffer[std::make_pair(nodePoint[complexToNormal[v]].x,nodePoint[complexToNormal[v]].y)]=this->findPosition(this->nodeToVec[this->complexToNormal[v]],v);
     		  std::cout<<"Cell-"<<"("<<nodePoint[complexToNormal[v]].x<<","<<nodePoint[complexToNormal[v]].y<<")"<<std::endl;
     		  std::cout<<"state"<<this->findPosition(this->nodeToVec[this->complexToNormal[v]],v)<<std::endl;
+    		  std::cout<<"speed="<<this->grid->getSpeed(std::make_pair(nodePoint[complexToNormal[v]].x,nodePoint[complexToNormal[v]].y))<<std::endl;
     	  }
     	  Cell endCell;
 		  lemon::dim2::Point<int> p=nodePoint[this->complexToNormal[v]];
@@ -82,20 +82,21 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     	  movingTime=movingTime+this->lengthComplex[arc];
       }else{
     	  lemon::dim2::Point<int> p=this->nodePoint[this->complexToNormal[prevNode]];
-    	  transmittionTime=transmittionTime+baseRate/baseUnit;
+    	  std::cout<<"Transmitting stopped at="<<"("<<p.x<<","<<p.y<<")"<<"with speed"<<this->grid->getSpeed(std::make_pair(p.x,p.y))<<std::endl;
+    	  transmittionTime=transmittionTime+1;
       }
       }
 	reverse(result.begin(),result.end());
     result.erase(unique(result.begin(),result.end()),result.end());
     int stop_s=clock();
     if(!grid->isComm(cinit)){
-    	graph.erase(cellNode[cinit]);
-    	complexCaseGraph.erase(firstCompl);
+    	//graph.erase(cellNode[cinit]);
+    	//complexCaseGraph.erase(firstCompl);
     	cellNode.erase(cinit);
     }
     if(!grid->isComm(cgoal)){
-    	graph.erase(cellNode[cgoal]);
-    	complexCaseGraph.erase(endCompl);
+    	//graph.erase(cellNode[cgoal]);
+    	//complexCaseGraph.erase(endCompl);
     	cellNode.erase(cgoal);
     }
 	this->myfile<<"Complex computational time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 <<"\n";
@@ -174,11 +175,11 @@ bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<C
 	    std::cout<<"path cost"<<movingTime<<std::endl;
 
 	    if(!grid->isComm(cinit)){
-	        	graph.erase(cellNode[cinit]);
+	        	//graph.erase(cellNode[cinit]);
 	        	cellNode.erase(cinit);
 	        }
 	        if(!grid->isComm(cgoal)){
-	        	graph.erase(cellNode[cgoal]);
+	        	//graph.erase(cellNode[cgoal]);
 	        	cellNode.erase(cgoal);
 	        }
 		this->myfile<<"Normal computational cost: "<<((stop_s-start_s)/double(CLOCKS_PER_SEC)*1000)-computationalTime <<"\n";
@@ -230,7 +231,7 @@ void planner::ComplexPlanner::connectFirstCellComplex(Cell cell){
 		std::vector<DiGraph::Node> vecEndNodes=nodeToVec[nod];
 		DiGraph::Arc addedArc=this->complexCaseGraph.addArc(firstComplexNode,vecEndNodes.at(distance*this->baseUnit/this->baseRate));
 		this->lengthComplex[addedArc]=distance;
-		this->isMoving[addedArc]=true;
+		//this->isMoving[addedArc]=true;
 		}
 	}
 }
@@ -271,13 +272,13 @@ void planner::ComplexPlanner::createArcsSameNodes(){
 				    	if(i>this->numberOfNodes)
 				    		break;
 						DiGraph::Arc arc=this->complexCaseGraph.addArc(vecStartNodes.at(i),vecStartNodes.at(0));
-						this->lengthComplex[arc]=(double)1;
-						this->isMoving[arc]=false;
+						this->lengthComplex[arc]=1;
+						//this->isMoving[arc]=false;
 				    }
 				    for(int i=0;i<numberOfNodes-speed;i++){
 				    	DiGraph::Arc toadd=this->complexCaseGraph.addArc(vecStartNodes.at(i+speed),vecStartNodes.at(i));
-				    	this->lengthComplex[toadd]=(double)1;
-				    	this->isMoving[toadd]=false;
+				    	this->lengthComplex[toadd]=1;
+				    	//this->isMoving[toadd]=false;
 				    }
 		}
 
@@ -302,8 +303,8 @@ void planner::ComplexPlanner::connectGoalCellComplex(Cell end ){
 				std::vector<DiGraph::Node> vecSourceNodes=nodeToVec[nod];
 			for(int j=0;j<1+((buffer-distance))*(this->baseUnit/this->baseRate);j++){
 					DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecSourceNodes.at(j),endComplexNode);
-					this->lengthComplex[addedArc]=(double)distance;
-					this->isMoving[addedArc]=true;
+					this->lengthComplex[addedArc]=distance;
+					//this->isMoving[addedArc]=true;
 				}
 
 			}
@@ -323,46 +324,46 @@ void planner::ComplexPlanner::connectDifferentNodes(){
 						//next node in the normal graph connected
 						DiGraph::Node nod=graph.target(out);
 						int distance=this->length[out];
-
 						std::vector<DiGraph::Node> vecEndNodes=nodeToVec[nod];
-						for(int j=0;j<numberOfNodes-(distance*(this->baseUnit/this->baseRate));j++){
-							DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecStartNodes.at(j),vecEndNodes.at(j+(distance*(this->baseUnit/baseRate))));
-							this->lengthComplex[addedArc]=(double)distance;
-							this->isMoving[addedArc]=true;
-						}
 						Cell s1=std::make_pair(this->nodePoint[b].x,this->nodePoint[b].y);
 						Cell s2=std::make_pair(this->nodePoint[nod].x,this->nodePoint[nod].y);
 						if(grid->areFourConnected(s1,s2)){
-							int speed;
-							if(grid->getSpeed(s1)<grid->getSpeed(s2)){
-								speed=grid->getSpeed(s1);
-							}else{
-								speed=grid->getSpeed(s2);
-							}
-							int cof=this->baseUnit-speed;
-							//TODO modify to transmit while moving
-							if(cof>0){
-								for(int j=0;j<numberOfNodes-cof;j++){
-									DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecStartNodes.at(j),vecEndNodes.at(j+cof));
-									this->lengthComplex[addedArc]=(double)distance;
-									this->isMoving[addedArc]=true;
-								}
-							}else{
-								for(int z=this->numberOfNodes-1;z>=0;z--){
-									if(z+cof>=0){
-										DiGraph::Arc addArc=this->complexCaseGraph.addArc(vecStartNodes.at(z),vecEndNodes.at(z+cof));
-										this->lengthComplex[addArc]=(double)1;
-										this->isMoving[addArc]=true;
-									}else{
-										DiGraph::Arc addArc=this->complexCaseGraph.addArc(vecStartNodes.at(z),vecEndNodes.at(0));
-								    	this->lengthComplex[addArc]=(double)1;
-										this->isMoving[addArc]=true;
-
-									}
-								}
-							}
-
+						int speed;
+						if(grid->getSpeed(s1)<grid->getSpeed(s2)){
+						speed=grid->getSpeed(s1);
+						}else{
+						speed=grid->getSpeed(s2);
 						}
+						int cof=(this->baseUnit-speed)/baseRate;
+						//TODO modify to transmit while moving
+						if(cof>0){
+							for(int j=0;j<numberOfNodes-cof;j++){
+							DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecStartNodes.at(j),vecEndNodes.at(j+cof));
+							this->lengthComplex[addedArc]=distance;
+							//this->isMoving[addedArc]=true;
+							}
+						}else{
+							for(int z=this->numberOfNodes-1;z>=0;z--){
+								if(z+cof>=0){
+								DiGraph::Arc addArc=this->complexCaseGraph.addArc(vecStartNodes.at(z),vecEndNodes.at(z+cof));
+								this->lengthComplex[addArc]=1;
+							//	this->isMoving[addArc]=true;
+								}else{
+								DiGraph::Arc addArc=this->complexCaseGraph.addArc(vecStartNodes.at(z),vecEndNodes.at(0));
+						    	this->lengthComplex[addArc]=1;
+							//	this->isMoving[addArc]=true;
+								}
+							}
+						}
+
+					}else{
+
+						for(int j=0;j<numberOfNodes-(distance*(this->baseUnit/this->baseRate));j++){
+							DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecStartNodes.at(j),vecEndNodes.at(j+(distance*(this->baseUnit/baseRate))));
+							this->lengthComplex[addedArc]=distance;
+						//	this->isMoving[addedArc]=true;
+						}
+					 }
 					}
 			}
 }
@@ -378,15 +379,18 @@ void planner::ComplexPlanner::createNormalGraph(){
 
 }
 void planner::ComplexPlanner::createNodes(){
+	int counter=0;
 	for(int i=0;i<grid->getMaxX();i++){
 		for(int j=0;j<grid->getMaxY();j++){
 			if(this->grid->isComm(std::make_pair(i,j)) && this->grid->isFree(std::make_pair(i,j))){
 				DiGraph::Node addedNode=graph.addNode();
 				lemon::dim2::Point<int> p(i,j);
 				this->nodePoint[addedNode]=p;
+				counter++;
 			}
 		}
 	}
+	std::cout<<"on Create "<<counter<<std::endl;
 }
 
 void planner::ComplexPlanner::createCellNode(){
@@ -503,85 +507,41 @@ void planner::ComplexPlanner::connectComplexCells(Cell start,Cell goal){
 		if(lemon::findArc(graph,cellNode[start],cellNode[goal],lemon::INVALID)!=lemon::INVALID){
 			DiGraph::Arc arc=complexCaseGraph.addArc(this->nodeToVec[cellNode[start]].at(0),this->nodeToVec[cellNode[goal]].at(0));
 			this->lengthComplex[arc]=this->length[lemon::findArc(graph,cellNode[start],cellNode[goal],lemon::INVALID)];
-			this->isMoving[arc]=true;
+		//	this->isMoving[arc]=true;
 		}
 }
 
 void planner::ComplexPlanner::createGraphs(){
-	if(FILE *file = fopen(filePath, "r")) {
+	/*if(FILE *file = fopen(filePath, "r")) {
 
 		fclose(file);
 			DigraphReader<DiGraph>( graph,filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
 			this->createCellNode();
 		}else{
-			 int s1=clock();
+		*/	 int s4=clock();
 			this->createNormalGraph();
-			int s2=clock();
-			std::cout<<"time to create normal Graph "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<std::endl;
-			this->myfile<<"time to create normal Graph "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
-			//DigraphWriter<DiGraph>(graph, filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
-	}
+			int s3=clock();
+			std::cout<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<std::endl;
+			this->myfile<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<"\n";
+			DigraphWriter<DiGraph>(graph, filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
+	//}
+	std::cout<<"Arcs = "<<lemon::countArcs(graph)<<" gr "<<sizeof(DiGraph::Arc)<<std::endl;
+	std::cout<<"Nodes = "<<lemon::countNodes(graph)<<" gr "<<sizeof(DiGraph::Node)<<std::endl;
 	int s1=clock();
 	this->createComplexGraph();
 	std::cout<<"change"<<std::endl;
+	std::cout<<"Arcs C= "<<lemon::countArcs(complexCaseGraph)<<std::endl;
+		std::cout<<"Nodes C= "<<lemon::countNodes(complexCaseGraph)<<std::endl;
+
 	int s2=clock();
 	myfile<<"Time to create Complex graph : "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
 
-}
-/*
 
-void planner::ComplexPlanner::createModNodes(){
-	for(DiGraph::NodeIt n(graph); n != INVALID; ++n ){
 
-				std::vector<DiGraph::Node> vecNodes;
-					for(int i=0;i<1;i++){
-						DiGraph::Node addNode=this->modifiedNGraph.addNode();
-						vecNodes.push_back(addNode);
-					}
-					this->nodeToVecNorm[n]=vecNodes;
-
-					for(DiGraph::Node no:vecNodes){
-									this->modToNormal[no]=n;
-								}
-					vecNodes.clear();
-			}
 }
 
-void planner::ComplexPlanner::connectModSame(){
-	for(DiGraph::NodeIt b(graph); b != INVALID; ++b ){
-				std::vector<DiGraph::Node> vecStartNodes=nodeToVecNorm[b];
-				//for loops to create connections between comm nodes associated to same cell
-				DiGraph::Arc arc=this->modifiedNGraph.addArc(vecStartNodes.at(1),vecStartNodes.at(0));
-				this->lengthComplex[arc]=1;
-				this->isMoving[arc]=false;
-
-			}
-}*/
-//TODO ask modify
-/*void planner::ComplexPlanner::connectModDifferent(){
-	/*
-			 * for loop that creates the connections between the nodes in the
-			 * complex case
-
-			for(DiGraph::NodeIt b(graph); b != INVALID; ++b ){
-					std::vector<DiGraph::Node> vecStartNodes=nodeToVec[b];
-					    //for loop to connect with the other nodes
-						for(DiGraph::OutArcIt out(graph,b);out!=INVALID;++out){
-							//next node in the normal graph connected
-							DiGraph::Node nod=graph.target(out);
-							double distance=calculateNum(this->length[out]);
-
-							std::vector<DiGraph::Node> vecEndNodes=nodeToVec[nod];
-							DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecStartNodes.at(0),vecEndNodes.at(1));
-							this->lengthComplex[addedArc]=distance;
-							this->isMoving[addedArc]=true;
-
-						}
-				}
-}
-*/
 int ComplexPlanner::findPosition(std::vector<DiGraph::Node> nodes,DiGraph::Node n){
-	for(int i=0;i<nodes.size();i++)
+	for(int i=0;i<(int)nodes.size();i++)
 	{
 		if(nodes.at(i)==n){
 			return i;
@@ -589,7 +549,6 @@ int ComplexPlanner::findPosition(std::vector<DiGraph::Node> nodes,DiGraph::Node 
 	}
 	return -1;
 }
-
 
 
 } /* namespace planner */
