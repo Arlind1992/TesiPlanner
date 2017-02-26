@@ -24,7 +24,7 @@ ComplexPlanner::~ComplexPlanner() {
 	// TODO Auto-generated destructor stub
 }
 bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
-		,vector<Cell>& result,vector<int>& stateOfBuffer ){
+		,vector<Cell>& result,std::map<Cell,int>& stateOfBuffer ){
 	int start_s=clock();
 	bool isCommInit=grid->isComm(cinit);
 	bool isCommGoal=grid->isComm(cgoal);
@@ -60,6 +60,13 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 	 DiGraph::Node prevNode=solver.predNode(v);
 	  DiGraph::Arc arc= lemon::findArc(complexCaseGraph,prevNode,v,lemon::INVALID);
       if(this->isMoving[arc]){
+    	  if(v==endCompl){
+    		  stateOfBuffer[std::make_pair(nodePoint[complexToNormal[v]].x,nodePoint[complexToNormal[v]].y)]=buffer;
+    	  }else{
+    		  stateOfBuffer[std::make_pair(nodePoint[complexToNormal[v]].x,nodePoint[complexToNormal[v]].y)]=this->findPosition(this->nodeToVec[this->complexToNormal[v]],v);
+    		  std::cout<<"Cell-"<<"("<<nodePoint[complexToNormal[v]].x<<","<<nodePoint[complexToNormal[v]].y<<")"<<std::endl;
+    		  std::cout<<"state"<<this->findPosition(this->nodeToVec[this->complexToNormal[v]],v)<<std::endl;
+    	  }
     	  Cell endCell;
 		  lemon::dim2::Point<int> p=nodePoint[this->complexToNormal[v]];
 		  endCell.first=p.x;
@@ -293,9 +300,7 @@ void planner::ComplexPlanner::connectGoalCellComplex(Cell end ){
 
 				int distance=this->length[in];
 				std::vector<DiGraph::Node> vecSourceNodes=nodeToVec[nod];
-				std::cout<<"state:"<<((buffer-distance))*(this->baseUnit/this->baseRate)<<std::endl;
-
-				for(int j=0;j<1+((buffer-distance))*(this->baseUnit/this->baseRate);j++){
+			for(int j=0;j<1+((buffer-distance))*(this->baseUnit/this->baseRate);j++){
 					DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecSourceNodes.at(j),endComplexNode);
 					this->lengthComplex[addedArc]=(double)distance;
 					this->isMoving[addedArc]=true;
@@ -575,7 +580,15 @@ void planner::ComplexPlanner::connectModSame(){
 				}
 }
 */
-
+int ComplexPlanner::findPosition(std::vector<DiGraph::Node> nodes,DiGraph::Node n){
+	for(int i=0;i<nodes.size();i++)
+	{
+		if(nodes.at(i)==n){
+			return i;
+		}
+	}
+	return -1;
+}
 
 
 

@@ -10,6 +10,7 @@
 #include "grid/Grid.h"
 #include "ComplexPlanner.h"
 #include "planners/ThetaStarPlanner.h"
+#include "view/OpenCvView.h"
 
 void printMat(MatrixDyn* mat){
 
@@ -27,6 +28,9 @@ int main(int argc, char* argv[])
 
     char *filePath="projectFiles/lemon_graph/thetaGraph";
     char *filePathGr="projectFiles/lemon_graph/gridGraph";
+    int baseUnit=8;
+    	int baseRate=2;
+    	const int buff= 20;
 	//create communication map which has the information about the antennas and the speed of transmittion in
     //different cells
     std::cout<<"here"<<std::endl;
@@ -35,7 +39,7 @@ int main(int argc, char* argv[])
 	std::cout<<"starting"<<std::endl;
 	xml::xmlParser parse;
 	parse.parse();
-	grid.setMatrix(parse.getAntenne(),true);
+	grid.setMatrix(parse.getAntenne(),baseRate);
 	//create blocked matrix which has the information about blocked and free cells
 	MatrixDyn bl(75,100);
 	FileReader r;
@@ -54,15 +58,14 @@ int main(int argc, char* argv[])
 	plan.createGraph();
 	//create complex planner one that uses theta* and the other that uses four way grid
 	//planner::ComplexPlanner compPl(&gridMap,disPar,&planner,filePath);
-	int baseUnit=8;
-	int baseRate=2;
-	const int buff= 20;
+
 	planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,filePathGr,buff);
+
 	//compPl.createGraphs();
 	grPlanner.createGraphs();
 
 	srand(time(NULL));
-	int x, y,xend,yend;
+	//int x, y,xend,yend;
 	std::vector<Cell> c;
 	/*
 	for(int i=0;i<10000;i++){
@@ -79,6 +82,7 @@ int main(int argc, char* argv[])
 				grPlanner.makeSimplePlan(std::make_pair(xend,yend),std::make_pair(x,y),c);
 			}
 	}*/
+
 
 	//create the view
 	view::View view;

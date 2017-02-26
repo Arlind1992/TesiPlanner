@@ -45,7 +45,7 @@ public:
 	}
 	virtual ~ComplexPlanner();
 	 bool makePlan(rrt_planning::Cell cgoal,rrt_planning::Cell cnit
-		    		,std::vector<rrt_planning::Cell>& result,std::vector<int>& stateOfBuffer);
+		    		,std::vector<rrt_planning::Cell>& result,std::map<Cell,int>& stateOfBuffer);
 	 void createGraphs();
      bool makeSimplePlan(Cell cgoal,Cell cinit,std::vector<Cell>& result);
 
@@ -59,7 +59,7 @@ private:
      	    //parameter to indicate the number of nodes in the complex graph for each node in the simple
      	    //graph
      	    int numberOfNodes;
-
+     	   int findPosition(std::vector<DiGraph::Node> nodes,DiGraph::Node n);
 		/*
 		 * Attributes
 		 */

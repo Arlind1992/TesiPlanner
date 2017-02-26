@@ -16,7 +16,7 @@ class CommMap {
 public:
 	CommMap(MatrixDyn* mat):repMatrix(mat){}
 	virtual ~CommMap();
-	void setMatrix(std::vector<xml::antenna> antenne,bool discrete);
+	void setMatrix(std::vector<xml::antenna> antenne,int discrete);
 	bool getSpeed(int x,int y,int* speed);
 
 private:

@@ -76,9 +76,15 @@ void CommMap::setSpeed(int xCenter,int yCenter,int speed,bool discreteCase){
 			    }
 
 }
-void CommMap::setMatrix(std::vector<xml::antenna> antenne,bool discrete){
+void CommMap::setMatrix(std::vector<xml::antenna> antenne,int discrete){
+	bool caset;
+	if(discrete==2){
+		caset=true;
+	}else{
+		caset=false;
+	}
 	for(xml::antenna a:antenne){
-		setSpeed(a.first.first,a.first.second,a.second,discrete);
+		setSpeed(a.first.first,a.first.second,a.second,caset);
 	}
 }
 

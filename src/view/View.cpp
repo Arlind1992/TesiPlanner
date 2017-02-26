@@ -10,7 +10,7 @@
 #include <SDL2/SDL.h>
 #include<iostream>
 #include "Planner.h"
-
+#include "view/OpenCvView.h"
 namespace view {
 
 View::View() {
@@ -205,12 +205,6 @@ Cell View::pixelToMatCoo(int x,int y){
 	return std::make_pair(yMat,xMat);
 }
 
-void View::drawComplexSolution(SDL_Surface *screen,std::vector<Cell> vec,std::vector<int> buffer){
-	drawSolution(screen,vec,2);
-	for(int i=0;i<(int)buffer.size()-1;i++){
-		addNumberForCell(screen,vec.at(i),buffer.at(1));
-		}
-}
 void View::drawSolution(SDL_Surface *screen,std::vector<rrt_planning::Cell> vec,int complex){
 
 	for(int i=0;i<vec.size()-1;i++){
@@ -330,6 +324,13 @@ void View::handleInput(SDL_Event event){
 					this->grNSolution=this->grPlanner->makeSimplePlan(end,start,this->vecGrSolution);
 					this->grCompSolution=this->grPlanner->makePlan(end,start,this->vecGrComplexSolution,stateOfBuffer);
 					//this->grCompSolution=grNSolution;
+					if(grNSolution&&grCompSolution){
+						view::OpenCvView view1(vecGrSolution,vecGrComplexSolution,&stateOfBuffer);
+								view1.setMat(this->toDraw,blocked);
+								view1.Draw();
+								stateOfBuffer.clear();
+					}
+
 					this->solution=this->grNSolution;
 					this->complexSolution=this->grCompSolution;
 				}
@@ -368,6 +369,5 @@ void View::setComGridPlanner(planner::ComplexPlanner* grPlanner){
 	this->grPlanner=grPlanner;
 }
 void View::addNumberForCell(SDL_Surface* screen,Cell s,int i){
-
-}
 } /* namespace view */
+}

@@ -61,7 +61,7 @@ private:
 	std::vector<Cell> vecSolutionComplex;
 	std::vector<Cell> vecGrSolution;
 	std::vector<Cell> vecGrComplexSolution;
-	std::vector<int> stateOfBuffer;
+	std::map<Cell,int> stateOfBuffer;
 	bool solution;
 	bool complexSolution;
 	bool grNSolution;
