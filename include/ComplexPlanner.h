@@ -24,7 +24,7 @@ namespace planner {
 
 class ComplexPlanner{
 public:
-	ComplexPlanner(rrt_planning::Grid* grid,int baseU,int baseR,GridPlanner* planner,char* filePath,const int buffer):buffer(buffer),grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
+	ComplexPlanner(rrt_planning::Grid* grid,int baseU,int baseR,GridPlanner* planner,char* filePath,const int buffer,std::ofstream* myfile):buffer(buffer),grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
 		this->baseUnit=baseU;
 		this->baseRate=baseR;
 
@@ -38,8 +38,7 @@ public:
 		}else{
 			this->casePl="GridPlanner";
 		}
-		myfile.open(casePl);
-
+		this->myfile=myfile;
 
 
 	}
@@ -126,7 +125,7 @@ private:
 	     void connectCells(Cell cell1,Cell cell2);
 
 	     char* casePl;
-	     std::ofstream myfile;
+	     std::ofstream* myfile;
 
 
 };

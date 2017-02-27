@@ -25,9 +25,10 @@ void printMat(MatrixDyn* mat){
 
 int main(int argc, char* argv[])
 {
-
+	std::ofstream* myfile;
     char *filePath="projectFiles/lemon_graph/thetaGraph";
     char *filePathGr="projectFiles/lemon_graph/gridGraph";
+    myfile->open("GridPlanner")
     int baseUnit=8;
     	int baseRate=2;
     	const int buff= 38;
@@ -43,7 +44,6 @@ int main(int argc, char* argv[])
 	//create blocked matrix which has the information about blocked and free cells
 	MatrixDyn bl(75,100);
 	FileReader r;
-	std::cout<<"std"<<std::endl;
 	r.reader(&bl);
 	//create debug map which the actual map that the solver uses to get the information about cells
 	DebugMap map(&bl,&grid);
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 	//create complex planner one that uses theta* and the other that uses four way grid
 	//planner::ComplexPlanner compPl(&gridMap,disPar,&planner,filePath);
 
-	planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,filePathGr,buff);
+	planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,filePathGr,buff,myfile);
 
 	//compPl.createGraphs();
 	grPlanner.createGraphs();
