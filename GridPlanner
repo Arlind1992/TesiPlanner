@@ -1,2 +1,9 @@
-time to create normal Graph 1632.76
-Time to create Complex graph : 2540.12
+time to create normal Graph 1579.04
+Time to create Complex graph : 2181.4
+Normal computational cost: 11.275
+Baseline computational cost: 11.282
+Normal path cost : 126
+Baseline transmition cost : 294
+Complex computational time: 2425.06
+Complex transmittion cost : 0
+Complex path cost : 148

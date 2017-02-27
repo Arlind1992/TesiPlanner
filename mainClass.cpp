@@ -25,10 +25,10 @@ void printMat(MatrixDyn* mat){
 
 int main(int argc, char* argv[])
 {
-	std::ofstream* myfile;
+	std::ofstream myfile;
     char *filePath="projectFiles/lemon_graph/thetaGraph";
     char *filePathGr="projectFiles/lemon_graph/gridGraph";
-    myfile->open("GridPlanner");
+    myfile.open("GridPlanner");
     int baseUnit=8;
     	int baseRate=2;
     	const int buff= 35;
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 	//create complex planner one that uses theta* and the other that uses four way grid
 	//planner::ComplexPlanner compPl(&gridMap,disPar,&planner,filePath);
 
-	planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,filePathGr,buff,myfile);
+	planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,filePathGr,buff,&myfile);
 
 	//compPl.createGraphs();
 	grPlanner.createGraphs();
