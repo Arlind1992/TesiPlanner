@@ -28,10 +28,10 @@ int main(int argc, char* argv[])
 	std::ofstream* myfile;
     char *filePath="projectFiles/lemon_graph/thetaGraph";
     char *filePathGr="projectFiles/lemon_graph/gridGraph";
-    myfile->open("GridPlanner")
+    myfile->open("GridPlanner");
     int baseUnit=8;
     	int baseRate=2;
-    	const int buff= 38;
+    	const int buff= 35;
 	//create communication map which has the information about the antennas and the speed of transmittion in
     //different cells
     std::cout<<"here"<<std::endl;

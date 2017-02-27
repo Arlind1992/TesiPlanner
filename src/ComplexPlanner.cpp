@@ -91,9 +91,9 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     if(!grid->isComm(cgoal)){
     	cellNode.erase(cgoal);
     }
-	this->myfile<<"Complex computational time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 <<"\n";
-	myfile<<"Complex transmittion cost : "<<transmittionTime<<"\n";
-	myfile<<"Complex path cost : "<<movingTime<<"\n";
+     (*myfile)<<"Complex computational time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 <<"\n";
+	(*myfile)<<"Complex transmittion cost : "<<transmittionTime<<"\n";
+	(*myfile)<<"Complex path cost : "<<movingTime<<"\n";
 	 return true;
 }
 
@@ -510,7 +510,7 @@ void planner::ComplexPlanner::createGraphs(){
 			this->createNormalGraph();
 			int s3=clock();
 			std::cout<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<std::endl;
-			this->myfile<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<"\n";
+			(*myfile)<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<"\n";
 			DigraphWriter<DiGraph>(graph, filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
 	//}
 	std::cout<<"Arcs = "<<lemon::countArcs(graph)<<" gr "<<sizeof(DiGraph::Arc)<<std::endl;
@@ -522,7 +522,7 @@ void planner::ComplexPlanner::createGraphs(){
 		std::cout<<"Nodes C= "<<lemon::countNodes(complexCaseGraph)<<std::endl;
 
 	int s2=clock();
-	myfile<<"Time to create Complex graph : "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
+	(*myfile)<<"Time to create Complex graph : "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
 
 
 
