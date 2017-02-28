@@ -24,6 +24,7 @@ ComplexPlanner::~ComplexPlanner() {
 }
 bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 		,vector<Cell>& result,std::map<Cell,int>& stateOfBuffer ){
+	std::cout<<"making"<<std::endl;
 	int start_s=clock();
 	bool isCommInit=grid->isComm(cinit);
 	bool isCommGoal=grid->isComm(cgoal);
@@ -63,10 +64,10 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     		  stateOfBuffer[std::make_pair(nodePoint[complexToNormal[v]].x,nodePoint[complexToNormal[v]].y)]=buffer;
     	  }else{
     		  stateOfBuffer[std::make_pair(nodePoint[complexToNormal[v]].x,nodePoint[complexToNormal[v]].y)]=this->findPosition(this->nodeToVec[this->complexToNormal[v]],v);
-    		  std::cout<<"Cell-"<<"("<<nodePoint[complexToNormal[v]].x<<","<<nodePoint[complexToNormal[v]].y<<")"<<std::endl;
+    	/*	  std::cout<<"Cell-"<<"("<<nodePoint[complexToNormal[v]].x<<","<<nodePoint[complexToNormal[v]].y<<")"<<std::endl;
     		  std::cout<<"state"<<this->findPosition(this->nodeToVec[this->complexToNormal[v]],v)<<std::endl;
     		  std::cout<<"speed="<<this->grid->getSpeed(std::make_pair(nodePoint[complexToNormal[v]].x,nodePoint[complexToNormal[v]].y))<<std::endl;
-    	  }
+    	 */ }
     	  Cell endCell;
 		  lemon::dim2::Point<int> p=nodePoint[this->complexToNormal[v]];
 		  endCell.first=p.x;
@@ -82,7 +83,6 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     	  movingTime=movingTime+this->lengthComplex[arc];
       }else{
     	  lemon::dim2::Point<int> p=this->nodePoint[this->complexToNormal[prevNode]];
-    	  std::cout<<"Transmitting stopped at="<<"("<<p.x<<","<<p.y<<")"<<"with speed"<<this->grid->getSpeed(std::make_pair(p.x,p.y))<<std::endl;
     	  transmittionTime=transmittionTime+1;
       }
       }
@@ -99,11 +99,9 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     	//complexCaseGraph.erase(endCompl);
     	cellNode.erase(cgoal);
     }
-	this->myfile<<"Complex computational time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 <<"\n";
-	myfile<<"Complex transmittion cost : "<<transmittionTime<<"\n";
-	myfile<<"Complex path cost : "<<movingTime<<"\n";
-	 std::cout<<"transCost "<<transmittionTime<<"mls"<<std::endl;
-		    std::cout<<"path cost"<<movingTime<<std::endl;
+    (*myfile)<<"Complex computational time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 <<"\n";
+	(*myfile)<<"Complex transmittion cost : "<<transmittionTime<<"\n";
+	(*myfile)<<"Complex path cost : "<<movingTime<<"\n";
 	return true;
 }
 
@@ -132,6 +130,7 @@ bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<C
 			return false;
 		}
 		 std::vector<Cell> vec;
+		 int counter=0;
 		 for (DiGraph::Node v=end;v != first; v=solver.predNode(v)) {
 		 DiGraph::Node prevNode=solver.predNode(v);
 		 Cell endCell;
@@ -143,24 +142,10 @@ bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<C
     	  startCell.first=p2.x;
     	  startCell.second=p2.y;
     	  this->planner->makePlan(startCell,endCell,vec,buffer);
-    	  int s1=clock();
 
     	  if(prevNode!=first){
-    		  int distanceTill=solver.dist(prevNode);
-    		  int vecCost=this->grid->pathCost(vec);
-    		  if(this->grid->isComm(startCell)){
-    		  if(distanceTill+vecCost>buffer){
-    			  if(distanceTill>=buffer){
-    				  transmittionTime=transmittionTime+ceil(vecCost*baseUnit/this->grid->getSpeed(startCell));
-    			  }else{
-    				  transmittionTime=transmittionTime +ceil((vecCost+distanceTill-buffer)*baseUnit/this->grid->getSpeed(startCell));
-    			  }
-
-    		  }
-    		  }
+    		  counter++;
     	  }
-    	  int s2=clock();
-    	  computationalTime=computationalTime+(s2-s1)/double(CLOCKS_PER_SEC)*1000;
     	  reverse(vec.begin(),vec.end());
     	  result.insert(result.end(),vec.begin(),vec.end());
     	  vec.clear();
@@ -171,8 +156,6 @@ bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<C
 
 	    movingTime=solver.dist(cellNode[cgoal]);
 	    //calculate the virtual time the robot spends sending information and moving throught the grid
-	    std::cout<<"BaseLine "<<transmittionTime<<std::endl;
-	    std::cout<<"path cost"<<movingTime<<std::endl;
 
 	    if(!grid->isComm(cinit)){
 	        	//graph.erase(cellNode[cinit]);
@@ -182,11 +165,9 @@ bool planner::ComplexPlanner::makeSimplePlan(Cell cgoal,Cell cinit,std::vector<C
 	        	//graph.erase(cellNode[cgoal]);
 	        	cellNode.erase(cgoal);
 	        }
-		this->myfile<<"Normal computational cost: "<<((stop_s-start_s)/double(CLOCKS_PER_SEC)*1000)-computationalTime <<"\n";
-		this->myfile<<"Baseline computational cost: "<<((stop_s-start_s)/double(CLOCKS_PER_SEC)*1000) <<"\n";
-
-		myfile<<"Normal path cost : "<<movingTime<<"\n";
-		myfile<<"Baseline transmition cost : "<<transmittionTime<<"\n";
+		(*myfile)<<"Normal computational cost: "<<((stop_s-start_s)/double(CLOCKS_PER_SEC)*1000) <<"\n";
+		(*myfile)<<"Normal path cost : "<<movingTime<<"\n";
+		(*myfile)<<"Normal transmittion cost : "<<counter<<"\n";
 		return true;
 }
 
@@ -264,21 +245,22 @@ void planner::ComplexPlanner::createArcsSameNodes(){
 		 * complex case
 		 */
 		for(DiGraph::NodeIt b(graph); b != INVALID; ++b ){
-				int speed=this->grid->getSpeed(std::make_pair(this->nodePoint[b].x,this->nodePoint[b].y))/this->baseRate;
+				int speed=(this->grid->getSpeed(std::make_pair(this->nodePoint[b].x,this->nodePoint[b].y))/this->baseRate)-this->baseUnit/baseRate;
 					std::vector<DiGraph::Node> vecStartNodes=nodeToVec[b];
-
+					if(speed<=0){
+						continue;
+					}
 				//for loops to create connections between comm nodes associated to same cell
 				    for(int i=1;i<speed;i++){
-				    	if(i>this->numberOfNodes)
+				    	if(i>=this->numberOfNodes)
 				    		break;
 						DiGraph::Arc arc=this->complexCaseGraph.addArc(vecStartNodes.at(i),vecStartNodes.at(0));
 						this->lengthComplex[arc]=1;
-						//this->isMoving[arc]=false;
+
 				    }
 				    for(int i=0;i<numberOfNodes-speed;i++){
 				    	DiGraph::Arc toadd=this->complexCaseGraph.addArc(vecStartNodes.at(i+speed),vecStartNodes.at(i));
 				    	this->lengthComplex[toadd]=1;
-				    	//this->isMoving[toadd]=false;
 				    }
 		}
 
@@ -335,7 +317,6 @@ void planner::ComplexPlanner::connectDifferentNodes(){
 						speed=grid->getSpeed(s2);
 						}
 						int cof=(this->baseUnit-speed)/baseRate;
-						//TODO modify to transmit while moving
 						if(cof>0){
 							for(int j=0;j<numberOfNodes-cof;j++){
 							DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecStartNodes.at(j),vecEndNodes.at(j+cof));
@@ -379,18 +360,15 @@ void planner::ComplexPlanner::createNormalGraph(){
 
 }
 void planner::ComplexPlanner::createNodes(){
-	int counter=0;
 	for(int i=0;i<grid->getMaxX();i++){
 		for(int j=0;j<grid->getMaxY();j++){
 			if(this->grid->isComm(std::make_pair(i,j)) && this->grid->isFree(std::make_pair(i,j))){
 				DiGraph::Node addedNode=graph.addNode();
 				lemon::dim2::Point<int> p(i,j);
 				this->nodePoint[addedNode]=p;
-				counter++;
 			}
 		}
 	}
-	std::cout<<"on Create "<<counter<<std::endl;
 }
 
 void planner::ComplexPlanner::createCellNode(){
@@ -521,20 +499,14 @@ void planner::ComplexPlanner::createGraphs(){
 		*/	 int s4=clock();
 			this->createNormalGraph();
 			int s3=clock();
-			std::cout<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<std::endl;
-			this->myfile<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<"\n";
-			DigraphWriter<DiGraph>(graph, filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
+			(*myfile)<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<"\n";
+			//DigraphWriter<DiGraph>(graph, filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
 	//}
-	std::cout<<"Arcs = "<<lemon::countArcs(graph)<<" gr "<<sizeof(DiGraph::Arc)<<std::endl;
-	std::cout<<"Nodes = "<<lemon::countNodes(graph)<<" gr "<<sizeof(DiGraph::Node)<<std::endl;
 	int s1=clock();
 	this->createComplexGraph();
-	std::cout<<"change"<<std::endl;
-	std::cout<<"Arcs C= "<<lemon::countArcs(complexCaseGraph)<<std::endl;
-		std::cout<<"Nodes C= "<<lemon::countNodes(complexCaseGraph)<<std::endl;
 
 	int s2=clock();
-	myfile<<"Time to create Complex graph : "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
+	(*myfile)<<"Time to create Complex graph : "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
 
 
 
@@ -549,6 +521,190 @@ int ComplexPlanner::findPosition(std::vector<DiGraph::Node> nodes,DiGraph::Node 
 	}
 	return -1;
 }
+
+
+
+void planner::ComplexPlanner::createBaseGraph(){
+	 int s4=clock();
+	createBaseNodes();
+	createCellNodeBase();
+	connectBaseNodes();
+	int s3=clock();
+	(*myfile)<<"Baseline graph creation : "<<((s3-s4)/double(CLOCKS_PER_SEC)*1000)<<"\n";
+
+}
+
+void planner::ComplexPlanner::createBaseNodes(){
+	for(int i=0;i<grid->getMaxX();i++){
+			for(int j=0;j<grid->getMaxY();j++){
+				if(this->grid->isComm(std::make_pair(i,j)) && this->grid->isFree(std::make_pair(i,j))&&this->grid->getSpeed(std::make_pair(i,j))>baseUnit){
+					DiGraph::Node addedNode=graphBase.addNode();
+					lemon::dim2::Point<int> p(i,j);
+					this->nodePointBase[addedNode]=p;
+				}
+			}
+		}
+}
+void planner::ComplexPlanner::createCellNodeBase(){
+	for(DiGraph::NodeIt n(graphBase);n!=INVALID;++n){
+			lemon::dim2::Point<int> p=nodePointBase[n];
+			this->cellNodeBase[std::make_pair(p.x,p.y)]=n;
+		}
+}
+void planner::ComplexPlanner::connectBaseNodes(){
+	for(DiGraph::NodeIt n(graphBase);n!=INVALID;++n){
+			lemon::dim2::Point<int> p=nodePointBase[n];
+			std::vector<Cell> cells;
+			std::vector<int> distances;
+			this->planner->makePlan(std::make_pair(p.x,p.y),cells,buffer,distances);
+			for(int i=0;i<cells.size();i++){
+				if(grid->getSpeed(cells.at(i))<=this->baseUnit)
+					continue;
+				DiGraph::Node toConnect=this->cellNodeBase[cells.at(i)];
+				DiGraph::Arc conn=graphBase.addArc(n,toConnect);
+				lengthBase[conn]=distances.at(i);
+
+			}
+			cells.clear();
+			distances.clear();
+
+
+		}
+}
+void planner::ComplexPlanner::connectCellBase(Cell cell){
+	DiGraph::Node addedNode=graphBase.addNode();
+		lemon::dim2::Point<int> p(cell.first,cell.second);
+		this->nodePointBase[addedNode]=p;
+		this->cellNodeBase[cell]=addedNode;
+		std::vector<Cell> comm=this->grid->getCommCells(cell,buffer);
+				for(Cell c:comm){
+					if(grid->getSpeed(c)<=baseUnit)
+						continue;
+					std::vector<Cell> path;
+					if(this->planner->makePlan(cell,c,path,buffer)){
+						double distance=this->grid->pathCost(path);
+						if(distance<=buffer){
+							DiGraph::Node toConnect=cellNodeBase[c];
+							DiGraph::Arc arc=graphBase.addArc(addedNode,toConnect);
+							DiGraph::Arc reverseArc=graphBase.addArc(toConnect,addedNode);
+							this->lengthBase[arc]=distance;
+							this->lengthBase[reverseArc]=distance;
+						}
+					}
+					path.clear();
+				}
+}
+void planner::ComplexPlanner::connectCellsBase(Cell c1,Cell c2){
+	std::vector<Cell> path;
+		if(this->planner->makePlan(c1,c2,path,buffer)){
+			int distance=this->grid->pathCost(path);
+			if(distance<=buffer){
+				DiGraph::Node node1=cellNodeBase[c1];
+				DiGraph::Node node2=cellNodeBase[c2];
+				DiGraph::Arc arc=graphBase.addArc(node1,node2);
+				DiGraph::Arc ar1=graphBase.addArc(node2,node1);
+				this->lengthBase[arc]=distance;
+				this->lengthBase[ar1]=distance;
+			}
+		}
+}
+
+
+bool planner::ComplexPlanner::makePlanBase(Cell cgoal,Cell cinit,std::vector<Cell>& result){
+	int start_s=clock();
+		if(!grid->isFree(cgoal)||!grid->isFree(cinit)){
+				return false;
+			}
+		movingTime=0;
+			transmittionTime=0;
+			bool isCommInit=grid->isComm(cinit)&&grid->getSpeed(cinit)>baseUnit;
+				bool isCommGoal=grid->isComm(cgoal)&&grid->getSpeed(cgoal)>baseUnit;
+		if(!isCommInit)
+				this->connectCellBase(cinit);
+			if(!isCommGoal)
+				this->connectCellBase(cgoal);
+			if(!isCommInit&&!isCommGoal)
+				this->connectCellsBase(cgoal,cinit);
+			lemon::Dijkstra<DiGraph,DiGraph::ArcMap<int>> solver(graphBase,lengthBase);
+
+			DiGraph::Node first=cellNodeBase[cinit];
+			DiGraph::Node end=cellNodeBase[cgoal];
+			solver.run(first,end);
+			if(graphBase.id(solver.predNode(end))==-1){
+				return false;
+			}
+			 std::vector<Cell> vec;
+			 for (DiGraph::Node v=end;v != first; v=solver.predNode(v)) {
+			 DiGraph::Node prevNode=solver.predNode(v);
+			 Cell endCell;
+			 lemon::dim2::Point<int> p=nodePointBase[v];
+			 endCell.first=p.x;
+			 endCell.second=p.y;
+			 Cell startCell;
+			 lemon::dim2::Point<int> p2=nodePointBase[prevNode];
+	    	  startCell.first=p2.x;
+	    	  startCell.second=p2.y;
+	    	  this->planner->makePlan(startCell,endCell,vec,buffer);
+
+	    	  if(prevNode!=first){
+	    		  int distanceTill=solver.dist(prevNode);
+	    		  int vecCost=this->grid->pathCost(vec);
+	    		  if(this->grid->isComm(startCell)){
+	    		  if(distanceTill+vecCost>buffer){
+	    			  if(distanceTill>=buffer){
+	    				  transmittionTime=transmittionTime+ceil(vecCost*baseUnit/(this->grid->getSpeed(startCell)-baseUnit));
+	    			  }else{
+	    				  transmittionTime=transmittionTime +ceil((vecCost+distanceTill-buffer)*baseUnit/(this->grid->getSpeed(startCell)-baseUnit));
+	    			  }
+
+	    		  }
+	    		  }
+	    	  }
+	    	  reverse(vec.begin(),vec.end());
+	    	  result.insert(result.end(),vec.begin(),vec.end());
+	    	  vec.clear();
+		      }
+		    reverse(result.begin(),result.end());
+		    result.erase(unique(result.begin(),result.end()),result.end());
+
+
+		    movingTime=solver.dist(cellNodeBase[cgoal]);
+		    //calculate the virtual time the robot spends sending information and moving throught the grid
+		    int stop_s=clock();
+		    if(!grid->isComm(cinit)){
+		        	//graph.erase(cellNode[cinit]);
+		        	cellNodeBase.erase(cinit);
+		        }
+		        if(!grid->isComm(cgoal)){
+		        	//graph.erase(cellNode[cgoal]);
+		        	cellNodeBase.erase(cgoal);
+		        }
+			(*myfile)<<"Baseline computational cost: "<<((stop_s-start_s)/double(CLOCKS_PER_SEC)*1000) <<"\n";
+
+			(*myfile)<<"Baseline path cost : "<<movingTime<<"\n";
+			(*myfile)<<"Baseline transmition cost : "<<transmittionTime<<"\n";
+			return true;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 } /* namespace planner */

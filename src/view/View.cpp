@@ -10,7 +10,6 @@
 #include <SDL2/SDL.h>
 #include<iostream>
 #include "Planner.h"
-#include "view/OpenCvView.h"
 namespace view {
 
 View::View() {
@@ -164,19 +163,20 @@ void View::DrawScreen(SDL_Surface* screen)
 	    }
 
 	    drawMat(screen);
-/*
+
 	    if(this->solution){
-	    	this->drawSolution(screen,this->vecSolution,1);
+	    	this->drawSolution(screen,this->vecSolution,4);
 	    }
+	    /*
 	    if(this->complexSolution)
-	    	this->drawSolution(screen,this->vecSolutionComplex,2);
-	    */
-	    if(this->grNSolution)
-	    	this->drawSolution(screen,this->vecGrSolution,1);
+	    	this->drawSolution(screen,this->vecSolutionComplex,3);
 
 	    if(this->grCompSolution)
-	    	this->drawSolution(screen,this->vecGrComplexSolution,2);
+	  	    	this->drawSolution(screen,this->vecGrComplexSolution,2);
 
+	    if(this->grNSolution)
+	    	this->drawSolution(screen,this->vecGrSolution,1);
+*/
 	    if(SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
 
 
@@ -215,7 +215,6 @@ void View::drawSolution(SDL_Surface *screen,std::vector<rrt_planning::Cell> vec,
 
 }
 Cell View::matToPixelCoo(Cell cell){
-	//TODO change when making a movable camera
 	int x=cell.first*this->height/this->numCellV+(this->height/this->numCellV)/2;
 	int y=cell.second*this->width/this->numCellH+(this->width/this->numCellH)/2;
 	return std::make_pair(x,y);
@@ -267,7 +266,7 @@ void View::drawLine(SDL_Surface* screen,int y1,int x1,int y2,int x2,int complex)
 	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0,0, 255));
 	        		break;
 	        	case 3:
-	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 255,255, 0));
+	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 150,80, 40));
 	        		break;
 	        	case 4:
 	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 127,0, 255));
@@ -287,7 +286,7 @@ void View::drawLine(SDL_Surface* screen,int y1,int x1,int y2,int x2,int complex)
 	        		        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 0,0, 255));
 	        		        		break;
 	        		        	case 3:
-	        		        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 255,255, 0));
+	        		        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 150,80, 40));
 	        		        	    break;
 	        		        	case 4:
 	        		        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 127,0, 255));
@@ -319,12 +318,30 @@ void View::handleInput(SDL_Event event){
 					this->end=this->pixelToMatCoo(x,y);
 					endSelected=true;
 					//find a way to select the Tmax
-					//this->solution=this->complexPlan->makeSimplePlan(end,start,this->vecSolution);
+					//this->solution=this->gridPlan->makePlan(end,start,this->vecSolution,1000);
+					Cell s1=std::make_pair(68,39);
+							Cell s2=std::make_pair(27,98);
 					//this->complexSolution=this->complexPlan->makePlan(end,start,this->vecSolutionComplex);
 					std::cout<<"start ("<<start.first<<","<<start.second<<")"<<std::endl;
 					std::cout<<"end ("<<end.first<<","<<end.second<<")"<<std::endl;
-					this->grNSolution=this->grPlanner->makeSimplePlan(end,start,this->vecGrSolution);
-					this->grCompSolution=this->grPlanner->makePlan(end,start,this->vecGrComplexSolution,stateOfBuffer);
+					//Base Line
+					this->solution=this->complexPlan2->makePlanBase(s2,s1,this->vecSolution);
+
+
+/*
+					this->grCompSolution=this->complexPlan->makePlan(s2,s1,this->vecGrComplexSolution,stateOfBuffer);
+
+					this->grNSolution=this->complexPlan1->makePlan(s2,s1,this->vecGrSolution,stateOfBuffer);
+
+					this->complexSolution=this->complexPlan2->makePlan(s2,s1,this->vecSolutionComplex,stateOfBuffer);
+*/
+					/*
+					this->grCompSolution=this->complexPlan->makeSimplePlan(s2,s1,this->vecGrComplexSolution);
+
+					this->grNSolution=this->complexPlan1->makeSimplePlan(s2,s1,this->vecGrSolution);
+
+					this->complexSolution=this->complexPlan2->makeSimplePlan(s2,s1,this->vecSolutionComplex);
+*/
 					//this->grCompSolution=grNSolution;
 					/*if(grNSolution&&grCompSolution){
 						view::OpenCvView view1(vecGrSolution,vecGrComplexSolution,&stateOfBuffer);
@@ -333,8 +350,8 @@ void View::handleInput(SDL_Event event){
 								stateOfBuffer.clear();
 					}*/
 
-					this->solution=this->grNSolution;
-					this->complexSolution=this->grCompSolution;
+					//this->solution=this->grNSolution;
+					//this->complexSolution=this->grCompSolution;
 				}
 			}
 
@@ -363,13 +380,17 @@ void View::handleInput(SDL_Event event){
 void View::setPlanner(planner::Planner* plan){
 	this->plan=plan;
 }
-void View::setComplexPlanner(planner::ComplexPlanner* cmpPlaner){
+void View::setComplexPlanner(planner::ComplexPlanner* cmpPlaner,planner::ComplexPlanner* com1,planner::ComplexPlanner* com2){
 	this->complexPlan=cmpPlaner;
+	this->complexPlan1=com1;
+	this->complexPlan2=com2;
 }
 
 void View::setComGridPlanner(planner::ComplexPlanner* grPlanner){
-	this->grPlanner=grPlanner;
+	//this->grPlanner=grPlanner;
 }
-void View::addNumberForCell(SDL_Surface* screen,Cell s,int i){
-} /* namespace view */
+
+void View::setGridPlanner(GridPlanner* pl){
+	this->gridPlan=pl;
+}
 }

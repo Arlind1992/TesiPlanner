@@ -25,7 +25,7 @@ public:
 	void setSol(bool sol);
 	void setVecSol(std::vector<Cell> vecSolution);
 	void setPlanner(planner::Planner* plan);
-	void setComplexPlanner(planner::ComplexPlanner* cmpPlaner);
+	void setComplexPlanner(planner::ComplexPlanner* cmpPlaner,planner::ComplexPlanner* com1,planner::ComplexPlanner* com2);
 	void setComGridPlanner(planner::ComplexPlanner* grPlanner);
 	void setGridPlanner(planner::GridPlanner *pl);
 
@@ -89,7 +89,10 @@ private:
     //Planner
     planner::Planner* plan;
     planner::ComplexPlanner* complexPlan;
-    planner::ComplexPlanner* grPlanner;
+    planner::ComplexPlanner* complexPlan1;
+    planner::ComplexPlanner* complexPlan2;
+   // planner::ComplexPlanner* grPlanner;
+    planner::GridPlanner *gridPlan;
 
     void drawComplexSolution(SDL_Surface *screen,std::vector<Cell> vec,std::vector<int> bufferSt);
     void addNumberForCell(SDL_Surface *screen,Cell s,int i);

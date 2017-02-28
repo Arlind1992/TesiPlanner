@@ -24,10 +24,10 @@ namespace planner {
 
 class ComplexPlanner{
 public:
-	ComplexPlanner(rrt_planning::Grid* grid,int baseU,int baseR,GridPlanner* planner,char* filePath,const int buffer):buffer(buffer),grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
+	ComplexPlanner(rrt_planning::Grid* grid,int baseU,int baseR,GridPlanner* planner,char* filePath,const int buffer,std::ofstream* myfile):buffer(buffer),grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph),lengthBase(graphBase),nodePointBase(graphBase){
 		this->baseUnit=baseU;
 		this->baseRate=baseR;
-
+		this->myfile=myfile;
 		this->numberOfNodes=(buffer*(baseUnit/this->baseRate))+1;
 		this->planner=planner;
 		this->filePath=filePath;
@@ -38,7 +38,8 @@ public:
 		}else{
 			this->casePl="GridPlanner";
 		}
-		myfile.open(casePl);
+
+
 
 
 
@@ -48,6 +49,9 @@ public:
 		    		,std::vector<rrt_planning::Cell>& result,std::map<Cell,int>& stateOfBuffer);
 	 void createGraphs();
      bool makeSimplePlan(Cell cgoal,Cell cinit,std::vector<Cell>& result);
+
+     bool makePlanBase(Cell cgoal,Cell cinit,std::vector<Cell>& result);
+     void createBaseGraph();
 
 
 private:
@@ -126,7 +130,24 @@ private:
 	     void connectCells(Cell cell1,Cell cell2);
 
 	     char* casePl;
-	     std::ofstream myfile;
+	     std::ofstream *myfile;
+
+
+
+	     //baseLine
+	     DiGraph graphBase;
+	     DiGraph::ArcMap<int> lengthBase;
+	     DiGraph::NodeMap<lemon::dim2::Point<int> > nodePointBase;
+	     std::map<Cell,DiGraph::Node> cellNodeBase;
+
+	     void createBaseNodes();
+	     void createCellNodeBase();
+	     void connectBaseNodes();
+	     void connectCellBase(Cell cell);
+	     //function to connect directly the first cell with the last cell if
+	     //connection is possible and the cells are not communication cells
+	     void connectCellsBase(Cell cell1,Cell cell2);
+
 
 
 };
