@@ -41,15 +41,15 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 		this->connectCells(cgoal,cinit);
 	if(!isCommInit)
 		this->connectFirstCellComplex(cinit);
-	if(!isCommGoal)
+
 		this->connectGoalCellComplex(cgoal);
-	if(!isCommGoal&&!isCommInit)
+
 		this->connectComplexCells(cinit,cgoal);
 	lemon::Dijkstra<DiGraph,DiGraph::ArcMap<int>> solver(this->complexCaseGraph,this->lengthComplex);
 	DiGraph::Node firstCompl;
 	DiGraph::Node endCompl;
 	firstCompl=nodeToVec[cellNode[cinit]].at(0);
-	endCompl=nodeToVec[cellNode[cgoal]].at(0);
+	endCompl=lastNodeToNormal[cellNode[cgoal]];
 	solver.run(firstCompl,endCompl);
 	if(complexCaseGraph.id(solver.predNode(endCompl))==-1){
 		return false;
@@ -88,9 +88,7 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     if(!grid->isComm(cinit)){
     	cellNode.erase(cinit);
     }
-    if(!grid->isComm(cgoal)){
-    	cellNode.erase(cgoal);
-    }
+
      (*myfile)<<"Complex computational time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 <<"\n";
 	(*myfile)<<"Complex transmittion cost : "<<transmittionTime<<"\n";
 	(*myfile)<<"Complex path cost : "<<movingTime<<"\n";
@@ -275,6 +273,7 @@ void planner::ComplexPlanner::createArcsSameNodes(){
 void planner::ComplexPlanner::connectGoalCellComplex(Cell end ){
 	DiGraph::Node endNode=this->cellNode[end];
 			DiGraph::Node endComplexNode=complexCaseGraph.addNode();
+			lastNodeToNormal[endNode]=endComplexNode;
 			std::vector<DiGraph::Node> endNodesVec;
 			endNodesVec.push_back(endComplexNode);
 			for(DiGraph::Node n:endNodesVec){
@@ -285,11 +284,15 @@ void planner::ComplexPlanner::connectGoalCellComplex(Cell end ){
 		for(DiGraph::InArcIt in(graph,endNode);in!=INVALID;++in){
 				//next node in the normal graph connected
 				DiGraph::Node nod=graph.source(in);
+
+
 				if(grid->isComm(std::make_pair(this->nodePoint[nod].x,this->nodePoint[nod].y))){
 
 				int distance=this->length[in];
+				if(distance==0)
+					continue;
 				std::vector<DiGraph::Node> vecSourceNodes=nodeToVec[nod];
-			for(int j=0;j<1+((buffer-distance))*(this->baseUnit/this->baseRate);j++){
+			for(int j=0;j<(1+(buffer-distance))*(this->baseUnit/this->baseRate);j++){
 					DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecSourceNodes.at(j),endComplexNode);
 					this->lengthComplex[addedArc]=distance;
 					//this->isMoving[addedArc]=true;

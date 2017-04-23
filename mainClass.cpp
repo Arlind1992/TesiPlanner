@@ -28,10 +28,10 @@ int main(int argc, char* argv[])
 	std::ofstream myfile;
     char *filePath="projectFiles/lemon_graph/thetaGraph";
     char *filePathGr="projectFiles/lemon_graph/gridGraph";
-    myfile.open("GridPlanner");
+    myfile.open("Baseline");
     int baseUnit=8;
     	int baseRate=2;
-    	const int buff= 35;
+    	const int buff= 25;
 	//create communication map which has the information about the antennas and the speed of transmittion in
     //different cells
     std::cout<<"here"<<std::endl;
@@ -58,6 +58,9 @@ int main(int argc, char* argv[])
 	plan.createGraph();
 	//create complex planner one that uses theta* and the other that uses four way grid
 	//planner::ComplexPlanner compPl(&gridMap,disPar,&planner,filePath);
+	planner::Baseline baseL(&gridMap,baseUnit,baseRate,buff,&myfile);
+	baseL.createGraphs();
+
 
 	planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,filePathGr,buff,&myfile);
 

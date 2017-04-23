@@ -372,4 +372,11 @@ void View::setComGridPlanner(planner::ComplexPlanner* grPlanner){
 }
 void View::addNumberForCell(SDL_Surface* screen,Cell s,int i){
 } /* namespace view */
+void View::setBaselinePlanner(Baseline * base){
+	this->baseline=base;
+}
+
+
+
+
 }

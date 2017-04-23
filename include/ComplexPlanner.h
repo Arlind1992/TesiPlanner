@@ -85,6 +85,9 @@ private:
 	    std::map<DiGraph::Node,std::vector<DiGraph::Node>> nodeToVec;
 
 
+	    std::map<DiGraph::Node,DiGraph::Node> lastNodeToNormal;
+
+
 	    const char* filePath;
 	    /*
 	     * helper functions

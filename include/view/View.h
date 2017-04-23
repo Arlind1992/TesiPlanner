@@ -28,7 +28,7 @@ public:
 	void setComplexPlanner(planner::ComplexPlanner* cmpPlaner);
 	void setComGridPlanner(planner::ComplexPlanner* grPlanner);
 	void setGridPlanner(planner::GridPlanner *pl);
-
+	void setBaselinePlanner(planner::Baseline *base);
 
 private:
 	//Drawing details attribute
@@ -90,6 +90,7 @@ private:
     planner::Planner* plan;
     planner::ComplexPlanner* complexPlan;
     planner::ComplexPlanner* grPlanner;
+    planner::Baseline *baseline;
 
     void drawComplexSolution(SDL_Surface *screen,std::vector<Cell> vec,std::vector<int> bufferSt);
     void addNumberForCell(SDL_Surface *screen,Cell s,int i);
