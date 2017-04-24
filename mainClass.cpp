@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
     char *filePathGr="projectFiles/lemon_graph/gridGraph";
     myfile.open("Baseline");
     int baseUnit=8;
-    	int baseRate=2;
+    	int baseRate=8;
     	const int buff= 25;
 	//create communication map which has the information about the antennas and the speed of transmittion in
     //different cells
@@ -61,11 +61,10 @@ int main(int argc, char* argv[])
 	planner::Baseline baseL(&gridMap,baseUnit,baseRate,buff,&myfile);
 	baseL.createGraphs();
 
-
 	planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,filePathGr,buff,&myfile);
 
 	//compPl.createGraphs();
-	grPlanner.createGraphs();
+	//grPlanner.createGraphs();
 /*
 	srand(time(NULL));
 	int x, y,xend,yend;
@@ -90,6 +89,7 @@ int main(int argc, char* argv[])
 	//create the view
 	view::View view;
 	view.setPlanner(&pl);
+	view.setBaselinePlanner(&baseL);
 	//view.setComplexPlanner(&compPl);
 	view.setComGridPlanner(&grPlanner);
 	view.setMat(mat,bl);

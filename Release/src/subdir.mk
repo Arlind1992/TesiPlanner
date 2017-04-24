@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/Baseline.cpp \
 ../src/ComplexPlanner.cpp \
 ../src/Planner.cpp 
 
 OBJS += \
+./src/Baseline.o \
 ./src/ComplexPlanner.o \
 ./src/Planner.o 
 
 CPP_DEPS += \
+./src/Baseline.d \
 ./src/ComplexPlanner.d \
 ./src/Planner.d 
 

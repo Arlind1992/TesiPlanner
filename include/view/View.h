@@ -12,6 +12,7 @@
 #include <SDL2/SDL.h>
 #include "Planner.h"
 #include "ComplexPlanner.h"
+#include "Baseline.h"
 #define WIDTH 800
 #define HEIGHT 600
 namespace view {
@@ -61,11 +62,12 @@ private:
 	std::vector<Cell> vecSolutionComplex;
 	std::vector<Cell> vecGrSolution;
 	std::vector<Cell> vecGrComplexSolution;
+	std::vector<Cell> baselineSolution;
 	std::map<Cell,int> stateOfBuffer;
 	bool solution;
 	bool complexSolution;
-	bool grNSolution;
 	bool grCompSolution;
+	bool baselineSol;
 
 
 	//the functions that actually draw

@@ -17,13 +17,13 @@
 #include <planners/GridPlanner.h>
 #include <fstream>
 
-typedef lemon::ListDigraph DiGraph;
+typedef lemon::ListDigraph BaGraph;
 using namespace rrt_planning;
 namespace planner {
 
 class Baseline{
 public:
-	Baseline(rrt_planning::Grid* grid,int baseU,int baseR,const int buffer,std::ofstream* myfile):buffer(buffer),grid(grid),movingTime(0),length(graphAllNodes),allNodePoint(graphAllNodes),lengthBiggerRate(this->graphNodesBiggerRate){
+	Baseline(rrt_planning::Grid* grid,int baseU,int baseR,const int buffer,std::ofstream* myfile):buffer(buffer),grid(grid),movingTime(0),length(graphAllNodes),allNodePoint(graphAllNodes),lengthBiggerRate(this->graphNodesBiggerRate),biggerRateNodePoint(graphNodesBiggerRate){
 		this->baseUnit=baseU;
 		this->baseRate=baseR;
 
@@ -36,6 +36,7 @@ public:
 	 bool makePlan(rrt_planning::Cell cgoal,rrt_planning::Cell cnit
 		    		,std::vector<rrt_planning::Cell>& result);
 	 void createGraphs();
+	 bool makePlanAllNodes(Cell start,Cell end,std::vector<Cell> &result,int *cost);
 
 private:
 
@@ -43,36 +44,33 @@ private:
      const int buffer;
      	    int baseUnit;
      	    int baseRate;
-     	   int findPosition(std::vector<DiGraph::Node> nodes,DiGraph::Node n);
+     	   int findPosition(std::vector<BaGraph::Node> nodes,BaGraph::Node n);
 		/*
 		 * Attributes
 		 */
 		Grid* grid;
 	    //graphs that are going to be used to find the optimal path
-		DiGraph graphAllNodes;
-	    DiGraph graphNodesBiggerRate;
+		BaGraph graphAllNodes;
+	    BaGraph graphNodesBiggerRate;
 	    int movingTime;
 	    double transmittionTime;
 
 	    //maps for each node for all nodes graphs
-	    DiGraph::ArcMap<int> length;
-	    DiGraph::NodeMap<lemon::dim2::Point<int> > allNodePoint;
-	    std::map<Cell,DiGraph::Node> cellAllNodes;
+	    BaGraph::ArcMap<int> length;
+	    BaGraph::NodeMap<lemon::dim2::Point<int> > allNodePoint;
+	    std::map<Cell,BaGraph::Node> cellAllNodes;
 
 
 	    //maps for bigger rate Graph
-	    DiGraph::ArcMap<int> lengthBiggerRate;
+	    BaGraph::ArcMap<int> lengthBiggerRate;
 	    //TODO maybe delete
-	    DiGraph::NodeMap<lemon::dim2::Point<int> > biggerRateNodePoint;
+	    BaGraph::NodeMap<lemon::dim2::Point<int> > biggerRateNodePoint;
 
 
 
-	    std::map<DiGraph::Node,DiGraph::Node> complexToNormal;
-	    std::map<Cell,DiGraph::Node> cellBiggerRateNodes;
+	    std::map<BaGraph::Node,BaGraph::Node> complexToNormal;
+	    std::map<Cell,BaGraph::Node> cellBiggerRateNodes;
 	    //Variables needed for the complex case graph
-
-	    //map to get the expanded nodes from the node on the normal graph
-	    std::map<DiGraph::Node,std::vector<DiGraph::Node>> nodeToVec;
 
 
 	    /*
@@ -108,9 +106,8 @@ private:
 	     void createCellNode();
 
 	     std::ofstream* myfile;
-	     bool makePlanAllNodes(Cell start,Cell end,std::vector<Cell> &result);
 	     void makePlanAllNodes(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances);
-
+	     double calculateTime(std::vector<Cell> commCells,std::vector<int> costToNext);
 };
 
 } /* namespace planner */

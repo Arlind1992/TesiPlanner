@@ -25,7 +25,6 @@ View::View() {
 	this->solution=false;
 	this->complexSolution=false;
 	this->grCompSolution=false;
-	this->grNSolution=false;
 
 
 }
@@ -164,19 +163,13 @@ void View::DrawScreen(SDL_Surface* screen)
 	    }
 
 	    drawMat(screen);
-/*
-	    if(this->solution){
-	    	this->drawSolution(screen,this->vecSolution,1);
-	    }
-	    if(this->complexSolution)
-	    	this->drawSolution(screen,this->vecSolutionComplex,2);
-	    */
-	    if(this->grNSolution)
-	    	this->drawSolution(screen,this->vecGrSolution,1);
 
-	    if(this->grCompSolution)
+	    if(this->baselineSol)
+	    	this->drawSolution(screen,this->baselineSolution,1);
+
+	    /*if(this->grCompSolution)
 	    	this->drawSolution(screen,this->vecGrComplexSolution,2);
-
+*/
 	    if(SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
 
 
@@ -323,18 +316,11 @@ void View::handleInput(SDL_Event event){
 					//this->complexSolution=this->complexPlan->makePlan(end,start,this->vecSolutionComplex);
 					std::cout<<"start ("<<start.first<<","<<start.second<<")"<<std::endl;
 					std::cout<<"end ("<<end.first<<","<<end.second<<")"<<std::endl;
-					this->grNSolution=this->grPlanner->makeSimplePlan(end,start,this->vecGrSolution);
-					this->grCompSolution=this->grPlanner->makePlan(end,start,this->vecGrComplexSolution,stateOfBuffer);
-					//this->grCompSolution=grNSolution;
-					/*if(grNSolution&&grCompSolution){
-						view::OpenCvView view1(vecGrSolution,vecGrComplexSolution,&stateOfBuffer);
-								view1.setMat(this->toDraw,blocked);
-								view1.Draw();
-								stateOfBuffer.clear();
-					}*/
-
-					this->solution=this->grNSolution;
+					//this->grCompSolution=this->grPlanner->makePlan(end,start,this->vecGrComplexSolution,stateOfBuffer);
+					this->baselineSol=this->baseline->makePlan(end,start,this->baselineSolution);
+					this->solution=baselineSol;
 					this->complexSolution=this->grCompSolution;
+					this->grCompSolution=this->baselineSol;
 				}
 			}
 
@@ -348,11 +334,12 @@ void View::handleInput(SDL_Event event){
 					this->solution=false;
 					this->complexSolution=false;
 					this->grCompSolution=false;
-					this->grNSolution=false;
+					this->baselineSol=false;
 					this->vecGrComplexSolution.clear();
 					this->vecGrSolution.clear();
 					this->vecSolutionComplex.clear();
 					this->vecSolution.clear();
+					this->baselineSolution.clear();
 				}
 
 
