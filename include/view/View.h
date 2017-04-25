@@ -30,6 +30,7 @@ public:
 	void setComGridPlanner(planner::ComplexPlanner* grPlanner);
 	void setGridPlanner(planner::GridPlanner *pl);
 	void setBaselinePlanner(planner::Baseline *base);
+	void setBlPlan(planner::BaseLinePlanner *pl);
 
 private:
 	//Drawing details attribute
@@ -62,12 +63,13 @@ private:
 	std::vector<Cell> vecSolutionComplex;
 	std::vector<Cell> vecGrSolution;
 	std::vector<Cell> vecGrComplexSolution;
+	std::vector<Cell> blSolution;
 	std::vector<Cell> baselineSolution;
-	std::map<Cell,int> stateOfBuffer;
 	bool solution;
 	bool complexSolution;
 	bool grCompSolution;
 	bool baselineSol;
+	bool blSolutionVar;
 
 
 	//the functions that actually draw
@@ -93,6 +95,7 @@ private:
     planner::ComplexPlanner* complexPlan;
     planner::ComplexPlanner* grPlanner;
     planner::Baseline *baseline;
+    planner::BaseLinePlanner *blPlan;
 
     void drawComplexSolution(SDL_Surface *screen,std::vector<Cell> vec,std::vector<int> bufferSt);
     void addNumberForCell(SDL_Surface *screen,Cell s,int i);

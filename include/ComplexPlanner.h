@@ -13,31 +13,24 @@
 #include "grid/Grid.h"
 #include "grid/Cell.h"
 #include "planners/AbstractPlanner.h"
-#include <lemon/smart_graph.h>
+#include <lemon/list_graph.h>
 #include <lemon/dim2.h>
 #include <planners/GridPlanner.h>
 #include <fstream>
 
-typedef lemon::SmartDigraph DiGraph;
+typedef lemon::ListDigraph DiGraph;
 using namespace rrt_planning;
 namespace planner {
 
 class ComplexPlanner{
 public:
-	ComplexPlanner(rrt_planning::Grid* grid,int baseU,int baseR,GridPlanner* planner,char* filePath,const int buffer,std::ofstream* myfile):buffer(buffer),grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
+	ComplexPlanner(rrt_planning::Grid* grid,int baseU,int baseR,GridPlanner* planner,const int buffer,std::ofstream* myfile):buffer(buffer),grid(grid),movingTime(0),length(graph),nodePoint(graph),lengthComplex(this->complexCaseGraph){
 		this->baseUnit=baseU;
 		this->baseRate=baseR;
 
 		this->numberOfNodes=(buffer*(baseUnit/this->baseRate))+1;
 		this->planner=planner;
-		this->filePath=filePath;
 
-		std::string str(filePath);
-		if (str.find("theta") != std::string::npos) {
-		    this->casePl="theta*";
-		}else{
-			this->casePl="GridPlanner";
-		}
 		this->myfile=myfile;
 
 
@@ -86,9 +79,8 @@ private:
 
 
 	    std::map<DiGraph::Node,DiGraph::Node> lastNodeToNormal;
+	    std::map<Cell,DiGraph::Node> cellLastNode;
 
-
-	    const char* filePath;
 	    /*
 	     * helper functions
 	     */

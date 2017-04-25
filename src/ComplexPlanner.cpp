@@ -49,7 +49,7 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 	DiGraph::Node firstCompl;
 	DiGraph::Node endCompl;
 	firstCompl=nodeToVec[cellNode[cinit]].at(0);
-	endCompl=lastNodeToNormal[cellNode[cgoal]];
+	endCompl=this->cellLastNode[cgoal];
 	solver.run(firstCompl,endCompl);
 	if(complexCaseGraph.id(solver.predNode(endCompl))==-1){
 		return false;
@@ -59,11 +59,6 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 	 DiGraph::Node prevNode=solver.predNode(v);
 	  DiGraph::Arc arc= lemon::findArc(complexCaseGraph,prevNode,v,lemon::INVALID);
       if(this->complexToNormal[prevNode]!=this->complexToNormal[v]){
-    	  if(v==endCompl){
-    		  stateOfBuffer[std::make_pair(nodePoint[complexToNormal[v]].x,nodePoint[complexToNormal[v]].y)]=buffer;
-    	  }else{
-    		  stateOfBuffer[std::make_pair(nodePoint[complexToNormal[v]].x,nodePoint[complexToNormal[v]].y)]=this->findPosition(this->nodeToVec[this->complexToNormal[v]],v);
-    		 }
     	  Cell endCell;
 		  lemon::dim2::Point<int> p=nodePoint[this->complexToNormal[v]];
 		  endCell.first=p.x;
@@ -86,8 +81,19 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     result.erase(unique(result.begin(),result.end()),result.end());
     int stop_s=clock();
     if(!grid->isComm(cinit)){
+    	this->nodeToVec.erase(cellNode[cinit]);
+    	this->graph.erase(cellNode[cinit]);
+    	this->complexCaseGraph.erase(firstCompl);
     	cellNode.erase(cinit);
     }
+    if(!isCommGoal){
+    	this->graph.erase(cellNode[cgoal]);
+    	this->cellNode.erase(cgoal);
+
+    }
+
+    this->lastNodeToNormal.clear();
+    this->cellLastNode.clear();
 
      (*myfile)<<"Complex computational time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 <<"\n";
 	(*myfile)<<"Complex transmittion cost : "<<transmittionTime<<"\n";
@@ -255,7 +261,7 @@ void planner::ComplexPlanner::createArcsSameNodes(){
 
 				//for loops to create connections between comm nodes associated to same cell
 				    for(int i=1;i<speed;i++){
-				    	if(i>this->numberOfNodes)
+				    	if(i>=this->numberOfNodes)
 				    		break;
 						DiGraph::Arc arc=this->complexCaseGraph.addArc(vecStartNodes.at(i),vecStartNodes.at(0));
 						this->lengthComplex[arc]=1;
@@ -274,12 +280,8 @@ void planner::ComplexPlanner::connectGoalCellComplex(Cell end ){
 	DiGraph::Node endNode=this->cellNode[end];
 			DiGraph::Node endComplexNode=complexCaseGraph.addNode();
 			lastNodeToNormal[endNode]=endComplexNode;
-			std::vector<DiGraph::Node> endNodesVec;
-			endNodesVec.push_back(endComplexNode);
-			for(DiGraph::Node n:endNodesVec){
-						this->complexToNormal[n]=endNode;
-					}
-			this->nodeToVec[endNode]=endNodesVec;
+			this->cellLastNode[end]=endComplexNode;
+			this->complexToNormal[endComplexNode]=endNode;
 	//add end node in the graph
 		for(DiGraph::InArcIt in(graph,endNode);in!=INVALID;++in){
 				//next node in the normal graph connected
@@ -496,7 +498,7 @@ void planner::ComplexPlanner::connectCells(Cell cell1,Cell cell2){
 }
 void planner::ComplexPlanner::connectComplexCells(Cell start,Cell goal){
 		if(lemon::findArc(graph,cellNode[start],cellNode[goal],lemon::INVALID)!=lemon::INVALID){
-			DiGraph::Arc arc=complexCaseGraph.addArc(this->nodeToVec[cellNode[start]].at(0),this->nodeToVec[cellNode[goal]].at(0));
+			DiGraph::Arc arc=complexCaseGraph.addArc(this->nodeToVec[cellNode[start]].at(0),this->cellLastNode[goal]);
 			this->lengthComplex[arc]=this->length[lemon::findArc(graph,cellNode[start],cellNode[goal],lemon::INVALID)];
 		//	this->isMoving[arc]=true;
 		}
@@ -514,7 +516,6 @@ void planner::ComplexPlanner::createGraphs(){
 			int s3=clock();
 			std::cout<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<std::endl;
 			(*myfile)<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<"\n";
-			DigraphWriter<DiGraph>(graph, filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
 	//}
 	std::cout<<"Arcs = "<<lemon::countArcs(graph)<<" gr "<<sizeof(DiGraph::Arc)<<std::endl;
 	std::cout<<"Nodes = "<<lemon::countNodes(graph)<<" gr "<<sizeof(DiGraph::Node)<<std::endl;

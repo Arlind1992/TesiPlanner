@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/planners/BaseLinePlanner.cpp \
 ../src/planners/GridPlanner.cpp \
 ../src/planners/ThetaStarPlanner.cpp 
 
 OBJS += \
+./src/planners/BaseLinePlanner.o \
 ./src/planners/GridPlanner.o \
 ./src/planners/ThetaStarPlanner.o 
 
 CPP_DEPS += \
+./src/planners/BaseLinePlanner.d \
 ./src/planners/GridPlanner.d \
 ./src/planners/ThetaStarPlanner.d 
 

@@ -25,7 +25,8 @@ View::View() {
 	this->solution=false;
 	this->complexSolution=false;
 	this->grCompSolution=false;
-
+	this->baselineSol=false;
+	this->blSolutionVar=false;
 
 }
 
@@ -166,8 +167,8 @@ void View::DrawScreen(SDL_Surface* screen)
 
 	    if(this->baselineSol)
 	    	this->drawSolution(screen,this->baselineSolution,1);
-
-	    /*if(this->grCompSolution)
+/*
+	    if(this->grCompSolution)
 	    	this->drawSolution(screen,this->vecGrComplexSolution,2);
 */
 	    if(SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
@@ -316,11 +317,20 @@ void View::handleInput(SDL_Event event){
 					//this->complexSolution=this->complexPlan->makePlan(end,start,this->vecSolutionComplex);
 					std::cout<<"start ("<<start.first<<","<<start.second<<")"<<std::endl;
 					std::cout<<"end ("<<end.first<<","<<end.second<<")"<<std::endl;
+				//	this->grCompSolution=this->grPlanner->makePlan(std::make_pair(36,63),std::make_pair(55,45),this->vecGrComplexSolution,stateOfBuffer);
+					int cost;
+					//blSolutionVar=this->blPlan->makePlan(start,end,this->blSolution,&cost);
+					std::cout<<"cost "<<cost<<std::endl;
+
 					//this->grCompSolution=this->grPlanner->makePlan(end,start,this->vecGrComplexSolution,stateOfBuffer);
 					this->baselineSol=this->baseline->makePlan(end,start,this->baselineSolution);
+					//this->baselineSol=this->baseline->makePlan(std::make_pair(51,67),std::make_pair(27,39),this->baselineSolution);
+/*(51,67)-(27,39)
 					this->solution=baselineSol;
-					this->complexSolution=this->grCompSolution;
+					this->complexSolution=this->baselineSol;
 					this->grCompSolution=this->baselineSol;
+	*/
+					this->solution=baselineSol;
 				}
 			}
 
@@ -335,11 +345,13 @@ void View::handleInput(SDL_Event event){
 					this->complexSolution=false;
 					this->grCompSolution=false;
 					this->baselineSol=false;
+					this->blSolutionVar=false;
 					this->vecGrComplexSolution.clear();
 					this->vecGrSolution.clear();
 					this->vecSolutionComplex.clear();
 					this->vecSolution.clear();
 					this->baselineSolution.clear();
+					this->blSolution.clear();
 				}
 
 
@@ -363,7 +375,9 @@ void View::setBaselinePlanner(Baseline * base){
 	this->baseline=base;
 }
 
-
+void View::setBlPlan(BaseLinePlanner *pl){
+	this->blPlan=pl;
+}
 
 
 }
