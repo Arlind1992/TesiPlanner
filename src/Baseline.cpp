@@ -36,7 +36,7 @@ bool planner::Baseline::makePlan(Cell cgoal,Cell cinit
 				return false;
 		}
 		int movingTime=0;
-		int	transmittionTime=0;
+		double	transmittionTime=0;
 		bool isCommInit=grid->isComm(cinit)&&grid->getSpeed(cinit)>baseUnit;
 		bool isCommGoal=grid->isComm(cgoal)&&grid->getSpeed(cgoal)>baseUnit;
 		if(!isCommInit)
@@ -243,7 +243,7 @@ double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost
 				}else{
 					toSubtract=toUpload;
 				}
-				toReturn=toReturn+toSubtract/(double)grid->getSpeed(commCells.at(fastCell));
+				toReturn=toReturn+toSubtract/((double)grid->getSpeed(commCells.at(fastCell))-baseUnit);
 				toUpload=toUpload-toSubtract;
 				for(int d=fastCell;d<commCells.size();d++){
 					buffState.at(d)=buffState.at(d)-toSubtract;
@@ -253,7 +253,12 @@ double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost
 
 		}
 	}
-
+	std::cout<<"buffer state"<<std::endl;
+	for(int bmn=0;bmn<buffState.size();bmn++){
+		std::cout<<buffState.at(bmn)<<std::endl;
+	}
+	std::cout<<"transmission time "<< toReturn<<std::endl;
+	std::cout<<"end State"<<std::endl;
 
 	return toReturn;
 
