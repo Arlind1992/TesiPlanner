@@ -260,10 +260,10 @@ void testRandom2Base(){
 
 int main(int argc, char* argv[])
 {
-	testRandom8Base();
+	//testRandom8Base();
 	testRandom2Base();
-	testFixed8Base();
-	testFixed2Base();
+	//testFixed8Base();
+	//testFixed2Base();
 
 	/*
 	std::ofstream myfile;
