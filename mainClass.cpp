@@ -161,6 +161,7 @@ void testRandom8Base(){
 	for(int buff=10;buff<=60;buff=buff+10){
 		counter=0;
 		myfile<<"Buffer Size "<<buff<<std::endl;
+		std::cout<<"Buffer Size "<<buff<<std::endl;
 	planner::Baseline baseLTest(&gridMap,baseUnit,baseRate,buff,&myfile,&basePlan);
 		baseLTest.createGraph();
 
@@ -184,6 +185,7 @@ void testRandom8Base(){
 					myfile<<"No Solution Baseline"<<std::endl;
 				}
 				counter++;
+				std::cout<<"END"<<std::endl;
 			}
 	}
 	}

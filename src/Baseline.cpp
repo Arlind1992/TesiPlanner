@@ -203,7 +203,7 @@ void planner::Baseline::connectCells(Cell start,Cell goal){
 		}
 }
 
-//
+/*
 double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost){
 	std::vector<int> buffState;
 	double toReturn=0;
@@ -262,7 +262,109 @@ double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost
 
 	return toReturn;
 
+}*/
+double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost){
+         std::vector<int> modifiedCosts;
+         for(int i=0;i<commCells.size()-1;i++){
+        	 if(cost.at(i)==0&&grid->areFourConnected(commCells.at(i),commCells.at(i+1))){
+        		 if(grid->getSpeed(commCells.at(i)) >grid->getSpeed(commCells.at(i+1))){
+        			 modifiedCosts.push_back(baseUnit-grid->getSpeed(commCells.at(i+1)));
+        		 }else{
+        			 modifiedCosts.push_back(baseUnit-grid->getSpeed(commCells.at(i)));
+        		 }
+        	 }else{
+        		 modifiedCosts.push_back(cost.at(i));
+        	 }
+         }
+         modifiedCosts.push_back(0);
+         std::vector<int> buffState;
+         	double toReturn=0;
+         	for(int i=0;i<commCells.size();i++)
+         		buffState.push_back(0);
+
+         	for(int j=0;j<commCells.size()-1;j++){
+         		if((buffState.at(j)+modifiedCosts.at(j))>=0){
+         		buffState.at(j+1)=buffState.at(j)+modifiedCosts.at(j);
+         		}else{
+         			buffState.at(j+1)=0;
+         		}
+         	}
+         	for(int t=0;t<buffState.size();t++){
+         		std::cout<<"buff state"<<buffState.at(t)<<std::endl;
+         	}
+         int currentPos=0;
+         while(needToUpload(buffState)){
+        	 int z=currentPos;
+        	 for(z=currentPos;z<commCells.size();z++){
+        		 if(grid->getSpeed(commCells.at(z))>grid->getSpeed(commCells.at(currentPos))){
+        			 break;
+        		 }
+        	 }
+        	 if(z>=commCells.size()-1){
+        		 int toUp=buffState.at(currentPos);
+        		 for(int k=currentPos;k<commCells.size();k++){
+        			 if(modifiedCosts.at(k)<0){
+        				 toUp=toUp+modifiedCosts.at(k);
+        			 }else{
+        				 if(calculatePathCost(modifiedCosts,currentPos,k)>buffer*baseUnit){
+        					 break;
+        				 }
+        			 }
+        		 }
+        		 toReturn=toReturn+ toUp/((double)grid->getSpeed(commCells.at(currentPos))-baseUnit);
+        		 updateBufferStates(&buffState,toUp,currentPos);
+        		 currentPos=currentPos+1;
+
+        	 }else{
+        		 //TODO look carefully
+        		 if(buffState.at(currentPos)+calculatePathCost(modifiedCosts,currentPos,z)>buffer*baseUnit){
+        		  	  int toUp=buffState.at(currentPos)+calculatePathCost(modifiedCosts,currentPos,z)-buffer*baseUnit;
+        		  	  if(toUp>0){
+        		  		  toReturn=toReturn+toUp/(double)(grid->getSpeed(commCells.at(currentPos))-baseUnit);
+        		  		  updateBufferStates(&buffState,toUp,currentPos);
+        		  	  }
+        	 	 }
+        	 	 currentPos=z;
+        	 }
+        	 for(int t=0;t<buffState.size();t++){
+        	          		std::cout<<"Up buff state"<<buffState.at(t)<<std::endl;
+        	          	}
+         }
+         return toReturn;
+
+
 }
+bool Baseline::needToUpload(std::vector<int> bufferStates){
+	for(int i=0;i<bufferStates.size();i++){
+		if(bufferStates.at(i)>baseUnit*buffer){
+			return true;
+		}
+	}
+	return false;
+}
+
+void Baseline::updateBufferStates(std::vector<int>* buffStates,int uploaded,int at){
+	for(int i=at;i<buffStates->size();i++){
+		if(buffStates->at(i)-uploaded>=0){
+			buffStates->at(i)=buffStates->at(i)-uploaded;
+		}else{
+			buffStates->at(i)=0;
+		}
+	}
+
+}
+int Baseline::calculatePathCost(std::vector<int> path,int beg,int end){
+	int c=0;
+	std::cout<<"beg "<<beg<<" end "<<end<<std::endl;
+	for(int i=beg;i<end;i++){
+		c=c+path.at(i);
+	}
+	return c;
+}
+
+
+
+
 
 
 } /* namespace planner */

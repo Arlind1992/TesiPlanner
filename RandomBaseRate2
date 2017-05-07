@@ -1,984 +1,443 @@
 Buffer Size 10
-Time to create second graph (nodes with bigger Rate): 4617.24
-time to create normal Graph 4862.76
-Time to create Complex graph : 579.033
-Complex computational time: 181.418
+Time to create second graph (nodes with bigger Rate): 3888.21
+time to create normal Graph 3333.11
+Time to create Complex graph : 508.302
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 107.088
 Complex transmittion cost : 0
-Complex path cost : 96
-Baseline computational cost: 30.177
+Complex path cost : 113
+Baseline computational cost: 32.304
 Baseline transmition cost : 0
-Baseline path cost : 128
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 45.486
+Baseline path cost : 113
+Complex computational time: 62.79
 Complex transmittion cost : 0
-Complex path cost : 38
-Baseline computational cost: 5.914
+Complex path cost : 46
+Baseline computational cost: 11.826
 Baseline transmition cost : 0
-Baseline path cost : 38
+Baseline path cost : 46
+Complex computational time: 132.016
+Complex transmittion cost : 0
+Complex path cost : 140
+Baseline computational cost: 28.337
+Baseline transmition cost : 4
+Baseline path cost : 140
 No Solution Complex Case
 No Solution Baseline
-Complex computational time: 179.509
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 27.905
 Complex transmittion cost : 0
-Complex path cost : 95
-Baseline computational cost: 30.422
+Complex path cost : 36
+Baseline computational cost: 4.735
+Baseline transmition cost : 0
+Baseline path cost : 36
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 40.814
+Complex transmittion cost : 0
+Complex path cost : 59
+Baseline computational cost: 5.472
+Baseline transmition cost : 5
+Baseline path cost : 51
+Complex computational time: 41.459
+Complex transmittion cost : 1
+Complex path cost : 70
+Baseline computational cost: 7.07
+Baseline transmition cost : 8
+Baseline path cost : 80
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 63.191
+Complex transmittion cost : 0
+Complex path cost : 112
+Baseline computational cost: 10.637
+Baseline transmition cost : 6
+Baseline path cost : 114
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 29.474
+Complex transmittion cost : 0
+Complex path cost : 46
+Baseline computational cost: 9.012
+Baseline transmition cost : 0
+Baseline path cost : 46
+Complex computational time: 89.73
+Complex transmittion cost : 0
+Complex path cost : 54
+Baseline computational cost: 21.661
+Baseline transmition cost : 0
+Baseline path cost : 54
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 102.231
+Complex transmittion cost : 0
+Complex path cost : 69
+Baseline computational cost: 17.128
+Baseline transmition cost : 0
+Baseline path cost : 69
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 111.477
+Complex transmittion cost : 0
+Complex path cost : 46
+Baseline computational cost: 30.114
+Baseline transmition cost : 0
+Baseline path cost : 46
+Complex computational time: 161.287
+Complex transmittion cost : 0
+Complex path cost : 97
+Baseline computational cost: 37.058
+Baseline transmition cost : 0
+Baseline path cost : 97
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 190.728
+Complex transmittion cost : 0
+Complex path cost : 154
+Baseline computational cost: 48.628
+Baseline transmition cost : 3
+Baseline path cost : 154
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 8.585
+Complex transmittion cost : 0
+Complex path cost : 9
+Baseline computational cost: 3.567
+Baseline transmition cost : 0
+Baseline path cost : 9
+Complex computational time: 90.357
+Complex transmittion cost : 0
+Complex path cost : 126
+Baseline computational cost: 21.92
+Baseline transmition cost : 4
+Baseline path cost : 132
+Complex computational time: 112.118
+Complex transmittion cost : 0
+Complex path cost : 68
+Baseline computational cost: 34.602
+Baseline transmition cost : 0
+Baseline path cost : 68
+Complex computational time: 121.127
+Complex transmittion cost : 0
+Complex path cost : 61
+Baseline computational cost: 34.929
+Baseline transmition cost : 0
+Baseline path cost : 61
+Complex computational time: 96.288
+Complex transmittion cost : 0
+Complex path cost : 54
+Baseline computational cost: 25.807
+Baseline transmition cost : 0
+Baseline path cost : 54
+Complex computational time: 115.014
+Complex transmittion cost : 0
+Complex path cost : 67
+Baseline computational cost: 34.975
+Baseline transmition cost : 0
+Baseline path cost : 67
+Complex computational time: 164.033
+Complex transmittion cost : 0
+Complex path cost : 62
+Baseline computational cost: 48.508
+Baseline transmition cost : 0
+Baseline path cost : 94
+Complex computational time: 220.248
+Complex transmittion cost : 0
+Complex path cost : 130
+Baseline computational cost: 49.225
+Baseline transmition cost : 5
+Baseline path cost : 130
+Complex computational time: 29.339
+Complex transmittion cost : 0
+Complex path cost : 52
+Baseline computational cost: 15.274
+Baseline transmition cost : 0
+Baseline path cost : 52
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 201.271
+Complex transmittion cost : 0
+Complex path cost : 105
+Baseline computational cost: 43.811
+Baseline transmition cost : 2
+Baseline path cost : 105
+Complex computational time: 75.464
+Complex transmittion cost : 0
+Complex path cost : 36
+Baseline computational cost: 16.095
+Baseline transmition cost : 0
+Baseline path cost : 36
+Complex computational time: 115.139
+Complex transmittion cost : 0
+Complex path cost : 97
+Baseline computational cost: 27.385
+Baseline transmition cost : 1
+Baseline path cost : 99
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 171.094
+Complex transmittion cost : 0
+Complex path cost : 168
+Baseline computational cost: 41.522
+Baseline transmition cost : 1
+Baseline path cost : 168
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 6.991
+Complex transmittion cost : 0
+Complex path cost : 2
+Baseline computational cost: 4.72
+Baseline transmition cost : 0
+Baseline path cost : 2
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 147.178
+Complex transmittion cost : 0
+Complex path cost : 48
+Baseline computational cost: 39.955
+Baseline transmition cost : 0
+Baseline path cost : 48
+Complex computational time: 153.15
+Complex transmittion cost : 0
+Complex path cost : 103
+Baseline computational cost: 42.476
+Baseline transmition cost : 0
+Baseline path cost : 103
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 66.377
+Complex transmittion cost : 0
+Complex path cost : 27
+Baseline computational cost: 16.241
+Baseline transmition cost : 0
+Baseline path cost : 27
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 28.013
+Complex transmittion cost : 0
+Complex path cost : 18
+Baseline computational cost: 6.823
+Baseline transmition cost : 0
+Baseline path cost : 18
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 135.778
+Complex transmittion cost : 0
+Complex path cost : 70
+Baseline computational cost: 35.769
+Baseline transmition cost : 1
+Baseline path cost : 76
+Complex computational time: 110.32
+Complex transmittion cost : 0
+Complex path cost : 141
+No Solution Baseline
+Complex computational time: 152.52
+Complex transmittion cost : 0
+Complex path cost : 118
+Baseline computational cost: 41.945
+Baseline transmition cost : 0
+Baseline path cost : 118
+Complex computational time: 94.225
+Complex transmittion cost : 0
+Complex path cost : 62
+Baseline computational cost: 17.259
+Baseline transmition cost : 0
+Baseline path cost : 62
+Complex computational time: 30.573
+Complex transmittion cost : 0
+Complex path cost : 83
+Baseline computational cost: 20.992
+Baseline transmition cost : 0
+Baseline path cost : 83
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 180.423
+Complex transmittion cost : 0
+Complex path cost : 142
+Baseline computational cost: 51.675
+Baseline transmition cost : 1
+Baseline path cost : 142
+Complex computational time: 6.073
+Complex transmittion cost : 0
+Complex path cost : 8
+Baseline computational cost: 2.474
+Baseline transmition cost : 0
+Baseline path cost : 8
+Complex computational time: 177.824
+Complex transmittion cost : 0
+Complex path cost : 119
+Baseline computational cost: 50.386
+Baseline transmition cost : 1
+Baseline path cost : 121
+Complex computational time: 180.586
+Complex transmittion cost : 0
+Complex path cost : 142
+Baseline computational cost: 47.77
+Baseline transmition cost : 1
+Baseline path cost : 142
+Complex computational time: 215.121
+Complex transmittion cost : 0
+Complex path cost : 170
+Baseline computational cost: 56.695
+Baseline transmition cost : 4
+Baseline path cost : 170
+Complex computational time: 135.405
+Complex transmittion cost : 0
+Complex path cost : 91
+Baseline computational cost: 30.862
+Baseline transmition cost : 0
+Baseline path cost : 93
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 176.252
+Complex transmittion cost : 0
+Complex path cost : 89
+Baseline computational cost: 43.982
+Baseline transmition cost : 1
+Baseline path cost : 89
+Complex computational time: 127.243
+Complex transmittion cost : 0
+Complex path cost : 113
+Baseline computational cost: 27.259
+Baseline transmition cost : 1
+Baseline path cost : 115
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 127.289
+Complex transmittion cost : 0
+Complex path cost : 73
+Baseline computational cost: 32.69
+Baseline transmition cost : 7
+Baseline path cost : 75
+Complex computational time: 190.979
+Complex transmittion cost : 0
+Complex path cost : 103
+Baseline computational cost: 51.536
+Baseline transmition cost : 0
+Baseline path cost : 103
+Complex computational time: 119.631
+Complex transmittion cost : 0
+Complex path cost : 101
+Baseline computational cost: 24.579
+Baseline transmition cost : 1
+Baseline path cost : 105
+Complex computational time: 201.289
+Complex transmittion cost : 0
+Complex path cost : 172
+Baseline computational cost: 57.624
+Baseline transmition cost : 5
+Baseline path cost : 172
+Complex computational time: 119.098
+Complex transmittion cost : 0
+Complex path cost : 57
+Baseline computational cost: 36.511
+Baseline transmition cost : 0
+Baseline path cost : 57
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 165.777
+Complex transmittion cost : 0
+Complex path cost : 91
+Baseline computational cost: 47.892
+Baseline transmition cost : 0
+Baseline path cost : 91
+Complex computational time: 218.812
+Complex transmittion cost : 0
+Complex path cost : 158
+Baseline computational cost: 47.992
+Baseline transmition cost : 4
+Baseline path cost : 160
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 216.768
+Complex transmittion cost : 0
+Complex path cost : 227
+Baseline computational cost: 48.202
+Baseline transmition cost : 4
+Baseline path cost : 227
+Complex computational time: 185.713
+Complex transmittion cost : 0
+Complex path cost : 131
+Baseline computational cost: 50.47
+Baseline transmition cost : 1
+Baseline path cost : 133
+Complex computational time: 99.424
+Complex transmittion cost : 0
+Complex path cost : 59
+Baseline computational cost: 40.634
+Baseline transmition cost : 0
+Baseline path cost : 85
+No Solution Complex Case
+No Solution Baseline
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 3.964
+Complex transmittion cost : 0
+Complex path cost : 7
+Baseline computational cost: 1.466
+Baseline transmition cost : 0
+Baseline path cost : 7
+No Solution Complex Case
+No Solution Baseline
+Complex computational time: 161.267
+Complex transmittion cost : 0
+Complex path cost : 73
+Baseline computational cost: 46.663
+Baseline transmition cost : 0
+Baseline path cost : 73
+Complex computational time: 174.13
+Complex transmittion cost : 0
+Complex path cost : 111
+Baseline computational cost: 47.104
 Baseline transmition cost : 0
 Baseline path cost : 113
 No Solution Complex Case
 No Solution Baseline
-Complex computational time: 56.668
+Complex computational time: 159.62
 Complex transmittion cost : 0
-Complex path cost : 76
-Baseline computational cost: 10.842
+Complex path cost : 82
+Baseline computational cost: 47.684
 Baseline transmition cost : 0
-Baseline path cost : 76
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 169.568
-Complex transmittion cost : 1
-Complex path cost : 159
-Baseline computational cost: 26.147
-Baseline transmition cost : 0
-Baseline path cost : 159
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 176.275
-Complex transmittion cost : 0
-Complex path cost : 90
-Baseline computational cost: 32.887
-Baseline transmition cost : 0
-Baseline path cost : 90
-Complex computational time: 89.316
-Complex transmittion cost : 1
-Complex path cost : 101
-Baseline computational cost: 14.786
-Baseline transmition cost : 0
-Baseline path cost : 105
-Complex computational time: 2.215
-Complex transmittion cost : 0
-Complex path cost : 2
-Baseline computational cost: 0.372
-Baseline transmition cost : 0
-Baseline path cost : 2
-Complex computational time: 98.16
-Complex transmittion cost : 0
-Complex path cost : 66
-Baseline computational cost: 14.454
-Baseline transmition cost : 0
-Baseline path cost : 74
-Complex computational time: 158.646
-Complex transmittion cost : 0
-Complex path cost : 84
-Baseline computational cost: 27.663
-Baseline transmition cost : 0
-Baseline path cost : 98
-Complex computational time: 176.249
-Complex transmittion cost : 1
-Complex path cost : 108
-Baseline computational cost: 29.847
-Baseline transmition cost : 0
-Baseline path cost : 110
-Complex computational time: 26.093
-Complex transmittion cost : 0
-Complex path cost : 9
-Baseline computational cost: 3.012
-Baseline transmition cost : 0
-Baseline path cost : 9
-Complex computational time: 147.709
-Complex transmittion cost : 0
-Complex path cost : 83
-Baseline computational cost: 23.816
-Baseline transmition cost : 0
-Baseline path cost : 83
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 30.14
+Baseline path cost : 82
+Complex computational time: 34.527
 Complex transmittion cost : 0
 Complex path cost : 30
-Baseline computational cost: 6.421
+Baseline computational cost: 17.426
 Baseline transmition cost : 0
 Baseline path cost : 30
 No Solution Complex Case
 No Solution Baseline
 No Solution Complex Case
 No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 156.933
-Complex transmittion cost : 1
-Complex path cost : 144
-Baseline computational cost: 24.85
-Baseline transmition cost : 0
-Baseline path cost : 154
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 77.784
-Complex transmittion cost : 0
-Complex path cost : 51
-Baseline computational cost: 15.832
-Baseline transmition cost : 0
-Baseline path cost : 73
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 122.159
-Complex transmittion cost : 0
-Complex path cost : 102
-Baseline computational cost: 22.64
-Baseline transmition cost : 0
-Baseline path cost : 120
-Complex computational time: 58.302
-Complex transmittion cost : 0
-Complex path cost : 39
-Baseline computational cost: 20.588
-Baseline transmition cost : 0
-Baseline path cost : 67
-Complex computational time: 146.011
-Complex transmittion cost : 0
-Complex path cost : 91
-Baseline computational cost: 24.775
-Baseline transmition cost : 0
-Baseline path cost : 91
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 86.316
-Complex transmittion cost : 0
-Complex path cost : 54
-Baseline computational cost: 11.431
-Baseline transmition cost : 0
-Baseline path cost : 54
-Complex computational time: 2.987
-Complex transmittion cost : 0
-Complex path cost : 3
-Baseline computational cost: 2.868
-Baseline transmition cost : 0
-Baseline path cost : 3
-Complex computational time: 159.875
-Complex transmittion cost : 1
-Complex path cost : 144
-Baseline computational cost: 25.61
-Baseline transmition cost : 0
-Baseline path cost : 146
-Complex computational time: 107.582
-Complex transmittion cost : 0
-Complex path cost : 91
-Baseline computational cost: 21.549
-Baseline transmition cost : 0
-Baseline path cost : 109
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 127.218
-Complex transmittion cost : 0
-Complex path cost : 57
-Baseline computational cost: 19.455
-Baseline transmition cost : 0
-Baseline path cost : 57
-Complex computational time: 130.139
-Complex transmittion cost : 0
-Complex path cost : 107
-Baseline computational cost: 22.388
-Baseline transmition cost : 0
-Baseline path cost : 117
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 111.726
-Complex transmittion cost : 0
-Complex path cost : 49
-Baseline computational cost: 19.555
-Baseline transmition cost : 0
-Baseline path cost : 59
-Complex computational time: 141.449
-Complex transmittion cost : 1
-Complex path cost : 170
-Baseline computational cost: 25.444
-Baseline transmition cost : 0
-Baseline path cost : 172
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 68.529
-Complex transmittion cost : 0
-Complex path cost : 58
-Baseline computational cost: 24.397
-Baseline transmition cost : 0
-Baseline path cost : 100
-Complex computational time: 21.562
-Complex transmittion cost : 0
-Complex path cost : 37
-Baseline computational cost: 3.433
-Baseline transmition cost : 0
-Baseline path cost : 37
-Complex computational time: 15.787
-Complex transmittion cost : 0
-Complex path cost : 26
-Baseline computational cost: 6.755
-Baseline transmition cost : 0
-Baseline path cost : 26
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 107.125
-Complex transmittion cost : 0
-Complex path cost : 56
-Baseline computational cost: 14.06
-Baseline transmition cost : 0
-Baseline path cost : 56
-Complex computational time: 15.13
-Complex transmittion cost : 0
-Complex path cost : 12
-Baseline computational cost: 2.224
-Baseline transmition cost : 0
-Baseline path cost : 12
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 157.411
-Complex transmittion cost : 0
-Complex path cost : 111
-Baseline computational cost: 27.872
-Baseline transmition cost : 0
-Baseline path cost : 121
-Complex computational time: 140.741
+Complex computational time: 55.775
 Complex transmittion cost : 0
 Complex path cost : 59
-Baseline computational cost: 21.374
-Baseline transmition cost : 0
-Baseline path cost : 61
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 160.261
-Complex transmittion cost : 0
-Complex path cost : 123
-Baseline computational cost: 28.7
-Baseline transmition cost : 0
-Baseline path cost : 137
-Complex computational time: 74.879
-Complex transmittion cost : 0
-Complex path cost : 46
-Baseline computational cost: 13.304
-Baseline transmition cost : 0
-Baseline path cost : 46
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 169.7
-Complex transmittion cost : 1
-Complex path cost : 159
-Baseline computational cost: 29.104
-Baseline transmition cost : 0
-Baseline path cost : 171
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 132.798
-Complex transmittion cost : 0
-Complex path cost : 102
-Baseline computational cost: 26.669
-Baseline transmition cost : 0
-Baseline path cost : 124
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 122.326
-Complex transmittion cost : 0
-Complex path cost : 80
-Baseline computational cost: 17.179
-Baseline transmition cost : 0
-Baseline path cost : 88
-Complex computational time: 6.797
-Complex transmittion cost : 0
-Complex path cost : 61
-Baseline computational cost: 4.153
-Baseline transmition cost : 0
-Baseline path cost : 63
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 101.77
-Complex transmittion cost : 0
-Complex path cost : 39
-Baseline computational cost: 15.287
-Baseline transmition cost : 0
-Baseline path cost : 39
-Complex computational time: 30.492
-Complex transmittion cost : 0
-Complex path cost : 103
-Baseline computational cost: 9.047
+Baseline computational cost: 13.517
 Baseline transmition cost : 2
-Baseline path cost : 103
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 128.378
-Complex transmittion cost : 2
-Complex path cost : 105
-Baseline computational cost: 21.234
-Baseline transmition cost : 0
-Baseline path cost : 105
-Complex computational time: 169.75
-Complex transmittion cost : 0
-Complex path cost : 119
-Baseline computational cost: 28.606
-Baseline transmition cost : 0
-Baseline path cost : 119
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 165.973
-Complex transmittion cost : 0
-Complex path cost : 140
-Baseline computational cost: 32.266
-Baseline transmition cost : 0
-Baseline path cost : 156
-Complex computational time: 138.321
-Complex transmittion cost : 0
-Complex path cost : 64
-Baseline computational cost: 19.467
-Baseline transmition cost : 0
-Baseline path cost : 64
-Complex computational time: 220.747
-Complex transmittion cost : 0
-Complex path cost : 71
-Baseline computational cost: 49.008
-Baseline transmition cost : 0
-Baseline path cost : 71
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 10.798
-Complex transmittion cost : 0
-Complex path cost : 21
-Baseline computational cost: 7.179
-Baseline transmition cost : 0
-Baseline path cost : 21
-No Solution Complex Case
-No Solution Baseline
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 250.024
-Complex transmittion cost : 0
-Complex path cost : 61
-Baseline computational cost: 39.42
-Baseline transmition cost : 0
-Baseline path cost : 61
-Complex computational time: 9.777
-Complex transmittion cost : 0
-Complex path cost : 31
-Baseline computational cost: 4.92
-Baseline transmition cost : 0
-Baseline path cost : 31
+Baseline path cost : 59
 No Solution Complex Case
 No Solution Baseline
 Buffer Size 20
-Time to create second graph (nodes with bigger Rate): 10561.8
-time to create normal Graph 5423.16
-Time to create Complex graph : 3297.77
-Complex computational time: 367.986
-Complex transmittion cost : 0
-Complex path cost : 21
-Baseline computational cost: 8.369
-Baseline transmition cost : 0
-Baseline path cost : 21
-Complex computational time: 277.149
-Complex transmittion cost : 0
-Complex path cost : 30
-Baseline computational cost: 6.489
-Baseline transmition cost : 0
-Baseline path cost : 30
-Complex computational time: 1154.48
-Complex transmittion cost : 0
-Complex path cost : 66
-Baseline computational cost: 42.266
-Baseline transmition cost : 0
-Baseline path cost : 112
-Complex computational time: 385.158
-Complex transmittion cost : 0
-Complex path cost : 53
-Baseline computational cost: 13.282
-Baseline transmition cost : 0
-Baseline path cost : 53
-Complex computational time: 1209.45
-Complex transmittion cost : 1
-Complex path cost : 103
-Baseline computational cost: 38.339
-Baseline transmition cost : 0
-Baseline path cost : 135
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 1719.2
-Complex transmittion cost : 0
-Complex path cost : 72
-Baseline computational cost: 42.324
-Baseline transmition cost : 7
-Baseline path cost : 74
-Complex computational time: 245.106
-Complex transmittion cost : 0
-Complex path cost : 48
-Baseline computational cost: 6.935
-Baseline transmition cost : 0
-Baseline path cost : 48
-Complex computational time: 1777.08
-Complex transmittion cost : 0
-Complex path cost : 106
-Baseline computational cost: 38.314
-Baseline transmition cost : 0
-Baseline path cost : 106
-Complex computational time: 528.779
-Complex transmittion cost : 0
-Complex path cost : 19
-Baseline computational cost: 8.234
-Baseline transmition cost : 0
-Baseline path cost : 19
-Complex computational time: 130.853
-Complex transmittion cost : 0
-Complex path cost : 9
-Baseline computational cost: 3.809
-Baseline transmition cost : 0
-Baseline path cost : 9
-Complex computational time: 1596.87
-Complex transmittion cost : 0
-Complex path cost : 104
-Baseline computational cost: 38.794
-Baseline transmition cost : 1
-Baseline path cost : 104
-Complex computational time: 1127.62
-Complex transmittion cost : 0
-Complex path cost : 57
-Baseline computational cost: 31.179
-Baseline transmition cost : 0
-Baseline path cost : 69
-Complex computational time: 1654.1
-Complex transmittion cost : 0
-Complex path cost : 134
-Baseline computational cost: 45.333
-Baseline transmition cost : 5
-Baseline path cost : 134
-Complex computational time: 1596.09
-Complex transmittion cost : 0
-Complex path cost : 123
-Baseline computational cost: 41.363
-Baseline transmition cost : 1
-Baseline path cost : 123
-Complex computational time: 1552.48
-Complex transmittion cost : 0
-Complex path cost : 133
-Baseline computational cost: 42.659
-Baseline transmition cost : 1
-Baseline path cost : 135
-Complex computational time: 451.915
-Complex transmittion cost : 0
-Complex path cost : 39
-Baseline computational cost: 10.949
-Baseline transmition cost : 0
-Baseline path cost : 39
-Complex computational time: 13.695
-Complex transmittion cost : 0
-Complex path cost : 9
-Baseline computational cost: 3.667
-Baseline transmition cost : 0
-Baseline path cost : 9
-Complex computational time: 14.85
-Complex transmittion cost : 0
-Complex path cost : 20
-Baseline computational cost: 6.797
-Baseline transmition cost : 0
-Baseline path cost : 20
-Complex computational time: 1602.48
-Complex transmittion cost : 0
-Complex path cost : 122
-Baseline computational cost: 40.754
-Baseline transmition cost : 22
-Baseline path cost : 122
-Complex computational time: 316.781
-Complex transmittion cost : 0
-Complex path cost : 45
-Baseline computational cost: 17.659
-Baseline transmition cost : 0
-Baseline path cost : 57
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 1619.91
-Complex transmittion cost : 1
-Complex path cost : 74
-Baseline computational cost: 39.306
-Baseline transmition cost : 0
-Baseline path cost : 84
-Complex computational time: 1792.77
-Complex transmittion cost : 1
-Complex path cost : 69
-Baseline computational cost: 41.341
-Baseline transmition cost : 3
-Baseline path cost : 73
-Complex computational time: 2643.09
-Complex transmittion cost : 0
-Complex path cost : 81
-Baseline computational cost: 83.233
-Baseline transmition cost : 0
-Baseline path cost : 85
-Complex computational time: 567.864
-Complex transmittion cost : 0
-Complex path cost : 38
-Baseline computational cost: 23.781
-Baseline transmition cost : 0
-Baseline path cost : 38
-Complex computational time: 1222.98
-Complex transmittion cost : 1
-Complex path cost : 104
-Baseline computational cost: 40.589
-Baseline transmition cost : 4
-Baseline path cost : 116
-Complex computational time: 208.693
-Complex transmittion cost : 0
-Complex path cost : 13
-Baseline computational cost: 6.681
-Baseline transmition cost : 0
-Baseline path cost : 13
-Complex computational time: 761.421
-Complex transmittion cost : 1
-Complex path cost : 82
-Baseline computational cost: 52.287
-Baseline transmition cost : 2
-Baseline path cost : 108
-Complex computational time: 1989.27
-Complex transmittion cost : 0
-Complex path cost : 115
-Baseline computational cost: 58.268
-Baseline transmition cost : 1
-Baseline path cost : 119
-Complex computational time: 1472.23
-Complex transmittion cost : 0
-Complex path cost : 63
-Baseline computational cost: 44.382
-Baseline transmition cost : 0
-Baseline path cost : 99
-Complex computational time: 1787.72
-Complex transmittion cost : 0
-Complex path cost : 160
-Baseline computational cost: 54.861
-Baseline transmition cost : 12
-Baseline path cost : 160
-Complex computational time: 268.536
-Complex transmittion cost : 0
-Complex path cost : 41
-Baseline computational cost: 10.297
-Baseline transmition cost : 0
-Baseline path cost : 41
-Complex computational time: 1239.63
-Complex transmittion cost : 0
-Complex path cost : 81
-Baseline computational cost: 24.11
-Baseline transmition cost : 0
-Baseline path cost : 81
-Complex computational time: 541.675
-Complex transmittion cost : 0
-Complex path cost : 54
-Baseline computational cost: 26.263
-Baseline transmition cost : 0
-Baseline path cost : 86
-Complex computational time: 1563.53
-Complex transmittion cost : 0
-Complex path cost : 126
-Baseline computational cost: 35.838
-Baseline transmition cost : 1
-Baseline path cost : 128
-Complex computational time: 412.869
-Complex transmittion cost : 0
-Complex path cost : 39
-Baseline computational cost: 9.849
-Baseline transmition cost : 0
-Baseline path cost : 39
-Complex computational time: 6.89
-Complex transmittion cost : 0
-Complex path cost : 14
-Baseline computational cost: 2.525
-Baseline transmition cost : 0
-Baseline path cost : 14
-Complex computational time: 114.384
-Complex transmittion cost : 0
-Complex path cost : 9
-Baseline computational cost: 2.535
-Baseline transmition cost : 0
-Baseline path cost : 9
-Complex computational time: 1620.32
-Complex transmittion cost : 0
-Complex path cost : 76
-Baseline computational cost: 43.055
-Baseline transmition cost : 1
-Baseline path cost : 80
-Complex computational time: 1390.83
-Complex transmittion cost : 0
-Complex path cost : 99
-Baseline computational cost: 42.312
-Baseline transmition cost : 0
-Baseline path cost : 117
-Complex computational time: 91.657
-Complex transmittion cost : 0
-Complex path cost : 28
-Baseline computational cost: 6.418
-Baseline transmition cost : 0
-Baseline path cost : 28
-Complex computational time: 253.466
-Complex transmittion cost : 0
-Complex path cost : 32
-Baseline computational cost: 9.631
-Baseline transmition cost : 0
-Baseline path cost : 32
-Complex computational time: 1631.49
-Complex transmittion cost : 0
-Complex path cost : 81
-Baseline computational cost: 68.934
-Baseline transmition cost : 0
-Baseline path cost : 81
-Complex computational time: 1115.66
-Complex transmittion cost : 0
-Complex path cost : 53
-Baseline computational cost: 28.718
-Baseline transmition cost : 0
-Baseline path cost : 55
-Complex computational time: 488.251
-Complex transmittion cost : 0
-Complex path cost : 38
-Baseline computational cost: 19.402
-Baseline transmition cost : 0
-Baseline path cost : 42
-Complex computational time: 445.188
-Complex transmittion cost : 0
-Complex path cost : 31
-Baseline computational cost: 17.797
-Baseline transmition cost : 0
-Baseline path cost : 31
-Complex computational time: 2607.34
-Complex transmittion cost : 0
-Complex path cost : 101
-Baseline computational cost: 70.959
-Baseline transmition cost : 4
-Baseline path cost : 101
-Complex computational time: 561.399
-Complex transmittion cost : 0
-Complex path cost : 32
-Baseline computational cost: 13.448
-Baseline transmition cost : 0
-Baseline path cost : 34
-Complex computational time: 1980.76
-Complex transmittion cost : 0
-Complex path cost : 66
-Baseline computational cost: 52.694
-Baseline transmition cost : 8
-Baseline path cost : 80
-Complex computational time: 1073.4
-Complex transmittion cost : 0
-Complex path cost : 80
-Baseline computational cost: 27.057
-Baseline transmition cost : 0
-Baseline path cost : 86
-Complex computational time: 135.472
-Complex transmittion cost : 0
-Complex path cost : 40
-Baseline computational cost: 6.217
-Baseline transmition cost : 0
-Baseline path cost : 42
-Complex computational time: 479.38
-Complex transmittion cost : 0
-Complex path cost : 44
-Baseline computational cost: 32.686
-Baseline transmition cost : 0
-Baseline path cost : 80
-Complex computational time: 646.089
-Complex transmittion cost : 0
-Complex path cost : 67
-Baseline computational cost: 21.298
-Baseline transmition cost : 0
-Baseline path cost : 67
-Complex computational time: 1140.2
-Complex transmittion cost : 0
-Complex path cost : 96
-Baseline computational cost: 28.591
-Baseline transmition cost : 0
-Baseline path cost : 110
-Complex computational time: 6.368
-Complex transmittion cost : 0
-Complex path cost : 10
-Baseline computational cost: 3.194
-Baseline transmition cost : 0
-Baseline path cost : 10
-Complex computational time: 479.535
-Complex transmittion cost : 0
-Complex path cost : 49
-Baseline computational cost: 15.963
-Baseline transmition cost : 0
-Baseline path cost : 51
-Complex computational time: 1547.09
-Complex transmittion cost : 0
-Complex path cost : 60
-Baseline computational cost: 41.138
-Baseline transmition cost : 0
-Baseline path cost : 64
-Complex computational time: 2445.71
-Complex transmittion cost : 0
-Complex path cost : 140
-Baseline computational cost: 66.683
-Baseline transmition cost : 0
-Baseline path cost : 152
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 1690.41
-Complex transmittion cost : 0
-Complex path cost : 100
-Baseline computational cost: 38.779
-Baseline transmition cost : 7
-Baseline path cost : 100
-Complex computational time: 956.079
-Complex transmittion cost : 0
-Complex path cost : 90
-Baseline computational cost: 17.047
-Baseline transmition cost : 0
-Baseline path cost : 90
-Complex computational time: 486.194
-Complex transmittion cost : 0
-Complex path cost : 61
-Baseline computational cost: 22.04
-Baseline transmition cost : 3
-Baseline path cost : 83
-Complex computational time: 236.548
-Complex transmittion cost : 0
-Complex path cost : 45
-Baseline computational cost: 13.545
-Baseline transmition cost : 0
-Baseline path cost : 45
-Complex computational time: 299.957
-Complex transmittion cost : 1
-Complex path cost : 69
-Baseline computational cost: 13.182
-Baseline transmition cost : 0
-Baseline path cost : 69
-Complex computational time: 502.016
-Complex transmittion cost : 0
-Complex path cost : 50
-Baseline computational cost: 19.951
-Baseline transmition cost : 0
-Baseline path cost : 54
-Complex computational time: 128.012
-Complex transmittion cost : 0
-Complex path cost : 11
-Baseline computational cost: 4.545
-Baseline transmition cost : 0
-Baseline path cost : 11
-Complex computational time: 720.063
-Complex transmittion cost : 0
-Complex path cost : 56
-Baseline computational cost: 36.273
-Baseline transmition cost : 1
-Baseline path cost : 78
-Complex computational time: 2296.98
-Complex transmittion cost : 0
-Complex path cost : 101
-Baseline computational cost: 65.224
-Baseline transmition cost : 18
-Baseline path cost : 99
-Complex computational time: 506.822
-Complex transmittion cost : 0
-Complex path cost : 49
-Baseline computational cost: 19.346
-Baseline transmition cost : 0
-Baseline path cost : 49
-Complex computational time: 1597.95
-Complex transmittion cost : 0
-Complex path cost : 95
-Baseline computational cost: 37.362
-Baseline transmition cost : 0
-Baseline path cost : 95
-Complex computational time: 234.386
-Complex transmittion cost : 0
-Complex path cost : 27
-Baseline computational cost: 8.162
-Baseline transmition cost : 0
-Baseline path cost : 31
-Complex computational time: 28.828
-Complex transmittion cost : 0
-Complex path cost : 55
-Baseline computational cost: 2.642
-Baseline transmition cost : 0
-Baseline path cost : 55
-Complex computational time: 1551.3
-Complex transmittion cost : 0
-Complex path cost : 129
-Baseline computational cost: 39.887
-Baseline transmition cost : 5
-Baseline path cost : 137
-Complex computational time: 1460.46
-Complex transmittion cost : 0
-Complex path cost : 100
-Baseline computational cost: 54.3
-Baseline transmition cost : 0
-Baseline path cost : 106
-Complex computational time: 539.87
-Complex transmittion cost : 0
-Complex path cost : 72
-Baseline computational cost: 21.302
-Baseline transmition cost : 0
-Baseline path cost : 72
-Complex computational time: 2128.43
-Complex transmittion cost : 0
-Complex path cost : 106
-Baseline computational cost: 64.561
-Baseline transmition cost : 0
-Baseline path cost : 114
-Complex computational time: 1046.57
-Complex transmittion cost : 0
-Complex path cost : 86
-Baseline computational cost: 34.584
-Baseline transmition cost : 0
-Baseline path cost : 100
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 1834.7
-Complex transmittion cost : 0
-Complex path cost : 102
-Baseline computational cost: 49.062
-Baseline transmition cost : 22
-Baseline path cost : 110
-Complex computational time: 286.58
-Complex transmittion cost : 0
-Complex path cost : 43
-Baseline computational cost: 10.923
-Baseline transmition cost : 0
-Baseline path cost : 43
-Complex computational time: 144.605
-Complex transmittion cost : 0
-Complex path cost : 15
-Baseline computational cost: 3.604
-Baseline transmition cost : 0
-Baseline path cost : 15
-Complex computational time: 1164.12
-Complex transmittion cost : 0
-Complex path cost : 52
-Baseline computational cost: 49.273
-Baseline transmition cost : 0
-Baseline path cost : 76
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 1995.48
-Complex transmittion cost : 0
-Complex path cost : 99
-Baseline computational cost: 61.605
-Baseline transmition cost : 0
-Baseline path cost : 105
-Complex computational time: 16.918
-Complex transmittion cost : 0
-Complex path cost : 16
-Baseline computational cost: 5.932
-Baseline transmition cost : 0
-Baseline path cost : 16
-Complex computational time: 65.672
-Complex transmittion cost : 0
-Complex path cost : 16
-Baseline computational cost: 35.031
-Baseline transmition cost : 0
-Baseline path cost : 44
-Complex computational time: 979.511
-Complex transmittion cost : 0
-Complex path cost : 43
-Baseline computational cost: 42.441
-Baseline transmition cost : 0
-Baseline path cost : 45
-Complex computational time: 551.329
-Complex transmittion cost : 0
-Complex path cost : 72
-Baseline computational cost: 13.894
-Baseline transmition cost : 0
-Baseline path cost : 72
-No Solution Complex Case
-No Solution Baseline
-Complex computational time: 1783.64
-Complex transmittion cost : 0
-Complex path cost : 138
-Baseline computational cost: 43.333
-Baseline transmition cost : 11
-Baseline path cost : 138
-Complex computational time: 297.542
-Complex transmittion cost : 0
-Complex path cost : 69
-Baseline computational cost: 12.996
-Baseline transmition cost : 0
-Baseline path cost : 69
-Complex computational time: 701.04
-Complex transmittion cost : 0
-Complex path cost : 65
-Baseline computational cost: 34.984
-Baseline transmition cost : 0
-Baseline path cost : 75
-Complex computational time: 1528.33
-Complex transmittion cost : 0
-Complex path cost : 47
-Baseline computational cost: 36.666
-Baseline transmition cost : 0
-Baseline path cost : 49
-Complex computational time: 212.808
-Complex transmittion cost : 0
-Complex path cost : 57
-Baseline computational cost: 10.488
-Baseline transmition cost : 0
-Baseline path cost : 57
-Complex computational time: 1578.36
-Complex transmittion cost : 0
-Complex path cost : 78
-Baseline computational cost: 34.334
-Baseline transmition cost : 0
-Baseline path cost : 82
-Complex computational time: 1273.09
-Complex transmittion cost : 0
-Complex path cost : 89
-Baseline computational cost: 26.624
-Baseline transmition cost : 3
-Baseline path cost : 93
-Complex computational time: 75.9
-Complex transmittion cost : 0
-Complex path cost : 10
-Baseline computational cost: 2.247
-Baseline transmition cost : 0
-Baseline path cost : 10
-Complex computational time: 929.547
-Complex transmittion cost : 0
-Complex path cost : 36
-Baseline computational cost: 19.906
-Baseline transmition cost : 0
-Baseline path cost : 40
-Complex computational time: 1222.72
-Complex transmittion cost : 0
-Complex path cost : 101
-Baseline computational cost: 37.82
-Baseline transmition cost : 0
-Baseline path cost : 119

@@ -68,6 +68,9 @@ private:
 
 	     std::ofstream* myfile;
 	     double calculateTime(std::vector<Cell> commCells,std::vector<int> costToNext);
+	     bool needToUpload(std::vector<int> buffStates);
+	     void updateBufferStates(std::vector<int> *buffStates,int uploaded,int at);
+	     int calculatePathCost(std::vector<int> path,int beg,int end);
 };
 
 } /* namespace planner */
