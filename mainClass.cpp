@@ -282,6 +282,8 @@ int main(int argc, char* argv[])
 {
 	//testRandom8Base();
 	//testRandom2Base();
+
+
 	//testFixed8Base();
 	//testFixed2Base();
 

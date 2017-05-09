@@ -291,6 +291,7 @@ double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost
          		std::cout<<"buff state"<<buffState.at(t)<<std::endl;
          	}*/
          int currentPos=0;
+
          while(needToUpload(buffState)){
         	 int toUp=0;
         	 int z=currentPos;
@@ -317,7 +318,6 @@ double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost
         		 currentPos=currentPos+1;
 
         	 }else{
-        		 //TODO look carefully
         		 if(buffState.at(currentPos)+calculatePathCost(modifiedCosts,currentPos,z)>buffer*baseUnit){
         		  	  toUp=buffState.at(currentPos)+calculatePathCost(modifiedCosts,currentPos,z)-buffer*baseUnit;
         		  	  if(toUp>0){
@@ -327,7 +327,12 @@ double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost
         	 	 }
         	 	 currentPos=z;
         	 }
+<<<<<<< HEAD
         	/* for(int t=0;t<buffState.size();t++){
+=======
+        	 std::cout<<"Start"<<std::endl;
+        	 for(int t=0;t<buffState.size();t++){
+>>>>>>> branch 'BaselineNew06052017' of https://github.com/Arlind1992/TesiPlanner.git
         	          		std::cout<<"Up buff state"<<buffState.at(t)<<std::endl;
         	          	}
         	 std::cout<<"Uploaded "<<toUp<<std::endl;
