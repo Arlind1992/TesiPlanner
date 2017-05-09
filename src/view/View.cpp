@@ -10,7 +10,6 @@
 #include <SDL2/SDL.h>
 #include<iostream>
 #include "Planner.h"
-#include "view/OpenCvView.h"
 namespace view {
 
 View::View() {
@@ -165,12 +164,14 @@ void View::DrawScreen(SDL_Surface* screen)
 
 	    drawMat(screen);
 
-	    if(this->baselineSol)
-	    	this->drawSolution(screen,this->baselineSolution,1);
-/*
-	    if(this->grCompSolution)
+	  //  if(this->baselineSol)
+	    //	this->drawSolution(screen,this->baselineSolution,1);
+
+	    if(this->grCompSolution){
+	    	this->drawSolution(screen,this->vecSolutionComplex,1);
 	    	this->drawSolution(screen,this->vecGrComplexSolution,2);
-*/
+	    	this->drawSolution(screen,this->vecGrSolution,3);
+	    }
 	    if(SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
 
 
@@ -314,23 +315,27 @@ void View::handleInput(SDL_Event event){
 					endSelected=true;
 					//find a way to select the Tmax
 					//this->solution=this->complexPlan->makeSimplePlan(end,start,this->vecSolution);
-					//this->complexSolution=this->complexPlan->makePlan(end,start,this->vecSolutionComplex);
 					std::cout<<"start ("<<start.first<<","<<start.second<<")"<<std::endl;
 					std::cout<<"end ("<<end.first<<","<<end.second<<")"<<std::endl;
-				//	this->grCompSolution=this->grPlanner->makePlan(std::make_pair(36,63),std::make_pair(55,45),this->vecGrComplexSolution,stateOfBuffer);
+					map<Cell,int> stateOfBuffer;
+
+					this->grCompSolution=this->grPlanner->makePlan(std::make_pair(27,96),std::make_pair(68,40),this->vecGrComplexSolution,stateOfBuffer);
+					this->grCompSolution=this->grPlanner1->makePlan(std::make_pair(27,96),std::make_pair(68,40),this->vecSolutionComplex,stateOfBuffer);
+					this->grCompSolution=this->complexPlan->makePlan(std::make_pair(27,96),std::make_pair(68,40),this->vecGrSolution,stateOfBuffer);
+
 					int cost;
 					//blSolutionVar=this->blPlan->makePlan(start,end,this->blSolution,&cost);
-					std::cout<<"cost "<<cost<<std::endl;
+					std::cout<<"cost "<<grCompSolution<<std::endl;
 
 					//this->grCompSolution=this->grPlanner->makePlan(end,start,this->vecGrComplexSolution,stateOfBuffer);
-					this->baselineSol=this->baseline->makePlan(end,start,this->baselineSolution);
-					//this->baselineSol=this->baseline->makePlan(std::make_pair(51,67),std::make_pair(27,39),this->baselineSolution);
+					//this->baselineSol=this->baseline->makePlan(end,start,this->baselineSolution);
+					//this->baselineSol=this->baseline->makePlan(std::make_pair(27,96),std::make_pair(68,40),this->baselineSolution);
 /*(51,67)-(27,39)
 					this->solution=baselineSol;
 					this->complexSolution=this->baselineSol;
 					this->grCompSolution=this->baselineSol;
 	*/
-					this->solution=baselineSol;
+					this->solution=grCompSolution;
 				}
 			}
 
@@ -362,8 +367,14 @@ void View::handleInput(SDL_Event event){
 void View::setPlanner(planner::Planner* plan){
 	this->plan=plan;
 }
-void View::setComplexPlanner(planner::ComplexPlanner* cmpPlaner){
+void View::setComplexPlanner2(planner::ComplexPlanner* cmpPlaner){
 	this->complexPlan=cmpPlaner;
+}
+/*void View::setComplexPlanner(planner::ComplexPlanner* cmpPlaner){
+	this->vecGrComplexSolution=cmpPlaner;
+}*/
+void View::setComplexPlanner3(planner::ComplexPlanner* cmpPlaner){
+	this->grPlanner1=cmpPlaner;
 }
 
 void View::setComGridPlanner(planner::ComplexPlanner* grPlanner){

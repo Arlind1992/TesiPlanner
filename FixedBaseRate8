@@ -1,0 +1,470 @@
+Buffer 1
+Time to create Baseline graph (nodes with bigger Rate): 394.58
+time to create normal Graph 698.478
+Time to create Complex graph : 1.376
+No Solution baseline
+No Solution Complex Case
+Buffer 2
+Time to create Baseline graph (nodes with bigger Rate): 382.822
+time to create normal Graph 692.376
+Time to create Complex graph : 2.764
+No Solution baseline
+No Solution Complex Case
+Buffer 3
+Time to create Baseline graph (nodes with bigger Rate): 381.227
+time to create normal Graph 697.46
+Time to create Complex graph : 4.26
+No Solution baseline
+No Solution Complex Case
+Buffer 4
+Time to create Baseline graph (nodes with bigger Rate): 387.865
+time to create normal Graph 683.516
+Time to create Complex graph : 6.71
+No Solution baseline
+No Solution Complex Case
+Buffer 5
+Time to create Baseline graph (nodes with bigger Rate): 384.421
+time to create normal Graph 706.473
+Time to create Complex graph : 9.755
+No Solution baseline
+No Solution Complex Case
+Buffer 6
+Time to create Baseline graph (nodes with bigger Rate): 384.405
+time to create normal Graph 683.94
+Time to create Complex graph : 13.183
+No Solution baseline
+No Solution Complex Case
+Buffer 7
+Time to create Baseline graph (nodes with bigger Rate): 378.906
+time to create normal Graph 697.483
+Time to create Complex graph : 19.111
+No Solution baseline
+No Solution Complex Case
+Buffer 8
+Time to create Baseline graph (nodes with bigger Rate): 388.207
+time to create normal Graph 703.828
+Time to create Complex graph : 24.643
+No Solution baseline
+No Solution Complex Case
+Buffer 9
+Time to create Baseline graph (nodes with bigger Rate): 387.83
+time to create normal Graph 694.11
+Time to create Complex graph : 26.504
+No Solution baseline
+No Solution Complex Case
+Buffer 10
+Time to create Baseline graph (nodes with bigger Rate): 384.294
+time to create normal Graph 705.292
+Time to create Complex graph : 36.275
+No Solution baseline
+No Solution Complex Case
+Buffer 11
+Time to create Baseline graph (nodes with bigger Rate): 384.328
+time to create normal Graph 692.242
+Time to create Complex graph : 42.385
+No Solution baseline
+No Solution Complex Case
+Buffer 12
+Time to create Baseline graph (nodes with bigger Rate): 378.687
+time to create normal Graph 690.676
+Time to create Complex graph : 48.648
+No Solution baseline
+No Solution Complex Case
+Buffer 13
+Time to create Baseline graph (nodes with bigger Rate): 390.112
+time to create normal Graph 719.915
+Time to create Complex graph : 57.868
+No Solution baseline
+No Solution Complex Case
+Buffer 14
+Time to create Baseline graph (nodes with bigger Rate): 411.899
+time to create normal Graph 704.155
+Time to create Complex graph : 68.631
+No Solution baseline
+No Solution Complex Case
+Buffer 15
+Time to create Baseline graph (nodes with bigger Rate): 406.862
+time to create normal Graph 711.388
+Time to create Complex graph : 75.402
+No Solution baseline
+No Solution Complex Case
+Buffer 16
+Time to create Baseline graph (nodes with bigger Rate): 409.278
+time to create normal Graph 715.546
+Time to create Complex graph : 83.722
+No Solution baseline
+No Solution Complex Case
+Buffer 17
+Time to create Baseline graph (nodes with bigger Rate): 407.815
+time to create normal Graph 721.747
+Time to create Complex graph : 92.366
+No Solution baseline
+No Solution Complex Case
+Buffer 18
+Time to create Baseline graph (nodes with bigger Rate): 404.506
+time to create normal Graph 735.081
+Time to create Complex graph : 100.621
+No Solution baseline
+No Solution Complex Case
+Buffer 19
+Time to create Baseline graph (nodes with bigger Rate): 402.26
+time to create normal Graph 727.623
+Time to create Complex graph : 122.121
+No Solution baseline
+No Solution Complex Case
+Buffer 20
+Time to create Baseline graph (nodes with bigger Rate): 400.752
+time to create normal Graph 701.65
+Time to create Complex graph : 131.333
+No Solution baseline
+No Solution Complex Case
+Buffer 21
+Time to create Baseline graph (nodes with bigger Rate): 445.779
+time to create normal Graph 725.616
+Time to create Complex graph : 147.049
+Baseline computational cost: 4.515
+Baseline transmition cost : 47
+Baseline path cost : 175
+Complex computational time: 66.108
+Complex transmittion cost : 0
+Complex path cost : 177
+Buffer 22
+Time to create Baseline graph (nodes with bigger Rate): 454.804
+time to create normal Graph 724
+Time to create Complex graph : 166.866
+Baseline computational cost: 4.659
+Baseline transmition cost : 47
+Baseline path cost : 175
+Complex computational time: 74.53
+Complex transmittion cost : 0
+Complex path cost : 173
+Buffer 23
+Time to create Baseline graph (nodes with bigger Rate): 462.691
+time to create normal Graph 744.173
+Time to create Complex graph : 164.335
+Baseline computational cost: 4.552
+Baseline transmition cost : 47
+Baseline path cost : 175
+Complex computational time: 79.336
+Complex transmittion cost : 0
+Complex path cost : 173
+Buffer 24
+Time to create Baseline graph (nodes with bigger Rate): 443.222
+time to create normal Graph 732.416
+Time to create Complex graph : 175.694
+Baseline computational cost: 4.378
+Baseline transmition cost : 47
+Baseline path cost : 175
+Complex computational time: 88.073
+Complex transmittion cost : 0
+Complex path cost : 171
+Buffer 25
+Time to create Baseline graph (nodes with bigger Rate): 447.844
+time to create normal Graph 721.504
+Time to create Complex graph : 194.673
+Baseline computational cost: 4.44
+Baseline transmition cost : 47
+Baseline path cost : 175
+Complex computational time: 94.774
+Complex transmittion cost : 0
+Complex path cost : 171
+Buffer 26
+Time to create Baseline graph (nodes with bigger Rate): 466.242
+time to create normal Graph 752.244
+Time to create Complex graph : 250.314
+Baseline computational cost: 5.014
+Baseline transmition cost : 47
+Baseline path cost : 175
+Complex computational time: 126.543
+Complex transmittion cost : 0
+Complex path cost : 169
+Buffer 27
+Time to create Baseline graph (nodes with bigger Rate): 475.662
+time to create normal Graph 745.204
+Time to create Complex graph : 246.546
+Baseline computational cost: 4.516
+Baseline transmition cost : 47
+Baseline path cost : 175
+Complex computational time: 117.708
+Complex transmittion cost : 0
+Complex path cost : 169
+Buffer 28
+Time to create Baseline graph (nodes with bigger Rate): 452.815
+time to create normal Graph 726.554
+Time to create Complex graph : 269.554
+Baseline computational cost: 4.469
+Baseline transmition cost : 47
+Baseline path cost : 175
+Complex computational time: 138.123
+Complex transmittion cost : 0
+Complex path cost : 167
+Buffer 29
+Time to create Baseline graph (nodes with bigger Rate): 494.166
+time to create normal Graph 730.668
+Time to create Complex graph : 283.916
+Baseline computational cost: 4.959
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 175.087
+Complex transmittion cost : 0
+Complex path cost : 119
+Buffer 30
+Time to create Baseline graph (nodes with bigger Rate): 482.601
+time to create normal Graph 720.563
+Time to create Complex graph : 307.776
+Baseline computational cost: 4.874
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 173.301
+Complex transmittion cost : 0
+Complex path cost : 117
+Buffer 31
+Time to create Baseline graph (nodes with bigger Rate): 484.313
+time to create normal Graph 716.944
+Time to create Complex graph : 337.475
+Baseline computational cost: 4.926
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 199.721
+Complex transmittion cost : 0
+Complex path cost : 117
+Buffer 32
+Time to create Baseline graph (nodes with bigger Rate): 492.506
+time to create normal Graph 718.52
+Time to create Complex graph : 346.215
+Baseline computational cost: 5.404
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 210.112
+Complex transmittion cost : 0
+Complex path cost : 115
+Buffer 33
+Time to create Baseline graph (nodes with bigger Rate): 491.531
+time to create normal Graph 736.537
+Time to create Complex graph : 373.18
+Baseline computational cost: 5.547
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 226.574
+Complex transmittion cost : 0
+Complex path cost : 115
+Buffer 34
+Time to create Baseline graph (nodes with bigger Rate): 506.106
+time to create normal Graph 742.457
+Time to create Complex graph : 402.547
+Baseline computational cost: 5.116
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 286.228
+Complex transmittion cost : 0
+Complex path cost : 115
+Buffer 35
+Time to create Baseline graph (nodes with bigger Rate): 499.546
+time to create normal Graph 739.096
+Time to create Complex graph : 436.998
+Baseline computational cost: 5.155
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 303.498
+Complex transmittion cost : 0
+Complex path cost : 115
+Buffer 36
+Time to create Baseline graph (nodes with bigger Rate): 493.087
+time to create normal Graph 738.466
+Time to create Complex graph : 498.899
+Baseline computational cost: 5.083
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 287.967
+Complex transmittion cost : 0
+Complex path cost : 115
+Buffer 37
+Time to create Baseline graph (nodes with bigger Rate): 491.801
+time to create normal Graph 738.903
+Time to create Complex graph : 550.27
+Baseline computational cost: 5.207
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 363.634
+Complex transmittion cost : 0
+Complex path cost : 115
+Buffer 38
+Time to create Baseline graph (nodes with bigger Rate): 495.038
+time to create normal Graph 733.885
+Time to create Complex graph : 580.989
+Baseline computational cost: 5.361
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 379.597
+Complex transmittion cost : 0
+Complex path cost : 113
+Buffer 39
+Time to create Baseline graph (nodes with bigger Rate): 504.221
+time to create normal Graph 722.059
+Time to create Complex graph : 596.414
+Baseline computational cost: 5.169
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 364.288
+Complex transmittion cost : 0
+Complex path cost : 113
+Buffer 40
+Time to create Baseline graph (nodes with bigger Rate): 498.325
+time to create normal Graph 726.43
+Time to create Complex graph : 635.666
+Baseline computational cost: 5.079
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 375.76
+Complex transmittion cost : 0
+Complex path cost : 113
+Buffer 41
+Time to create Baseline graph (nodes with bigger Rate): 481.612
+time to create normal Graph 742.736
+Time to create Complex graph : 731.917
+Baseline computational cost: 5.597
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 430.54
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 42
+Time to create Baseline graph (nodes with bigger Rate): 478.966
+time to create normal Graph 725.037
+Time to create Complex graph : 714.848
+Baseline computational cost: 5.218
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 477.587
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 43
+Time to create Baseline graph (nodes with bigger Rate): 487.583
+time to create normal Graph 722.549
+Time to create Complex graph : 739.237
+Baseline computational cost: 5.177
+Baseline transmition cost : 41
+Baseline path cost : 123
+Complex computational time: 451.766
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 44
+Time to create Baseline graph (nodes with bigger Rate): 477.094
+time to create normal Graph 728.175
+Time to create Complex graph : 777.95
+Baseline computational cost: 5.466
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 578.641
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 45
+Time to create Baseline graph (nodes with bigger Rate): 498.064
+time to create normal Graph 727.975
+Time to create Complex graph : 836.313
+Baseline computational cost: 5.521
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 564.792
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 46
+Time to create Baseline graph (nodes with bigger Rate): 491.571
+time to create normal Graph 758.334
+Time to create Complex graph : 848.481
+Baseline computational cost: 5.376
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 632.001
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 47
+Time to create Baseline graph (nodes with bigger Rate): 506.678
+time to create normal Graph 762.587
+Time to create Complex graph : 917.99
+Baseline computational cost: 5.877
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 626.391
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 48
+Time to create Baseline graph (nodes with bigger Rate): 499.069
+time to create normal Graph 739.276
+Time to create Complex graph : 930.559
+Baseline computational cost: 6.166
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 617.183
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 49
+Time to create Baseline graph (nodes with bigger Rate): 490.741
+time to create normal Graph 731.085
+Time to create Complex graph : 964.674
+Baseline computational cost: 6.234
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 669.012
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 50
+Time to create Baseline graph (nodes with bigger Rate): 488.366
+time to create normal Graph 737.056
+Time to create Complex graph : 998.196
+Baseline computational cost: 5.985
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 730.553
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 51
+Time to create Baseline graph (nodes with bigger Rate): 502.257
+time to create normal Graph 764.496
+Time to create Complex graph : 1122.08
+Baseline computational cost: 5.507
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 744.921
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 52
+Time to create Baseline graph (nodes with bigger Rate): 497.671
+time to create normal Graph 745.373
+Time to create Complex graph : 1148.63
+Baseline computational cost: 5.252
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 754.341
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 53
+Time to create Baseline graph (nodes with bigger Rate): 506.436
+time to create normal Graph 761.259
+Time to create Complex graph : 1204.73
+Baseline computational cost: 5.286
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 760.987
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 54
+Time to create Baseline graph (nodes with bigger Rate): 482.399
+time to create normal Graph 757.021
+Time to create Complex graph : 1261.54
+Baseline computational cost: 5.34
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 808.419
+Complex transmittion cost : 0
+Complex path cost : 97
+Buffer 55
+Time to create Baseline graph (nodes with bigger Rate): 489.37
+time to create normal Graph 739.637
+Time to create Complex graph : 1264.41
+Baseline computational cost: 5.396
+Baseline transmition cost : 12
+Baseline path cost : 123
+Complex computational time: 906.211
+Complex transmittion cost : 0
+Complex path cost : 97

@@ -11,7 +11,6 @@
 #include "ComplexPlanner.h"
 #include "planners/ThetaStarPlanner.h"
 #include "planners/BaseLinePlanner.h"
-#include "view/OpenCvView.h"
 
 void printMat(MatrixDyn* mat){
 
@@ -56,7 +55,7 @@ void testFixed8Base(){
 
 				planner::GridPlanner plan(&gridMap);
 				plan.createGraph();
-				for(int bufferTest1=1;bufferTest1<=60;bufferTest1++){
+				for(int bufferTest1=1;bufferTest1<=55;bufferTest1++){
 						myfile3<<"Buffer "<<bufferTest1<<std::endl;
 						planner::Baseline baseLTest(&gridMap,baseUnit,baseRate,bufferTest1,&myfile3,&basePlan);
 								baseLTest.createGraph();
@@ -79,45 +78,59 @@ void testFixed8Base(){
 
 
 void testFixed2Base(){
-	   int baseUnit=8;
-	int baseRate2=2;
-	MatrixDyn bl(75,100);
-		FileReader r;
-		r.reader(&bl);
-	    MatrixDyn mat2(75,100);
-		CommMap grid2(&mat2);
-		std::vector<Cell> c;
-		std::map<Cell,int> buffV;
-		xml::xmlParser parse2;
-		parse2.parse();
-		grid2.setMatrix(parse2.getAntenne(),baseRate2);
-		//create debug map which the actual map that the solver uses to get the information about cells
-		DebugMap map2(&bl,&grid2);
-		//create grid
-		Grid gridMap2(map2,75,100);
-		planner::GridPlanner plan2(&gridMap2);
-				plan2.createGraph();
+	std::ofstream myfile;
+myfile.open("FBaseRate2");
+int baseUnit=8;
+	int baseRate=2;
+	//const int buffer= 15;
+//create communication map which has the information about the antennas and the speed of transmittion in
+//different cells
+std::cout<<"here"<<std::endl;
+MatrixDyn mat(75,100);
+CommMap grid(&mat);
+std::cout<<"mod"<<std::endl;
+xml::xmlParser parse;
+parse.parse();
+grid.setMatrix(parse.getAntenne(),baseRate);
+//create blocked matrix which has the information about blocked and free cells
+MatrixDyn bl(75,100);
+FileReader r;
+r.reader(&bl);
+//create debug map which the actual map that the solver uses to get the information about cells
+DebugMap map(&bl,&grid);
+//create grid
+Grid gridMap(map,75,100);
 
-		planner::BaseLinePlanner basePlan2(&gridMap2,baseUnit);
-		basePlan2.createGraph();
+planner::Planner pl(&gridMap);
+planner::BaseLinePlanner basePlan(&gridMap,baseUnit);
+basePlan.createGraph();
 
-	std::ofstream myfile4;
-	    myfile4.open("FixedBaseRate2");
+planner::GridPlanner plan(&gridMap);
+plan.createGraph();
+//create complex planner one that uses theta* and the other that uses four way grid
+//planner::ComplexPlanner compPl(&gridMap,disPar,&planner,filePath);
 
-	for(int bufferTest2=1;bufferTest2<61;bufferTest2++){
-		myfile4<<"Buffer "<<bufferTest2<<std::endl;
-	planner::Baseline baseLTest(&gridMap2,baseUnit,baseRate2,bufferTest2,&myfile4,&basePlan2);
-		baseLTest.createGraph();
+srand(time(NULL));
+int x, y,xend,yend;
+std::vector<Cell> sd;
+std::vector<Cell> c;
+std::map<Cell,int> buffV;
+int counter=0;
+	for(int buffer=1;buffer<51;buffer++){
+		myfile<<"Buffer "<<buffer<<std::endl;
+		planner::Baseline baseL(&gridMap,baseUnit,baseRate,buffer,&myfile,&basePlan);
+		baseL.createGraph();
 
-		planner::ComplexPlanner grPlanner(&gridMap2,baseUnit,baseRate2,&plan2,bufferTest2,&myfile4);
+		planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,buffer,&myfile);
 
+		//compPl.createGraphs();
 		grPlanner.createGraphs();
-		if(!baseLTest.makePlan(std::make_pair(27,96),std::make_pair(68,40),c))
-			myfile4<<"No solution baseline"<<std::endl;
-					if(!grPlanner.makePlan(std::make_pair(27,96),std::make_pair(68,40),c,buffV))
-						myfile4<<"No solution Complex Case"<<std::endl;
-	}
 
+		if(!baseL.makePlan(std::make_pair(27,96),std::make_pair(68,40),sd))
+			myfile<<"No Solution baseline"<<std::endl;
+		if(!grPlanner.makePlan(std::make_pair(27,96),std::make_pair(68,40),c,buffV))
+			myfile<<"No Solution Complex Case"<<std::endl;
+	}
 }
 
 
@@ -158,7 +171,8 @@ void testRandom8Base(){
 
 	//Test random Points
 			//Second Set
-	for(int buff=10;buff<=60;buff=buff+10){
+
+	for(int buff=10;buff<=50;buff=buff+10){
 		counter=0;
 		myfile<<"Buffer Size "<<buff<<std::endl;
 		std::cout<<"Buffer Size "<<buff<<std::endl;
@@ -169,14 +183,16 @@ void testRandom8Base(){
 
 		//compPl.createGraphs();
 		grPlanner.createGraphs();
+		int istanza=1;
+			while(counter<100){
 
-	while(counter<100){
 
 			x = rand()%75;
 			y = rand()%100;
 			xend=rand()%75;
 			yend=rand()%100;
 			if(gridMap.isFree(std::make_pair(x,y))&&gridMap.isFree(std::make_pair(xend,yend))){
+				myfile<<"Istanza :"<<istanza<<std::endl;
 
 				if(!grPlanner.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c,buffV)){
 					myfile<<"No Solution Complex Case"<<std::endl;
@@ -185,8 +201,10 @@ void testRandom8Base(){
 					myfile<<"No Solution Baseline"<<std::endl;
 				}
 				counter++;
+				istanza++;
 				std::cout<<"END"<<std::endl;
 			}
+
 	}
 	}
 }
@@ -223,7 +241,7 @@ void testRandom2Base(){
 		int counter;
 		int x,y,xend,yend;
 
-		for(int buff=10;buff<=60;buff=buff+10){
+		for(int buff=40;buff<=40;buff=buff+10){
 			std::cout<<buff<<std::endl;
 			counter=0;
 			myfile2<<"Buffer Size "<<buff<<std::endl;
@@ -234,14 +252,15 @@ void testRandom2Base(){
 
 			//compPl.createGraphs();
 			grPlanner.createGraphs();
-
-		while(counter<100){
+			int istanza=21;
+		while(counter<101){
 
 				x = rand()%75;
 				y = rand()%100;
 				xend=rand()%75;
 				yend=rand()%100;
 				if(gridMap2.isFree(std::make_pair(x,y))&&gridMap2.isFree(std::make_pair(xend,yend))){
+					 myfile2<<"Istanza :"<<istanza<<std::endl;
 
 					if(!grPlanner.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c,buffV)){
 						myfile2<<"No Solution Complex Case"<<std::endl;
@@ -250,6 +269,7 @@ void testRandom2Base(){
 						myfile2<<"No Solution Baseline"<<std::endl;
 					}
 					counter++;
+					istanza++;
 				}
 		}
 		}
@@ -260,17 +280,17 @@ void testRandom2Base(){
 
 int main(int argc, char* argv[])
 {
-	testRandom8Base();
-	testRandom2Base();
-	testFixed8Base();
-	testFixed2Base();
+	//testRandom8Base();
+	//testRandom2Base();
+	//testFixed8Base();
+	//testFixed2Base();
 
-	/*
+
 	std::ofstream myfile;
-    myfile.open("RandomBaseRate8");
+    myfile.open("r");
     int baseUnit=8;
     	int baseRate=2;
-    	const int buffer= 10;
+    	const int buffer= 15;
 	//create communication map which has the information about the antennas and the speed of transmittion in
     //different cells
     std::cout<<"here"<<std::endl;
@@ -307,6 +327,8 @@ int main(int argc, char* argv[])
 			baseL.createGraph();
 
 			planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,buffer,&myfile);
+			planner::ComplexPlanner grPlanner1(&gridMap,baseUnit,baseRate,&plan,buffer,&myfile);
+			planner::ComplexPlanner grPlanner2(&gridMap,baseUnit,baseRate,&plan,buffer,&myfile);
 
 			//compPl.createGraphs();
 			grPlanner.createGraphs();
@@ -317,12 +339,14 @@ int main(int argc, char* argv[])
 	view.setBlPlan(&basePlan);
 	//view.setComplexPlanner(&compPl);
 	view.setComGridPlanner(&grPlanner);
+	view.setComplexPlanner2(&grPlanner1);
+	view.setComplexPlanner3(&grPlanner2);
 	view.setMat(mat,bl);
 	if(view.Draw()){
 	    std::cout<<"success"<<std::endl;
 	}else{
 		std::cout<<"false"<<std::endl;
-	}*/
+	}
 
 
 

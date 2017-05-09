@@ -27,6 +27,9 @@ public:
 	void setVecSol(std::vector<Cell> vecSolution);
 	void setPlanner(planner::Planner* plan);
 	void setComplexPlanner(planner::ComplexPlanner* cmpPlaner);
+	void setComplexPlanner2(planner::ComplexPlanner* cmpPlaner);
+	void setComplexPlanner3(planner::ComplexPlanner* cmpPlaner);
+
 	void setComGridPlanner(planner::ComplexPlanner* grPlanner);
 	void setGridPlanner(planner::GridPlanner *pl);
 	void setBaselinePlanner(planner::Baseline *base);
@@ -94,6 +97,8 @@ private:
     planner::Planner* plan;
     planner::ComplexPlanner* complexPlan;
     planner::ComplexPlanner* grPlanner;
+    planner::ComplexPlanner* grPlanner1;
+
     planner::Baseline *baseline;
     planner::BaseLinePlanner *blPlan;
 
