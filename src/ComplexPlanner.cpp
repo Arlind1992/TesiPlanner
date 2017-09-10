@@ -67,11 +67,19 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 		  lemon::dim2::Point<int> p2=nodePoint[this->complexToNormal[prevNode]];
     	  startCell.first=p2.x;
     	  startCell.second=p2.y;
+
     	  this->planner->makePlan(startCell,endCell,vec,buffer);
+    	  vec.push_back(endCell);
     	  reverse(vec.begin(),vec.end());
+    	  vec.push_back(startCell);
+
     	  result.insert(result.end(),vec.begin(),vec.end());
+    	  for(Cell ll:vec)
+    	      	  std::cout<<"result ("<<ll.first<<","<<ll.second<<")"<<std::endl;
     	  vec.clear();
     	  movingTime=movingTime+this->lengthComplex[arc];
+
+
       }else{
     	  lemon::dim2::Point<int> p=this->nodePoint[this->complexToNormal[prevNode]];
     	  transmittionTime=transmittionTime+1;
@@ -89,7 +97,6 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     if(!isCommGoal){
     	this->graph.erase(cellNode[cgoal]);
     	this->cellNode.erase(cgoal);
-
     }
 
     this->lastNodeToNormal.clear();

@@ -30,5 +30,18 @@ void FileReader::reader(MatrixDyn* mat){
 	myfile.close();
 
 }
+void FileReader::loadConfig(int& br,int& bu,int& buffer,int& planner){
+	std::fstream myfile("projectFiles/configuration/config");
+    string line;
+	myfile>>line;
+	br=(int)line.at(line.length()-1)-(int)'0';
+	myfile>>line;
+	bu=(int)line.at(line.length()-1)-(int)'0';
+	myfile>>line;
+	buffer=(int)line.at(line.length()-1)-(int)'0'+10*((int)line.at(line.length()-2)-(int)'0');
+	myfile>>line;
+	planner=(int)line.at(line.length()-1)-(int)'0';
+
+}
 
 

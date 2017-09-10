@@ -44,7 +44,7 @@ public:
 
     void initialize(std::string name);
     virtual bool makePlan(Cell start,Cell goal,std::vector<Cell>& path,int buffer) override;
-
+    void makePlan(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances);
     ~ThetaStarPlanner();
 
 private:
@@ -53,6 +53,7 @@ private:
     void clearInstance();
     void displayClosed();
     void displayOpen();
+
 private:
 
 

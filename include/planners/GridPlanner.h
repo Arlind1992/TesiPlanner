@@ -18,11 +18,11 @@ class GridPlanner : public AbstractPlanner
 {
 public:
 	GridPlanner(Grid* grid):grid(grid),length(graph),nodePoint(graph){
-
+		createGraph();
 	}
     ~GridPlanner();
 	virtual bool makePlan(Cell start,Cell goal,std::vector<Cell>& path,int buffer) override;
-	void createGraph();
+
 	void makePlan(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances);
 private:
 
@@ -36,6 +36,7 @@ private:
 	void createCellNode();
 	bool searchNode(std::vector<GrGraph::Node> list,GrGraph::Node tocheck);
 	GrGraph::Node getNodeFromCell(Cell s);
+	void createGraph();
 };
 
 } /* namespace planner */

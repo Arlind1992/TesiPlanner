@@ -104,7 +104,6 @@ bool planner::Baseline::makePlan(Cell cgoal,Cell cinit
 void planner::Baseline::createGraph(){
 
 	int s1=clock();
-	std::cout<<"change"<<std::endl;
 	this->createNodes();
 	this->createCellNode();
 	this->connectNodes();
@@ -203,66 +202,6 @@ void planner::Baseline::connectCells(Cell start,Cell goal){
 		}
 }
 
-/*
-double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost){
-	std::vector<int> buffState;
-	double toReturn=0;
-	for(int i=0;i<commCells.size();i++)
-		buffState.push_back(0);
-
-	for(int j=0;j<commCells.size()-1;j++){
-		buffState.at(j+1)=buffState.at(j)+cost.at(j);
-	}
-	for(int z=0;z<commCells.size();z++){
-		if(buffState.at(z)>buffer*baseUnit){
-			int toUpload=buffState.at(z)-buffer*baseUnit;
-			int k;
-			int sum=0;
-			for(k=z-1;k>0;k--){
-				sum=sum+cost.at(k);
-				if(sum>buffer*baseUnit)
-					break;
-			}
-
-			std::vector<int> alreadyUp;
-			while(toUpload!=0){
-				int b;
-				for(b=k;b<z;b++){
-					if(buffState.at(b)!=0)
-						break;
-				}
-				int fastCell=b;
-				for(int g=b;g<z;g++){
-					if(grid->getSpeed(commCells.at(g))>grid->getSpeed(commCells.at(fastCell))&&buffState.at(g)!=0){
-						fastCell=g;
-					}
-				}
-				int toSubtract;
-				if(toUpload>buffState.at(fastCell)){
-					toSubtract=buffState.at(fastCell);
-				}else{
-					toSubtract=toUpload;
-				}
-				toReturn=toReturn+toSubtract/((double)grid->getSpeed(commCells.at(fastCell))-baseUnit);
-				toUpload=toUpload-toSubtract;
-				for(int d=fastCell;d<commCells.size();d++){
-					buffState.at(d)=buffState.at(d)-toSubtract;
-				}
-
-			}
-
-		}
-	}
-	std::cout<<"buffer state"<<std::endl;
-	for(int bmn=0;bmn<buffState.size();bmn++){
-		std::cout<<buffState.at(bmn)<<std::endl;
-	}
-	std::cout<<"transmission time "<< toReturn<<std::endl;
-	std::cout<<"end State"<<std::endl;
-
-	return toReturn;
-
-}*/
 double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost){
          std::vector<int> modifiedCosts;
          for(int i=0;i<commCells.size()-1;i++){
@@ -289,10 +228,7 @@ double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost
          			buffState.at(j+1)=0;
          		}
          	}
-         	std::cout<<"START"<<std::endl;
-         	for(int t=0;t<buffState.size();t++){
-         		std::cout<<"buff state"<<buffState.at(t)<<std::endl;
-         	}
+
          int currentPos=1;
          while(needToUpload(buffState)){
         	 int toUp=0;
@@ -329,10 +265,7 @@ double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost
         	 	 }
         	 	 currentPos=z;
         	 }
-        	 std::cout<<"Start"<<std::endl;
-        	 for(int t=0;t<buffState.size();t++){
-        	          		std::cout<<"Up buff state"<<buffState.at(t)<<std::endl;
-        	          	}
+
          }
          return toReturn;
 
@@ -359,7 +292,6 @@ void Baseline::updateBufferStates(std::vector<int>* buffStates,int uploaded,int 
 }
 int Baseline::calculatePathCost(std::vector<int> path,int beg,int end){
 	int c=0;
-	std::cout<<"beg "<<beg<<" end "<<end<<std::endl;
 	for(int i=beg;i<end;i++){
 		c=c+path.at(i);
 	}

@@ -30,8 +30,7 @@ public:
 	void setComGridPlanner(planner::ComplexPlanner* grPlanner);
 	void setGridPlanner(planner::GridPlanner *pl);
 	void setBaselinePlanner(planner::Baseline *base);
-	void setBlPlan(planner::BaseLinePlanner *pl);
-
+	rrt_planning::ThetaStarPlanner* pl;
 private:
 	//Drawing details attribute
 	int width;
@@ -59,11 +58,7 @@ private:
 		//with the planner
 	MatrixDyn toDraw;
 	MatrixDyn blocked;
-	std::vector<Cell> vecSolution;
-	std::vector<Cell> vecSolutionComplex;
-	std::vector<Cell> vecGrSolution;
 	std::vector<Cell> vecGrComplexSolution;
-	std::vector<Cell> blSolution;
 	std::vector<Cell> baselineSolution;
 	bool solution;
 	bool complexSolution;
@@ -91,11 +86,8 @@ private:
     void handleInput(SDL_Event event);
 
     //Planner
-    planner::Planner* plan;
-    planner::ComplexPlanner* complexPlan;
     planner::ComplexPlanner* grPlanner;
     planner::Baseline *baseline;
-    planner::BaseLinePlanner *blPlan;
 
     void drawComplexSolution(SDL_Surface *screen,std::vector<Cell> vec,std::vector<int> bufferSt);
     void addNumberForCell(SDL_Surface *screen,Cell s,int i);

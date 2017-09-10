@@ -74,10 +74,7 @@ bool ThetaStarPlanner::makePlan(Cell start,Cell goal,std::vector<Cell>& path,int
 
         if(s == s_goal) break;
 
-        //TODO ask it should work
-        if(grid->heuristic(s,s_goal)>buffer){
-        	return false;
-        }
+
 
         for(auto s_next: grid->getNeighbors(s))
         	if(closed.count(s_next) == 0)
@@ -168,6 +165,17 @@ ThetaStarPlanner::~ThetaStarPlanner()
 {
 
 }
+void ThetaStarPlanner::makePlan(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances){
+	for(Cell s:grid->getCommCells(start,buffer)){
+		std::vector<Cell> plan;
+		makePlan(start,s,plan,buffer);
+		int cost=(int)grid->pathCost(plan)+1;
+		if(grid->pathCost(plan)<=buffer){
+			cells.push_back(s);
+			distances.push_back(cost);
+		}
+	}
 
+}
 
 };

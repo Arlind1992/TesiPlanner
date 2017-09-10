@@ -20,8 +20,7 @@ src/view/View.o: ../src/view/View.cpp \
  /home/arlind/git/TesiPlanner/include/planners/AbstractPlanner.h \
  /home/arlind/git/TesiPlanner/include/Baseline.h \
  /home/arlind/git/TesiPlanner/include/planners/BaseLinePlanner.h \
- /home/arlind/git/TesiPlanner/include/planners/BaseLinePlanner.h \
- /home/arlind/git/TesiPlanner/include/view/OpenCvView.h
+ /home/arlind/git/TesiPlanner/include/planners/BaseLinePlanner.h
 
 /home/arlind/git/TesiPlanner/include/map/CommMap.h:
 
@@ -66,5 +65,3 @@ src/view/View.o: ../src/view/View.cpp \
 /home/arlind/git/TesiPlanner/include/planners/BaseLinePlanner.h:
 
 /home/arlind/git/TesiPlanner/include/planners/BaseLinePlanner.h:
-
-/home/arlind/git/TesiPlanner/include/view/OpenCvView.h:

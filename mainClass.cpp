@@ -11,7 +11,6 @@
 #include "ComplexPlanner.h"
 #include "planners/ThetaStarPlanner.h"
 #include "planners/BaseLinePlanner.h"
-#include "view/OpenCvView.h"
 
 void printMat(MatrixDyn* mat){
 
@@ -22,6 +21,7 @@ void printMat(MatrixDyn* mat){
 		}
 	}
 }
+/*
 void testFixed8Base(){
 	std::ofstream myfile;
 		std::vector<Cell> c;
@@ -54,8 +54,9 @@ void testFixed8Base(){
 				planner::BaseLinePlanner basePlan(&gridMap,baseUnit);
 				basePlan.createGraph();
 
-				planner::GridPlanner plan(&gridMap);
-				plan.createGraph();
+				//planner::GridPlanner plan(&gridMap);
+				rrt_planning::ThetaStarPlanner plan(&gridMap);
+				//plan.createGraph();
 				for(int bufferTest1=1;bufferTest1<=60;bufferTest1++){
 						myfile3<<"Buffer "<<bufferTest1<<std::endl;
 						planner::Baseline baseLTest(&gridMap,baseUnit,baseRate,bufferTest1,&myfile3,&basePlan);
@@ -165,7 +166,7 @@ void testRandom8Base(){
 	planner::Baseline baseLTest(&gridMap,baseUnit,baseRate,buff,&myfile,&basePlan);
 		baseLTest.createGraph();
 
-		planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,buff,&myfile);
+		//planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,buff,&myfile);
 
 		//compPl.createGraphs();
 		grPlanner.createGraphs();
@@ -255,28 +256,27 @@ void testRandom2Base(){
 		}
 }
 
-
+*/
 
 
 int main(int argc, char* argv[])
 {
 	//testRandom8Base();
-	testRandom2Base();
+	//testRandom2Base();
 	//testFixed8Base();
 	//testFixed2Base();
 
-	/*
+
 	std::ofstream myfile;
     myfile.open("RandomBaseRate8");
-    int baseUnit=8;
-    	int baseRate=2;
-    	const int buffer= 10;
+    int baseUnit;
+    	int baseRate;
+    	int buffer;
+    	int chosenPlan;
 	//create communication map which has the information about the antennas and the speed of transmittion in
     //different cells
-    std::cout<<"here"<<std::endl;
     MatrixDyn mat(75,100);
 	CommMap grid(&mat);
-	std::cout<<"mod"<<std::endl;
 	xml::xmlParser parse;
 	parse.parse();
 	grid.setMatrix(parse.getAntenne(),baseRate);
@@ -284,17 +284,19 @@ int main(int argc, char* argv[])
 	MatrixDyn bl(75,100);
 	FileReader r;
 	r.reader(&bl);
+	r.loadConfig(baseRate,baseUnit,buffer,chosenPlan);
+	std::cout<<"read config buffer"<<buffer<<std::endl;
+
 	//create debug map which the actual map that the solver uses to get the information about cells
 	DebugMap map(&bl,&grid);
 	//create grid
 	Grid gridMap(map,75,100);
 
-	planner::Planner pl(&gridMap);
 	planner::BaseLinePlanner basePlan(&gridMap,baseUnit);
 	basePlan.createGraph();
 
 	planner::GridPlanner plan(&gridMap);
-	plan.createGraph();
+	//plan.createGraph();
 	//create complex planner one that uses theta* and the other that uses four way grid
 //planner::ComplexPlanner compPl(&gridMap,disPar,&planner,filePath);
 
@@ -312,17 +314,16 @@ int main(int argc, char* argv[])
 			grPlanner.createGraphs();
 	//create the view
 	view::View view;
-	view.setPlanner(&pl);
 	view.setBaselinePlanner(&baseL);
-	view.setBlPlan(&basePlan);
 	//view.setComplexPlanner(&compPl);
 	view.setComGridPlanner(&grPlanner);
 	view.setMat(mat,bl);
+	//view.pl=&plan;
 	if(view.Draw()){
 	    std::cout<<"success"<<std::endl;
 	}else{
 		std::cout<<"false"<<std::endl;
-	}*/
+	}
 
 
 

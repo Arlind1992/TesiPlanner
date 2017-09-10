@@ -4,15 +4,12 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/view/OpenCvView.cpp \
 ../src/view/View.cpp 
 
 OBJS += \
-./src/view/OpenCvView.o \
 ./src/view/View.o 
 
 CPP_DEPS += \
-./src/view/OpenCvView.d \
 ./src/view/View.d 
 
 

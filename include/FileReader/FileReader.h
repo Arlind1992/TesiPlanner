@@ -15,6 +15,7 @@ public:
 	FileReader();
 	virtual ~FileReader();
 	void reader(MatrixDyn* mat);
+	void loadConfig(int& baseRate,int& baseUnit,int& buffer,int& planner);
 };
 
 #endif /* TESTFILES_FILEREADER_H_ */

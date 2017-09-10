@@ -65,6 +65,7 @@ private:
 
 	    //Planners
 	    GridPlanner* planner;
+	   // Grid* planner;
 	    //maps for each node for different graphs
 	    DiGraph::ArcMap<int> length;
 	    DiGraph::NodeMap<lemon::dim2::Point<int> > nodePoint;

@@ -25,7 +25,7 @@ bool CommMap::getSpeed(int x,int y,int* speed){
 void CommMap::setSpeed(int xCenter,int yCenter,int speed,bool discreteCase){
 	int starti,startj,endi,endj;
 		int maxRad=20;
-		std::cout<<maxRad<<std::endl;
+
 			if(xCenter-maxRad<0){
 					starti=0;
 				}else{
@@ -47,7 +47,7 @@ void CommMap::setSpeed(int xCenter,int yCenter,int speed,bool discreteCase){
 						endj=yCenter+maxRad;
 				}
 
-			//Given (X,Y), retrive all the eight-connected free cells
+
 			for(int i = starti; i <= endi; i++)
 			    for(int j = startj; j <= endj; j++)
 			    {
