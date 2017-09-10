@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+Buffer Size 40
+Time to create Baseline graph (nodes with bigger Rate): 3817.87
+time to create normal Graph 1780.33
+Time to create Complex graph : 9988.83
+
+Istanza :101
+=======
 Buffer Size 10
 Time to create second graph (nodes with bigger Rate): 4124.66
 time to create normal Graph 2214.66
@@ -871,3 +879,4 @@ Baseline computational cost: 42.739
 Baseline transmition cost : 0
 Baseline path cost : 90
 Buffer Size 30
+>>>>>>> branch 'BaselineNew06052017' of https://github.com/Arlind1992/TesiPlanner.git

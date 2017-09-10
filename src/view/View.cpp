@@ -169,6 +169,7 @@ void View::DrawScreen(SDL_Surface* screen)
 	    if(this->grCompSolution)
 	    	this->drawSolution(screen,this->vecGrComplexSolution,2);
 
+
 	    if(SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
 
 
@@ -310,7 +311,6 @@ void View::handleInput(SDL_Event event){
 					endSelected=true;
 					//find a way to select the Tmax
 					//this->solution=this->complexPlan->makeSimplePlan(end,start,this->vecSolution);
-					//this->complexSolution=this->complexPlan->makePlan(end,start,this->vecSolutionComplex);
 					std::cout<<"start ("<<start.first<<","<<start.second<<")"<<std::endl;
 					std::cout<<"end ("<<end.first<<","<<end.second<<")"<<std::endl;
 					std::map<Cell,int> stateOfBuffer;
@@ -342,6 +342,7 @@ void View::handleInput(SDL_Event event){
 			}
 		}
 }
+
 
 
 void View::setComGridPlanner(planner::ComplexPlanner* grPlanner){

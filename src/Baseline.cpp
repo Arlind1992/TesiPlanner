@@ -92,10 +92,7 @@ bool planner::Baseline::makePlan(Cell cgoal,Cell cinit
 		   	this->graph.erase(end);
 		   	cellNodes.erase(cgoal);
 	    }
-	    if(std::isinf(transmittionTime)||transmittionTime<0){
-	       	(*myfile)<<"InfiniteCase Cell ("<<cinit.first<<","<<cinit.second<<")-("<<cgoal.first<<","<<cgoal.second<<")"<<std::endl;
-	    }
-		(*myfile)<<"Baseline computational cost: "<<((stop_s-start_s)/double(CLOCKS_PER_SEC)*1000) <<"\n";
+	   (*myfile)<<"Baseline computational cost: "<<((stop_s-start_s)/double(CLOCKS_PER_SEC)*1000) <<"\n";
 		(*myfile)<<"Baseline transmition cost : "<<transmittionTime<<"\n";
 		(*myfile)<<"Baseline path cost : "<<movingTime<<"\n";
 		return true;
@@ -108,7 +105,7 @@ void planner::Baseline::createGraph(){
 	this->createCellNode();
 	this->connectNodes();
 	int s2=clock();
-	(*myfile)<<"Time to create second graph (nodes with bigger Rate): "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
+	(*myfile)<<"Time to create Baseline graph (nodes with bigger Rate): "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
 
 }
 //
@@ -229,7 +226,8 @@ double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost
          		}
          	}
 
-         int currentPos=1;
+         int currentPos=0;
+
          while(needToUpload(buffState)){
         	 int toUp=0;
         	 int z=currentPos;
@@ -241,7 +239,7 @@ double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost
         	 if(z>=commCells.size()-1){
         		 toUp=buffState.at(currentPos);
         		 for(int k=currentPos;k<commCells.size();k++){
-        			 if(modifiedCosts.at(k)<0){
+        			 if(modifiedCosts.at(k)<0&&calculatePathCost(modifiedCosts,currentPos,k)<=buffer*baseUnit){
         				 toUp=toUp+modifiedCosts.at(k);
         			 }else{
         				 if(calculatePathCost(modifiedCosts,currentPos,k)>buffer*baseUnit){
@@ -265,7 +263,6 @@ double Baseline::calculateTime(std::vector<Cell> commCells,std::vector<int> cost
         	 	 }
         	 	 currentPos=z;
         	 }
-
          }
          return toReturn;
 
