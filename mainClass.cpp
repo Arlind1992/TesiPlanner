@@ -307,8 +307,6 @@ int main(int argc, char* argv[])
 	FileReader r;
 	r.reader(&bl);
 	r.loadConfig(baseRate,baseUnit,buffer,chosenPlan);
-	std::cout<<"read config buffer"<<buffer<<std::endl;
-
 	//create debug map which the actual map that the solver uses to get the information about cells
 	DebugMap map(&bl,&grid);
 	//create grid
@@ -318,22 +316,16 @@ int main(int argc, char* argv[])
 	basePlan.createGraph();
 
 	planner::GridPlanner plan(&gridMap);
-	plan.createGraph();
-	//create complex planner one that uses theta* and the other that uses four way grid
-    planner::ComplexPlanner compPl(&gridMap,baseUnit,baseRate,buffer,&planner,myfile);
-
-	srand(time(NULL));
-	int x, y,xend,yend;
-	std::vector<Cell> c;
-	std::map<Cell,int> buffV;
-	int counter=0;
+    planner::ComplexPlanner compPl(&gridMap,baseUnit,baseRate,&plan,buffer,&myfile);
+    		compPl.createGraphs();
 	planner::Baseline baseL(&gridMap,baseUnit,baseRate,buffer,&myfile,&basePlan);
 			baseL.createGraph();
 
 	//create the view
 	view::View view;
 	view.setBaselinePlanner(&baseL);
-	view.setComplexPlanner(&compPl);
+	view.setComGridPlanner(&compPl);
+	view.setMat(mat,bl);
 	//view.pl=&plan;
 	if(view.Draw()){
 	    std::cout<<"success"<<std::endl;

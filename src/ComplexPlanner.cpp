@@ -74,8 +74,6 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     	  vec.push_back(startCell);
 
     	  result.insert(result.end(),vec.begin(),vec.end());
-    	  for(Cell ll:vec)
-    	      	  std::cout<<"result ("<<ll.first<<","<<ll.second<<")"<<std::endl;
     	  vec.clear();
     	  movingTime=movingTime+this->lengthComplex[arc];
 
@@ -260,7 +258,7 @@ void planner::ComplexPlanner::createArcsSameNodes(){
 		 * complex case
 		 */
 		for(DiGraph::NodeIt b(graph); b != INVALID; ++b ){
-				int speed=(this->grid->getSpeed(std::make_pair(this->nodePoint[b].x,this->nodePoint[b].y))/this->baseRate)-baseUnit;
+				int speed=(this->grid->getSpeed(std::make_pair(this->nodePoint[b].x,this->nodePoint[b].y))/this->baseRate)-baseUnit/baseRate;
 				if(speed<=0){
 					continue;
 				}
@@ -304,14 +302,12 @@ void planner::ComplexPlanner::connectGoalCellComplex(Cell end ){
 			for(int j=0;j<(1+(buffer-distance))*(this->baseUnit/this->baseRate);j++){
 					DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecSourceNodes.at(j),endComplexNode);
 					this->lengthComplex[addedArc]=distance;
-					//this->isMoving[addedArc]=true;
 				}
 
 			}
 		}
 }
 
-//Fixed Maybe
 void planner::ComplexPlanner::connectDifferentNodes(){
 		/*
 		 * for loop that creates the connections between the nodes in the
@@ -335,23 +331,19 @@ void planner::ComplexPlanner::connectDifferentNodes(){
 						speed=grid->getSpeed(s2);
 						}
 						int cof=(this->baseUnit-speed)/baseRate;
-						//TODO modify to transmit while moving
 						if(cof>0){
 							for(int j=0;j<numberOfNodes-cof;j++){
 							DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecStartNodes.at(j),vecEndNodes.at(j+cof));
 							this->lengthComplex[addedArc]=distance;
-							//this->isMoving[addedArc]=true;
 							}
 						}else{
 							for(int z=this->numberOfNodes-1;z>=0;z--){
 								if(z+cof>=0){
 								DiGraph::Arc addArc=this->complexCaseGraph.addArc(vecStartNodes.at(z),vecEndNodes.at(z+cof));
 								this->lengthComplex[addArc]=1;
-							//	this->isMoving[addArc]=true;
 								}else{
 								DiGraph::Arc addArc=this->complexCaseGraph.addArc(vecStartNodes.at(z),vecEndNodes.at(0));
 						    	this->lengthComplex[addArc]=1;
-							//	this->isMoving[addArc]=true;
 								}
 							}
 						}
@@ -361,7 +353,6 @@ void planner::ComplexPlanner::connectDifferentNodes(){
 						for(int j=0;j<numberOfNodes-(distance*(this->baseUnit/this->baseRate));j++){
 							DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecStartNodes.at(j),vecEndNodes.at(j+(distance*(this->baseUnit/baseRate))));
 							this->lengthComplex[addedArc]=distance;
-						//	this->isMoving[addedArc]=true;
 						}
 					 }
 					}
@@ -390,7 +381,6 @@ void planner::ComplexPlanner::createNodes(){
 			}
 		}
 	}
-	std::cout<<"on Create "<<counter<<std::endl;
 }
 
 void planner::ComplexPlanner::createCellNode(){
@@ -512,25 +502,12 @@ void planner::ComplexPlanner::connectComplexCells(Cell start,Cell goal){
 }
 
 void planner::ComplexPlanner::createGraphs(){
-	/*if(FILE *file = fopen(filePath, "r")) {
-
-		fclose(file);
-			DigraphReader<DiGraph>( graph,filePath).nodeMap("Point",this->nodePoint).arcMap("length",this->length).run();
-			this->createCellNode();
-		}else{
-		*/	 int s4=clock();
+ int s4=clock();
 			this->createNormalGraph();
 			int s3=clock();
-			std::cout<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<std::endl;
 			(*myfile)<<"time to create normal Graph "<<(s3-s4)/double(CLOCKS_PER_SEC)*1000<<"\n";
-	//}
-	std::cout<<"Arcs = "<<lemon::countArcs(graph)<<" gr "<<sizeof(DiGraph::Arc)<<std::endl;
-	std::cout<<"Nodes = "<<lemon::countNodes(graph)<<" gr "<<sizeof(DiGraph::Node)<<std::endl;
 	int s1=clock();
 	this->createComplexGraph();
-	std::cout<<"change"<<std::endl;
-	std::cout<<"Arcs C= "<<lemon::countArcs(complexCaseGraph)<<std::endl;
-		std::cout<<"Nodes C= "<<lemon::countNodes(complexCaseGraph)<<std::endl;
 
 	int s2=clock();
 	(*myfile)<<"Time to create Complex graph : "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
