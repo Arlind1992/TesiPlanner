@@ -69,7 +69,7 @@ bool View::Draw(){
 
 
 
-			         DrawScreen(screen);
+			         DrawScreenSameBaseLine(screen);
 			         SDL_UpdateWindowSurface( window );
 			         if(this->startSelected){
 			        	 if(this->blocked(start.first,start.second)==1){
@@ -99,7 +99,7 @@ bool View::Draw(){
 			                       keypress = 1;
 			                       break;
 			                  case SDL_MOUSEBUTTONDOWN:
-			                	  this->handleInput(event);
+			                	  this->handleInputMultipleBaseline(event);
 			                	  if(this->endSelected&&!this->solution){
 			                		  SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,"","Solution Not Found",window);
 			                		  this->endMessageShown=false;
@@ -168,6 +168,30 @@ void View::DrawScreen(SDL_Surface* screen)
 
 	    if(this->grCompSolution)
 	    	this->drawSolution(screen,this->vecGrComplexSolution,2);
+
+
+	    if(SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
+
+
+	}
+
+void View::DrawScreenSameBaseLine(SDL_Surface* screen)
+	{
+
+	    if(SDL_MUSTLOCK(screen))
+	    {
+	        if(SDL_LockSurface(screen) < 0) return;
+	    }
+
+	    drawMat(screen);
+	    if(this->baselineSol)
+	    	this->drawSolution(screen,this->baselineSolution,1);
+
+	    if(this->baselineSol)
+	    	this->drawSolution(screen,this->baselineSolution2,2);
+
+	    if(this->baselineSol)
+	    	this->drawSolution(screen,this->baselineSolution3,4);
 
 
 	    if(SDL_MUSTLOCK(screen)) SDL_UnlockSurface(screen);
@@ -261,7 +285,7 @@ void View::drawLine(SDL_Surface* screen,int y1,int x1,int y2,int x2,int complex)
 	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 255,255, 0));
 	        		break;
 	        	case 4:
-	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 127,0, 255));
+	        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 165,42, 42));
 	        		break;
 	        	}
 	        }
@@ -281,7 +305,7 @@ void View::drawLine(SDL_Surface* screen,int y1,int x1,int y2,int x2,int complex)
 	        		        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 255,255, 0));
 	        		        	    break;
 	        		        	case 4:
-	        		        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 127,0, 255));
+	        		        		SDL_FillRect(screen,&r, SDL_MapRGB(screen->format, 165,42, 42));
 	        		        		break;
 	        		        	}
 	        }
@@ -342,6 +366,37 @@ void View::handleInput(SDL_Event event){
 			}
 		}
 }
+void View::handleInputMultipleBaseline(SDL_Event event){
+	int x=event.button.x;
+		int y=event.button.y;
+		if(event.button.button==SDL_BUTTON_LEFT){
+			if(!this->startSelected){
+
+				this->start=this->pixelToMatCoo(x,y);
+				startSelected=true;
+			}else{
+				if(!this->endSelected){
+					this->end=this->pixelToMatCoo(x,y);
+					endSelected=true;
+					//find a way to select the Tmax
+					//this->solution=this->complexPlan->makeSimplePlan(end,start,this->vecSolution);
+					std::cout<<"start ("<<start.first<<","<<start.second<<")"<<std::endl;
+					std::cout<<"end ("<<end.first<<","<<end.second<<")"<<std::endl;
+					std::map<Cell,int> stateOfBuffer;
+
+					this->baselineSol=this->baseline->makePlan(std::make_pair(27,96),std::make_pair(68,40),this->baselineSolution);
+					this->baselineSol2=this->baseline2->makePlan(std::make_pair(27,96),std::make_pair(68,40),this->baselineSolution2);
+					this->baselineSol3=this->baseline3->makePlan(std::make_pair(27,96),std::make_pair(68,40),this->baselineSolution3);
+
+
+					//this->baselineSol=this->pl->makePlan(end,start,this->baselineSolution,20);
+					this->solution=baselineSol;
+				}
+			}
+
+		}
+}
+
 
 
 
@@ -353,8 +408,12 @@ void View::addNumberForCell(SDL_Surface* screen,Cell s,int i){
 void View::setBaselinePlanner(Baseline * base){
 	this->baseline=base;
 }
-
-
+void View::setBaselinePlanner2(Baseline * base){
+	this->baseline2=base;
+}
+void View::setBaselinePlanner3(Baseline * base){
+	this->baseline3=base;
+}
 
 
 }

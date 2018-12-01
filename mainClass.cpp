@@ -26,9 +26,6 @@ void testFixed8Base(){
 	std::ofstream myfile;
 		std::vector<Cell> c;
 		srand(time(NULL));
-			int x, y,xend,yend;
-			std::map<Cell,int> buffV;
-			int counter=0;
 			std::ofstream myfile3;
 			    myfile3.open("FixedBaseRate8");
 			    int baseUnit=8;
@@ -54,37 +51,31 @@ void testFixed8Base(){
 				planner::BaseLinePlanner basePlan(&gridMap,baseUnit);
 				basePlan.createGraph();
 
-<<<<<<< HEAD
+
 				//planner::GridPlanner plan(&gridMap);
-				rrt_planning::ThetaStarPlanner plan(&gridMap);
 				//plan.createGraph();
-				for(int bufferTest1=1;bufferTest1<=60;bufferTest1++){
-=======
-				planner::GridPlanner plan(&gridMap);
-				plan.createGraph();
 				for(int bufferTest1=1;bufferTest1<=55;bufferTest1++){
->>>>>>> 3625b909741894676926e2a7c311c972179f8120
 						myfile3<<"Buffer "<<bufferTest1<<std::endl;
 						planner::Baseline baseLTest(&gridMap,baseUnit,baseRate,bufferTest1,&myfile3,&basePlan);
 								baseLTest.createGraph();
 
-								planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,bufferTest1,&myfile3);
+								//planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,bufferTest1,&myfile3);
 
 								//compPl.createGraphs();
-								grPlanner.createGraphs();
+								//grPlanner.createGraphs();
 								std::vector<Cell> vNew;
 
 								if(!baseLTest.makePlan(std::make_pair(27,96),std::make_pair(68,40),vNew))
 									myfile3<<"No Solution baseline"<<std::endl;
-								if(!grPlanner.makePlan(std::make_pair(27,96),std::make_pair(68,40),c,buffV))
-									myfile3<<"No Solution Complex Case"<<std::endl;
+								//if(!grPlanner.makePlan(std::make_pair(27,96),std::make_pair(68,40),c,buffV))
+									//myfile3<<"No Solution Complex Case"<<std::endl;
 					}
 
-}
+}*/
 
 
 
-
+/*
 void testFixed2Base(){
 	std::ofstream myfile;
 myfile.open("FBaseRate2");
@@ -288,6 +279,8 @@ void testRandom2Base(){
 
 int main(int argc, char* argv[])
 {
+	//testFixed8Base();
+
 
 	std::ofstream myfile;
     myfile.open("RandomBaseRate8");
@@ -301,30 +294,46 @@ int main(int argc, char* argv[])
 	CommMap grid(&mat);
 	xml::xmlParser parse;
 	parse.parse();
-	grid.setMatrix(parse.getAntenne(),baseRate);
 	//create blocked matrix which has the information about blocked and free cells
 	MatrixDyn bl(75,100);
 	FileReader r;
 	r.reader(&bl);
 	r.loadConfig(baseRate,baseUnit,buffer,chosenPlan);
+	grid.setMatrix(parse.getAntenne(),baseRate);
+
 	//create debug map which the actual map that the solver uses to get the information about cells
 	DebugMap map(&bl,&grid);
 	//create grid
 	Grid gridMap(map,75,100);
 
-	planner::BaseLinePlanner basePlan(&gridMap,baseUnit);
+	planner::GridPlanner plan(&gridMap);
+
+	planner::BaseLinePlanner basePlan(&gridMap,baseUnit,&plan);
 	basePlan.createGraph();
 
-	planner::GridPlanner plan(&gridMap);
-    planner::ComplexPlanner compPl(&gridMap,baseUnit,baseRate,&plan,buffer,&myfile);
-    		compPl.createGraphs();
-	planner::Baseline baseL(&gridMap,baseUnit,baseRate,buffer,&myfile,&basePlan);
+	planner::BaseLinePlanner basePlan3(&gridMap,baseUnit,&plan);
+	basePlan3.createGraph();
+
+	planner::BaseLinePlanner basePlan2(&gridMap,baseUnit,&plan);
+	basePlan2.createGraph();
+
+	//planner::ComplexPlanner compPl(&gridMap,baseUnit,baseRate,&plan,buffer,&myfile);
+    	//	compPl.createGraphs();21,29,41
+
+	planner::Baseline baseL(&gridMap,baseUnit,baseRate,17,&myfile,&basePlan,&plan);
 			baseL.createGraph();
+	planner::Baseline baseL2(&gridMap,baseUnit,baseRate,26,&myfile,&basePlan3,&plan);
+			baseL2.createGraph();
+	planner::Baseline baseL3(&gridMap,baseUnit,baseRate,40,&myfile,&basePlan2,&plan);
+			baseL3.createGraph();
 
 	//create the view
 	view::View view;
 	view.setBaselinePlanner(&baseL);
-	view.setComGridPlanner(&compPl);
+
+	view.setBaselinePlanner2(&baseL2);
+	view.setBaselinePlanner3(&baseL3);
+	//view.setComGridPlanner(&compPl);
 	view.setMat(mat,bl);
 	//view.pl=&plan;
 	if(view.Draw()){

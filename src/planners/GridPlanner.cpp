@@ -19,10 +19,10 @@ void GridPlanner::makePlan(Cell start,std::vector<Cell>& cells,int buffer,std::v
 	for(GrGraph::NodeIt n(graph);n!=INVALID;++n){
 		if(!grid->isComm(std::make_pair(nodePoint[n].x,nodePoint[n].y)))
 			continue;
-		if(solver.dist(n)<=buffer){
+		//if(solver.dist(n)<=buffer){
 			cells.push_back(std::make_pair(nodePoint[n].x,nodePoint[n].y));
 			distances.push_back(solver.dist(n));
-		}
+		//}
 	}
 
 

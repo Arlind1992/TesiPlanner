@@ -33,6 +33,8 @@ public:
 	void setComGridPlanner(planner::ComplexPlanner* grPlanner);
 	void setGridPlanner(planner::GridPlanner *pl);
 	void setBaselinePlanner(planner::Baseline *base);
+	void setBaselinePlanner2(planner::Baseline *base);
+	void setBaselinePlanner3(planner::Baseline *base);
 	rrt_planning::ThetaStarPlanner* pl;
 private:
 	//Drawing details attribute
@@ -63,10 +65,14 @@ private:
 	MatrixDyn blocked;
 	std::vector<Cell> vecGrComplexSolution;
 	std::vector<Cell> baselineSolution;
+	std::vector<Cell> baselineSolution2;
+	std::vector<Cell> baselineSolution3;
 	bool solution;
 	bool complexSolution;
 	bool grCompSolution;
 	bool baselineSol;
+	bool baselineSol2;
+	bool baselineSol3;
 	bool blSolutionVar;
 
 
@@ -74,7 +80,7 @@ private:
 	void DrawScreen(SDL_Surface* screen);
 	void drawMat(SDL_Surface *screen);
 	void drawSolution(SDL_Surface *screen,std::vector<Cell> vec,int complex);
-
+	void DrawScreenSameBaseLine(SDL_Surface* screen);
 
 	//Helper functions
 	//TODO function to be modified depending on the speed transmition for the
@@ -93,10 +99,11 @@ private:
     planner::ComplexPlanner* grPlanner1;
 
     planner::Baseline *baseline;
-
+    planner::Baseline *baseline2;
+    planner::Baseline *baseline3;
     void drawComplexSolution(SDL_Surface *screen,std::vector<Cell> vec,std::vector<int> bufferSt);
     void addNumberForCell(SDL_Surface *screen,Cell s,int i);
-
+    void handleInputMultipleBaseline(SDL_Event event);
 
 
 

@@ -11,6 +11,7 @@
 #include "grid/Grid.h"
 #include "grid/Cell.h"
 #include "planners/BaseLinePlanner.h"
+#include "planners/GridPlanner.h"
 #include <lemon/list_graph.h>
 #include <lemon/dim2.h>
 
@@ -22,12 +23,13 @@ using namespace lemon;
 namespace planner {
 class BaseLinePlanner {
 public:
-	BaseLinePlanner(rrt_planning::Grid* grid,int base):baseUnit(base),grid(grid),length(graphAllNodes),nodePoint(graphAllNodes){
+	BaseLinePlanner(rrt_planning::Grid* grid,int base,GridPlanner *grPlan):baseUnit(base),grid(grid),length(graphAllNodes),nodePoint(graphAllNodes),gridPlanner(grPlan){
 
 	}
 	virtual ~BaseLinePlanner();
 	bool makePlan(Cell start,Cell end,std::vector<Cell> &result,int *cost,int *bufferCost);
 		void makePlanAllNodes(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances);
+		void makePlanAllNodesDistanceAsCost(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances);
 		 void createGraph();
 private:
 
@@ -41,6 +43,7 @@ private:
 	LiGraph::EdgeMap<int> length;
 	LiGraph::NodeMap<lemon::dim2::Point<int> > nodePoint;
 	//std::map<Cell,LiGraph::Node> cellNodes;
+	GridPlanner *gridPlanner;
 
 
 	/*
@@ -48,6 +51,7 @@ private:
 		      * it to the graph attribute
 		      * or create it and then save it in a file
 		      */
+	void connectAllGraphNodesDistanceAsCost();
 
 	void createNodes();
 	void connectAllGraphNodes();

@@ -11,6 +11,7 @@
 #include "grid/Grid.h"
 #include "grid/Cell.h"
 #include "planners/BaseLinePlanner.h"
+#include "planners/GridPlanner.h"
 #include <lemon/list_graph.h>
 #include <lemon/dim2.h>
 #include <fstream>
@@ -21,7 +22,8 @@ namespace planner {
 
 class Baseline{
 public:
-	Baseline(rrt_planning::Grid* grid,int baseU,int baseR,const int buffer,std::ofstream* myfile,BaseLinePlanner *planner):buffer(buffer),grid(grid),blPlanner(planner),length(graph),nodePoint(graph){
+	Baseline(rrt_planning::Grid* grid,int baseU,int baseR,const int buffer,std::ofstream* myfile,BaseLinePlanner *planner,GridPlanner *grPlan):buffer(buffer),grid(grid),blPlanner(planner)
+,length(graph),nodePoint(graph),grPlanner(grPlan){
 		this->baseUnit=baseU;
 		this->baseRate=baseR;
 
@@ -48,6 +50,8 @@ private:
 	    BaGraph graph;
 
 	    BaseLinePlanner * blPlanner;
+
+	    GridPlanner *grPlanner;
 	    //maps for bigger rate Graph
 	    BaGraph::ArcMap<int> length;
 
@@ -61,6 +65,8 @@ private:
 	     //create connection between arcs of the same normal graph nodes
 	     void connectNodes();
 	     void createCellNode();
+
+	     void connectNodesGrPlanner();
 
 	     void connectStartCell(Cell cell);
 	     void connectGoalCell(Cell cell);

@@ -360,7 +360,7 @@ void planner::ComplexPlanner::connectDifferentNodes(){
 }
 
 /*
- * Normal graph calculated using Theta* to calculate the distance between communicatin
+ * Normal graph to calculate the distance between communicatin
  * nodes
  */
 void planner::ComplexPlanner::createNormalGraph(){

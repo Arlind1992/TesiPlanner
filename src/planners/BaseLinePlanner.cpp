@@ -62,6 +62,32 @@ void planner::BaseLinePlanner::makePlanAllNodes(Cell start,std::vector<Cell>& ce
 	}
 }
 
+void planner::BaseLinePlanner::makePlanAllNodesDistanceAsCost(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances){
+	LiGraph::Node firstNode=getNodeFromCell(start);
+	lemon::Dijkstra<LiGraph,LiGraph::EdgeMap<int> > solver(this->graphAllNodes,this->length);
+		solver.run(firstNode);
+	std::vector<Cell> gridcells;
+	std::vector<int> griddistances;
+	gridPlanner->makePlan(start,gridcells,buffer,griddistances);
+	for(LiGraph::NodeIt n(graphAllNodes);n!=INVALID;++n){
+		//std::cout<<"after"<<std::endl;
+		lemon::dim2::Point<int> p=nodePoint[n];
+		if(!grid->isComm(std::make_pair(p.x,p.y))||grid->getSpeed(std::make_pair(p.x,p.y))<=baseUnit)
+			continue;
+		if(solver.dist(n)<=buffer*baseUnit){
+			cells.push_back(std::make_pair(p.x,p.y));
+			for(int j=0;j<gridcells.size();j++){
+				if(p.x==gridcells.at(j).first&&p.y==gridcells.at(j).second)
+				distances.push_back(griddistances.at(j));
+			}
+
+		}
+	}
+}
+
+
+
+
 /*
  * Done
  */
@@ -91,6 +117,34 @@ void planner::BaseLinePlanner::createCellNode(){
 }*/
 
 void planner::BaseLinePlanner::connectAllGraphNodes(){
+		for(LiGraph::NodeIt n(graphAllNodes);n!=INVALID;++n){
+			lemon::dim2::Point<int> p=nodePoint[n];
+			std::vector<Cell> neighbourCells=this->grid->getFourNeighbours(std::make_pair(p.x,p.y));
+			for(Cell c:neighbourCells){
+				LiGraph::Node toConnect=getNodeFromCell(c);
+				LiGraph::Edge addedEdge=graphAllNodes.addEdge(n,toConnect);
+				if(!grid->isComm(std::make_pair(p.x,p.y))||!grid->isComm(c)){
+					length[addedEdge]=baseUnit;
+				}else{
+					if(grid->getSpeed(c)<=grid->getSpeed(std::make_pair(p.x,p.y))){
+						if(grid->getSpeed(c)>=baseUnit){
+							length[addedEdge]=0;
+						}else{
+							length[addedEdge]=baseUnit-grid->getSpeed(c);
+						}
+					}else{
+						if(grid->getSpeed(std::make_pair(p.x,p.y))>=baseUnit){
+							length[addedEdge]=0;
+						}else{
+							length[addedEdge]=baseUnit-grid->getSpeed(std::make_pair(p.x,p.y));
+						}
+					}
+				}
+			}
+		}
+}
+
+void planner::BaseLinePlanner::connectAllGraphNodesDistanceAsCost(){
 		for(LiGraph::NodeIt n(graphAllNodes);n!=INVALID;++n){
 			lemon::dim2::Point<int> p=nodePoint[n];
 			std::vector<Cell> neighbourCells=this->grid->getFourNeighbours(std::make_pair(p.x,p.y));
