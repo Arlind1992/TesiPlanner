@@ -70,8 +70,8 @@ bool planner::Baseline::makePlan(Cell cgoal,Cell cinit
 			 int cost;
 			 int buffCost;
 			 blPlanner->makePlan(startCell,endCell,vec,&cost,&buffCost);
-			 vec.clear();
-			 grPlanner->makePlan(startCell,endCell,vec,buffCost);
+			 //vec.clear();
+			 //grPlanner->makePlan(startCell,endCell,vec,buffCost);
 			 toCalculateT.push_back(startCell);
 			 costForT.push_back(buffCost);
 			 reverse(vec.begin(),vec.end());
@@ -105,8 +105,8 @@ void planner::Baseline::createGraph(){
 	int s1=clock();
 	this->createNodes();
 	this->createCellNode();
-	//this->connectNodes();
-	connectNodesGrPlanner();
+	this->connectNodes();
+	//connectNodesGrPlanner();
 	int s2=clock();
 	(*myfile)<<"Time to create Baseline graph (nodes with bigger Rate): "<<(s2-s1)/double(CLOCKS_PER_SEC)*1000<<"\n";
 
@@ -127,7 +127,7 @@ void planner::Baseline::connectStartCell(Cell cell){
 	this->cellNodes[cell]=addedNode;
 	std::vector<Cell> cells;
 	std::vector<int> distances;
-	blPlanner->makePlanAllNodesDistanceAsCost(cell,cells,buffer,distances);
+	blPlanner->makePlanAllNodes(cell,cells,buffer,distances);
 	for(int i=0;i<cells.size();i++){
 		BaGraph::Node toConnect=this->cellNodes[cells.at(i)];
 		BaGraph::Arc conn=graph.addArc(addedNode,toConnect);
@@ -143,7 +143,7 @@ void planner::Baseline::connectGoalCell(Cell cell){
 	this->cellNodes[cell]=addedNode;
 	std::vector<Cell> cells;
 	std::vector<int> distances;
-	blPlanner->makePlanAllNodesDistanceAsCost(cell,cells,buffer,distances);
+	blPlanner->makePlanAllNodes(cell,cells,buffer,distances);
 	for(int i=0;i<cells.size();i++){
 		BaGraph::Node toConnect=this->cellNodes[cells.at(i)];
 		BaGraph::Arc inv=graph.addArc(toConnect,addedNode);

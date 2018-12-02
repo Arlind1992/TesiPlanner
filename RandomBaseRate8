@@ -1,12 +1,12 @@
-Time to create Baseline graph (nodes with bigger Rate): 8460.15
-Time to create Baseline graph (nodes with bigger Rate): 9298.26
-Time to create Baseline graph (nodes with bigger Rate): 9305.57
-Baseline computational cost: 32.003
-Baseline transmition cost : 147
-Baseline path cost : 109
-Baseline computational cost: 36.454
-Baseline transmition cost : 144
-Baseline path cost : 105
-Baseline computational cost: 40.782
-Baseline transmition cost : 144
+Time to create Baseline graph (nodes with bigger Rate): 692.302
+Time to create Baseline graph (nodes with bigger Rate): 651.114
+Time to create Baseline graph (nodes with bigger Rate): 702.403
+Baseline computational cost: 7.396
+Baseline transmition cost : 41
+Baseline path cost : 115
+Baseline computational cost: 6.783
+Baseline transmition cost : 47
+Baseline path cost : 167
+Baseline computational cost: 7.441
+Baseline transmition cost : 41
 Baseline path cost : 97

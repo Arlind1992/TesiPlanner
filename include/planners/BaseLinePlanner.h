@@ -40,7 +40,7 @@ private:
 			//graphs that are going to be used to find the optimal path
 						LiGraph graphAllNodes;
 			//maps for each node for all nodes graphs
-	LiGraph::EdgeMap<int> length;
+	LiGraph::EdgeMap<double> length;
 	LiGraph::NodeMap<lemon::dim2::Point<int> > nodePoint;
 	//std::map<Cell,LiGraph::Node> cellNodes;
 	GridPlanner *gridPlanner;

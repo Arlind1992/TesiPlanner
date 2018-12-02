@@ -21,7 +21,7 @@ void printMat(MatrixDyn* mat){
 		}
 	}
 }
-/*
+
 void testFixed8Base(){
 	std::ofstream myfile;
 		std::vector<Cell> c;
@@ -48,7 +48,8 @@ void testFixed8Base(){
 				DebugMap map(&bl,&grid);
 				//create grid
 				Grid gridMap(map,75,100);
-				planner::BaseLinePlanner basePlan(&gridMap,baseUnit);
+				planner::GridPlanner plan(&gridMap);
+				planner::BaseLinePlanner basePlan(&gridMap,baseUnit,&plan);
 				basePlan.createGraph();
 
 
@@ -56,7 +57,7 @@ void testFixed8Base(){
 				//plan.createGraph();
 				for(int bufferTest1=1;bufferTest1<=55;bufferTest1++){
 						myfile3<<"Buffer "<<bufferTest1<<std::endl;
-						planner::Baseline baseLTest(&gridMap,baseUnit,baseRate,bufferTest1,&myfile3,&basePlan);
+						planner::Baseline baseLTest(&gridMap,baseUnit,baseRate,bufferTest1,&myfile3,&basePlan,&plan);
 								baseLTest.createGraph();
 
 								//planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,bufferTest1,&myfile3);
@@ -71,7 +72,7 @@ void testFixed8Base(){
 									//myfile3<<"No Solution Complex Case"<<std::endl;
 					}
 
-}*/
+}
 
 
 
@@ -279,7 +280,7 @@ void testRandom2Base(){
 
 int main(int argc, char* argv[])
 {
-	//testFixed8Base();
+//	testFixed8Base();
 
 
 	std::ofstream myfile;
@@ -318,13 +319,13 @@ int main(int argc, char* argv[])
 	basePlan2.createGraph();
 
 	//planner::ComplexPlanner compPl(&gridMap,baseUnit,baseRate,&plan,buffer,&myfile);
-    	//	compPl.createGraphs();21,29,41
+    	//	compPl.createGraphs();21,29,41;17,26,40
 
-	planner::Baseline baseL(&gridMap,baseUnit,baseRate,17,&myfile,&basePlan,&plan);
+	planner::Baseline baseL(&gridMap,baseUnit,baseRate,29,&myfile,&basePlan,&plan);
 			baseL.createGraph();
-	planner::Baseline baseL2(&gridMap,baseUnit,baseRate,26,&myfile,&basePlan3,&plan);
+	planner::Baseline baseL2(&gridMap,baseUnit,baseRate,21,&myfile,&basePlan3,&plan);
 			baseL2.createGraph();
-	planner::Baseline baseL3(&gridMap,baseUnit,baseRate,40,&myfile,&basePlan2,&plan);
+	planner::Baseline baseL3(&gridMap,baseUnit,baseRate,41,&myfile,&basePlan2,&plan);
 			baseL3.createGraph();
 
 	//create the view
