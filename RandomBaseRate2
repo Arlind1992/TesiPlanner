@@ -1,882 +1,1832 @@
-<<<<<<< HEAD
-Buffer Size 40
-Time to create Baseline graph (nodes with bigger Rate): 3817.87
-time to create normal Graph 1780.33
-Time to create Complex graph : 9988.83
-
-Istanza :101
-=======
 Buffer Size 10
-Time to create second graph (nodes with bigger Rate): 4124.66
-time to create normal Graph 2214.66
-Time to create Complex graph : 382.838
-Complex computational time: 133.55
-Complex transmittion cost : 0
-Complex path cost : 194
-Baseline computational cost: 31.729
-Baseline transmition cost : 8.5
+Time to create Baseline graph (nodes with bigger Rate): 3323.53
+Istanza :1
+Baseline computational cost: 26.359
+Baseline transmition cost : 13.0606
 Baseline path cost : 194
-Complex computational time: 80.561
-Complex transmittion cost : 0
-Complex path cost : 45
-Baseline computational cost: 17.328
+Istanza :2
+Baseline computational cost: 15.698
 Baseline transmition cost : 0
 Baseline path cost : 45
-Complex computational time: 65.302
-Complex transmittion cost : 0
-Complex path cost : 71
-Baseline computational cost: 14.671
-Baseline transmition cost : 0
+Istanza :3
+Baseline computational cost: 12.553
+Baseline transmition cost : 3.2
 Baseline path cost : 71
-No Solution Complex Case
+Istanza :4
 No Solution Baseline
-Complex computational time: 50.818
-Complex transmittion cost : 0
-Complex path cost : 51
-Baseline computational cost: 10.716
+Istanza :5
+Baseline computational cost: 8.258
 Baseline transmition cost : 0
 Baseline path cost : 51
-Complex computational time: 59.881
-Complex transmittion cost : 0
-Complex path cost : 35
-Baseline computational cost: 11.695
+Istanza :6
+Baseline computational cost: 10.955
 Baseline transmition cost : 0
 Baseline path cost : 35
-No Solution Complex Case
+Istanza :7
 No Solution Baseline
-No Solution Complex Case
+Istanza :8
 No Solution Baseline
-No Solution Complex Case
+Istanza :9
 No Solution Baseline
-Complex computational time: 4.297
-Complex transmittion cost : 0
-Complex path cost : 31
-Baseline computational cost: 2.278
+Istanza :10
+Baseline computational cost: 1.908
 Baseline transmition cost : 0
 Baseline path cost : 31
-No Solution Complex Case
+Istanza :11
 No Solution Baseline
-No Solution Complex Case
+Istanza :12
 No Solution Baseline
-No Solution Complex Case
+Istanza :13
 No Solution Baseline
-Complex computational time: 108.716
-Complex transmittion cost : 0
-Complex path cost : 72
-Baseline computational cost: 21.555
-Baseline transmition cost : 1.57143
+Istanza :14
+Baseline computational cost: 20.948
+Baseline transmition cost : 48.4833
 Baseline path cost : 74
-No Solution Complex Case
+Istanza :15
 No Solution Baseline
-No Solution Complex Case
+Istanza :16
 No Solution Baseline
-No Solution Complex Case
+Istanza :17
 No Solution Baseline
-Complex computational time: 49.442
-Complex transmittion cost : 0
-Complex path cost : 93
-Baseline computational cost: 7.169
-Baseline transmition cost : 21
+Istanza :18
+Baseline computational cost: 6.301
+Baseline transmition cost : 64.0583
 Baseline path cost : 93
-Complex computational time: 67.508
-Complex transmittion cost : 0
-Complex path cost : 127
-Baseline computational cost: 12.884
-Baseline transmition cost : 16.25
+Istanza :19
+Baseline computational cost: 11.392
+Baseline transmition cost : 8.48333
 Baseline path cost : 127
-Complex computational time: 105.861
-Complex transmittion cost : 0
-Complex path cost : 88
-Baseline computational cost: 18.932
-Baseline transmition cost : 0
+Istanza :20
+Baseline computational cost: 18.251
+Baseline transmition cost : 1.90709e-07
 Baseline path cost : 88
-No Solution Complex Case
+Istanza :21
 No Solution Baseline
-Complex computational time: 115.068
-Complex transmittion cost : 0
-Complex path cost : 187
-Baseline computational cost: 26.047
-Baseline transmition cost : 13.2
+Istanza :22
+Baseline computational cost: 23.457
+Baseline transmition cost : 15.3413
 Baseline path cost : 187
-Complex computational time: 19.802
-Complex transmittion cost : 0
-Complex path cost : 26
-Baseline computational cost: 6.236
-Baseline transmition cost : 37
+Istanza :23
+Baseline computational cost: 5.495
+Baseline transmition cost : 0
 Baseline path cost : 24
-No Solution Complex Case
+Istanza :24
 No Solution Baseline
-No Solution Complex Case
+Istanza :25
 No Solution Baseline
-No Solution Complex Case
+Istanza :26
 No Solution Baseline
-No Solution Complex Case
+Istanza :27
 No Solution Baseline
-Complex computational time: 6.59
-Complex transmittion cost : 0
-Complex path cost : 14
-Baseline computational cost: 2.397
+Istanza :28
+Baseline computational cost: 2.177
 Baseline transmition cost : 0
 Baseline path cost : 14
-Complex computational time: 71.787
-Complex transmittion cost : 0
-Complex path cost : 116
-Baseline computational cost: 13.78
-Baseline transmition cost : 10
+Istanza :29
+Baseline computational cost: 13.065
+Baseline transmition cost : 16.3333
 Baseline path cost : 116
-Complex computational time: 59.472
-Complex transmittion cost : 0
-Complex path cost : 58
-Baseline computational cost: 11.368
+Istanza :30
+Baseline computational cost: 10.086
 Baseline transmition cost : 0
 Baseline path cost : 58
-Complex computational time: 53.097
-Complex transmittion cost : 0
-Complex path cost : 50
-Baseline computational cost: 11.062
+Istanza :31
+Baseline computational cost: 9.709
 Baseline transmition cost : 0
 Baseline path cost : 50
-No Solution Complex Case
+Istanza :32
 No Solution Baseline
-No Solution Complex Case
+Istanza :33
 No Solution Baseline
-Complex computational time: 56.161
-Complex transmittion cost : 0
-Complex path cost : 42
-Baseline computational cost: 16.019
-Baseline transmition cost : 0
+Istanza :34
+Baseline computational cost: 14.367
+Baseline transmition cost : 8.73581e-08
 Baseline path cost : 42
-No Solution Complex Case
+Istanza :35
 No Solution Baseline
-No Solution Complex Case
+Istanza :36
 No Solution Baseline
-No Solution Complex Case
+Istanza :37
 No Solution Baseline
-No Solution Complex Case
+Istanza :38
 No Solution Baseline
-No Solution Complex Case
+Istanza :39
 No Solution Baseline
-No Solution Complex Case
+Istanza :40
 No Solution Baseline
-No Solution Complex Case
+Istanza :41
 No Solution Baseline
-Complex computational time: 104.711
-Complex transmittion cost : 0
-Complex path cost : 98
-Baseline computational cost: 23.504
-Baseline transmition cost : 2
+Istanza :42
+Baseline computational cost: 23.168
+Baseline transmition cost : 9.52282
 Baseline path cost : 98
-No Solution Complex Case
+Istanza :43
 No Solution Baseline
-No Solution Complex Case
+Istanza :44
 No Solution Baseline
-Complex computational time: 34.106
-Complex transmittion cost : 0
-Complex path cost : 50
-Baseline computational cost: 9.691
-Baseline transmition cost : 1.66667
+Istanza :45
+Baseline computational cost: 9.131
+Baseline transmition cost : 0
 Baseline path cost : 62
-Complex computational time: 3.231
-Complex transmittion cost : 0
-Complex path cost : 1
-Baseline computational cost: 2.21
+Istanza :46
+Baseline computational cost: 2.369
 Baseline transmition cost : 0
 Baseline path cost : 1
-No Solution Complex Case
+Istanza :47
 No Solution Baseline
-No Solution Complex Case
+Istanza :48
 No Solution Baseline
-Complex computational time: 95.892
-Complex transmittion cost : 0
-Complex path cost : 143
-Baseline computational cost: 18.742
-Baseline transmition cost : 7.5
+Istanza :49
+Baseline computational cost: 18.622
+Baseline transmition cost : 50.25
 Baseline path cost : 143
-No Solution Complex Case
+Istanza :50
 No Solution Baseline
-Complex computational time: 10.061
-Complex transmittion cost : 0
-Complex path cost : 37
-Baseline computational cost: 11.482
-Baseline transmition cost : 0
+Istanza :51
+Baseline computational cost: 10.225
+Baseline transmition cost : 6.79452e-08
 Baseline path cost : 45
-Complex computational time: 104.36
-Complex transmittion cost : 0
-Complex path cost : 140
-Baseline computational cost: 25.288
-Baseline transmition cost : 2.57143
+Istanza :52
+Baseline computational cost: 22.022
+Baseline transmition cost : 10.8278
 Baseline path cost : 140
-No Solution Complex Case
+Istanza :53
 No Solution Baseline
-Complex computational time: 97.304
-Complex transmittion cost : 0
-Complex path cost : 153
-Baseline computational cost: 19.852
-Baseline transmition cost : 31.5
+Istanza :54
+Baseline computational cost: 18.713
+Baseline transmition cost : 53.1673
 Baseline path cost : 151
-No Solution Complex Case
+Istanza :55
 No Solution Baseline
-Complex computational time: 45.423
-Complex transmittion cost : 0
-Complex path cost : 60
-Baseline computational cost: 10.885
+Istanza :56
+Baseline computational cost: 11.283
 Baseline transmition cost : 0
 Baseline path cost : 60
-No Solution Complex Case
+Istanza :57
 No Solution Baseline
-Complex computational time: 102.897
-Complex transmittion cost : 0
-Complex path cost : 158
-Baseline computational cost: 22.119
-Baseline transmition cost : 1.8
+Istanza :58
+Baseline computational cost: 19.893
+Baseline transmition cost : 24.2276
 Baseline path cost : 158
-No Solution Complex Case
+Istanza :59
 No Solution Baseline
-No Solution Complex Case
+Istanza :60
 No Solution Baseline
-No Solution Complex Case
+Istanza :61
 No Solution Baseline
-Complex computational time: 117.631
-Complex transmittion cost : 0
-Complex path cost : 179
-Baseline computational cost: 25.502
-Baseline transmition cost : 1.9
+Istanza :62
+Baseline computational cost: 23.649
+Baseline transmition cost : 17.3329
 Baseline path cost : 179
-No Solution Complex Case
+Istanza :63
 No Solution Baseline
-Complex computational time: 111.999
-Complex transmittion cost : 0
-Complex path cost : 82
-Baseline computational cost: 20.638
-Baseline transmition cost : 0
+Istanza :64
+Baseline computational cost: 19.737
+Baseline transmition cost : 1.796e-07
 Baseline path cost : 82
-No Solution Complex Case
+Istanza :65
 No Solution Baseline
-Complex computational time: 15.128
-Complex transmittion cost : 0
-Complex path cost : 43
-Baseline computational cost: 7.227
+Istanza :66
+Baseline computational cost: 6.515
 Baseline transmition cost : 0
 Baseline path cost : 43
-Complex computational time: 56.016
-Complex transmittion cost : 0
-Complex path cost : 66
-Baseline computational cost: 10.382
-Baseline transmition cost : 0
+Istanza :67
+Baseline computational cost: 10.246
+Baseline transmition cost : 3.88039
 Baseline path cost : 66
-No Solution Complex Case
+Istanza :68
 No Solution Baseline
-Complex computational time: 129.12
-Complex transmittion cost : 0
-Complex path cost : 128
-Baseline computational cost: 24.828
-Baseline transmition cost : 4.5
+Istanza :69
+Baseline computational cost: 23.975
+Baseline transmition cost : 15.5721
 Baseline path cost : 130
-Complex computational time: 65.409
-Complex transmittion cost : 0
-Complex path cost : 88
-Baseline computational cost: 10.082
-Baseline transmition cost : 26
-Baseline path cost : 78
-No Solution Complex Case
+Istanza :70
+Baseline computational cost: 9.37
+Baseline transmition cost : 32.9387
+Baseline path cost : 76
+Istanza :71
 No Solution Baseline
-Complex computational time: 103.98
-Complex transmittion cost : 0
-Complex path cost : 113
-Baseline computational cost: 27.835
-Baseline transmition cost : 0
+Istanza :72
+Baseline computational cost: 26.806
+Baseline transmition cost : 6.43254
 Baseline path cost : 113
-Complex computational time: 127.101
-Complex transmittion cost : 0
-Complex path cost : 114
-Baseline computational cost: 24.768
-Baseline transmition cost : 1.61061
+Istanza :73
+Baseline computational cost: 24.255
+Baseline transmition cost : 21.4206
 Baseline path cost : 110
-Complex computational time: 66.116
-Complex transmittion cost : 0
-Complex path cost : 53
-Baseline computational cost: 14.051
-Baseline transmition cost : 0
+Istanza :74
+Baseline computational cost: 13.778
+Baseline transmition cost : 5.70255e-08
 Baseline path cost : 53
-No Solution Complex Case
+Istanza :75
 No Solution Baseline
-Complex computational time: 51.675
-Complex transmittion cost : 0
-Complex path cost : 113
-Baseline computational cost: 10.561
-Baseline transmition cost : 4.44444
+Istanza :76
+Baseline computational cost: 7.397
+Baseline transmition cost : 7.45283
 Baseline path cost : 113
-No Solution Complex Case
+Istanza :77
 No Solution Baseline
-No Solution Complex Case
+Istanza :78
 No Solution Baseline
-No Solution Complex Case
+Istanza :79
 No Solution Baseline
-No Solution Complex Case
+Istanza :80
 No Solution Baseline
-No Solution Complex Case
+Istanza :81
 No Solution Baseline
-Complex computational time: 102.018
-Complex transmittion cost : 0
-Complex path cost : 75
-Baseline computational cost: 21.738
-Baseline transmition cost : 0
+Istanza :82
+Baseline computational cost: 21.861
+Baseline transmition cost : 0.5
 Baseline path cost : 75
-Complex computational time: 48.277
-Complex transmittion cost : 0
-Complex path cost : 40
-Baseline computational cost: 7.971
+Istanza :83
+Baseline computational cost: 6.886
 Baseline transmition cost : 0
 Baseline path cost : 40
-Complex computational time: 79.159
-Complex transmittion cost : 0
-Complex path cost : 45
-Baseline computational cost: 15.899
+Istanza :84
+Baseline computational cost: 15.612
 Baseline transmition cost : 0
 Baseline path cost : 45
-Complex computational time: 72.543
-Complex transmittion cost : 0
-Complex path cost : 121
-Baseline computational cost: 15.195
-Baseline transmition cost : 14.5
+Istanza :85
+Baseline computational cost: 14.23
+Baseline transmition cost : 50.0833
 Baseline path cost : 123
-Complex computational time: 60.305
-Complex transmittion cost : 0
-Complex path cost : 66
-Baseline computational cost: 14.411
-Baseline transmition cost : 0
+Istanza :86
+Baseline computational cost: 11.54
+Baseline transmition cost : 4.44444
 Baseline path cost : 66
-No Solution Complex Case
+Istanza :87
 No Solution Baseline
-Complex computational time: 85.712
-Complex transmittion cost : 0
-Complex path cost : 62
-Baseline computational cost: 23.558
-Baseline transmition cost : 0
+Istanza :88
+Baseline computational cost: 21.253
+Baseline transmition cost : 1.24971e-07
 Baseline path cost : 62
-No Solution Complex Case
+Istanza :89
 No Solution Baseline
-No Solution Complex Case
+Istanza :90
 No Solution Baseline
-Complex computational time: 16.934
-Complex transmittion cost : 0
-Complex path cost : 37
-Baseline computational cost: 3.425
+Istanza :91
+Baseline computational cost: 2.6
 Baseline transmition cost : 0
 Baseline path cost : 37
-Complex computational time: 100.899
-Complex transmittion cost : 0
-Complex path cost : 63
-Baseline computational cost: 23.014
-Baseline transmition cost : 3.6
+Istanza :92
+Baseline computational cost: 22.425
+Baseline transmition cost : 63.2728
 Baseline path cost : 63
-No Solution Complex Case
+Istanza :93
 No Solution Baseline
-No Solution Complex Case
+Istanza :94
 No Solution Baseline
-Complex computational time: 91.685
-Complex transmittion cost : 0
-Complex path cost : 110
-Baseline computational cost: 25.43
-Baseline transmition cost : 2.91194e-08
+Istanza :95
+Baseline computational cost: 24.086
+Baseline transmition cost : 1.73603e-07
 Baseline path cost : 110
-No Solution Complex Case
+Istanza :96
 No Solution Baseline
-Complex computational time: 88.383
-Complex transmittion cost : 0
-Complex path cost : 50
-Baseline computational cost: 20.303
-Baseline transmition cost : 0
+Istanza :97
+Baseline computational cost: 19.551
+Baseline transmition cost : 0.7
 Baseline path cost : 50
-Complex computational time: 3.072
-Complex transmittion cost : 0
-Complex path cost : 5
-Baseline computational cost: 3.653
+Istanza :98
+Baseline computational cost: 3.146
 Baseline transmition cost : 0
 Baseline path cost : 5
-No Solution Complex Case
+Istanza :99
 No Solution Baseline
-No Solution Complex Case
+Istanza :100
 No Solution Baseline
-Buffer Size 20
-Time to create second graph (nodes with bigger Rate): 4790.92
-time to create normal Graph 2516.28
-Time to create Complex graph : 2253.25
-Complex computational time: 82.318
-Complex transmittion cost : 0
-Complex path cost : 23
-Baseline computational cost: 5.849
+Istanza :101
+Baseline computational cost: 3.018
 Baseline transmition cost : 0
 Baseline path cost : 23
-Complex computational time: 789.041
-Complex transmittion cost : 0
-Complex path cost : 123
-Baseline computational cost: 32.615
-Baseline transmition cost : 4.5
+Buffer Size 20
+Time to create Baseline graph (nodes with bigger Rate): 3745.85
+Istanza :1
+Baseline computational cost: 28.597
+Baseline transmition cost : 20.4944
 Baseline path cost : 131
-Complex computational time: 1048.95
-Complex transmittion cost : 0
-Complex path cost : 90
-Baseline computational cost: 32.359
-Baseline transmition cost : 42
+Istanza :2
+Baseline computational cost: 29.301
+Baseline transmition cost : 10.2935
 Baseline path cost : 118
-Complex computational time: 864.924
-Complex transmittion cost : 0
-Complex path cost : 79
-Baseline computational cost: 30.579
-Baseline transmition cost : 0.5
+Istanza :3
+Baseline computational cost: 28.031
+Baseline transmition cost : 42.1083
 Baseline path cost : 113
-Complex computational time: 944.736
-Complex transmittion cost : 0
-Complex path cost : 176
-Baseline computational cost: 31.966
-Baseline transmition cost : 0
-Baseline path cost : 192
-Complex computational time: 1181.41
-Complex transmittion cost : 0
-Complex path cost : 85
-Baseline computational cost: 26.191
-Baseline transmition cost : 0
+Istanza :4
+Baseline computational cost: 30.588
+Baseline transmition cost : 19.175
+Baseline path cost : 188
+Istanza :5
+Baseline computational cost: 23.382
+Baseline transmition cost : 1.92916e-07
 Baseline path cost : 85
-Complex computational time: 260.518
-Complex transmittion cost : 0
-Complex path cost : 73
-Baseline computational cost: 11.099
+Istanza :6
+Baseline computational cost: 8.911
 Baseline transmition cost : 0
 Baseline path cost : 73
-Complex computational time: 599.909
-Complex transmittion cost : 0
-Complex path cost : 104
-Baseline computational cost: 20.336
+Istanza :7
+Baseline computational cost: 18.198
 Baseline transmition cost : 0
 Baseline path cost : 104
-Complex computational time: 744.97
-Complex transmittion cost : 0
-Complex path cost : 96
-Baseline computational cost: 24.441
-Baseline transmition cost : 0
+Istanza :8
+Baseline computational cost: 24.045
+Baseline transmition cost : 1.7957e-07
 Baseline path cost : 96
-Complex computational time: 206.075
-Complex transmittion cost : 0
-Complex path cost : 72
-Baseline computational cost: 10.676
-Baseline transmition cost : 0
+Istanza :9
+Baseline computational cost: 9.726
+Baseline transmition cost : 7.23039
 Baseline path cost : 84
-Complex computational time: 221.436
-Complex transmittion cost : 0
-Complex path cost : 43
-Baseline computational cost: 10.271
-Baseline transmition cost : 0
+Istanza :10
+Baseline computational cost: 9.554
+Baseline transmition cost : 22.75
 Baseline path cost : 43
-Complex computational time: 1145.73
-Complex transmittion cost : 0
-Complex path cost : 118
-Baseline computational cost: 30.843
+Istanza :11
+Baseline computational cost: 29.118
 Baseline transmition cost : 0
 Baseline path cost : 118
-No Solution Complex Case
+Istanza :12
 No Solution Baseline
-Complex computational time: 892.126
-Complex transmittion cost : 0
-Complex path cost : 116
-Baseline computational cost: 29.442
-Baseline transmition cost : 0
+Istanza :13
+Baseline computational cost: 25.224
+Baseline transmition cost : 13.4
 Baseline path cost : 128
-Complex computational time: 430.984
-Complex transmittion cost : 0
-Complex path cost : 33
-Baseline computational cost: 17.123
+Istanza :14
+Baseline computational cost: 14.801
 Baseline transmition cost : 0
 Baseline path cost : 35
-No Solution Complex Case
+Istanza :15
 No Solution Baseline
-Complex computational time: 956.653
-Complex transmittion cost : 0
-Complex path cost : 168
-Baseline computational cost: 34.836
-Baseline transmition cost : 0
+Istanza :16
+Baseline computational cost: 28.847
+Baseline transmition cost : 22.488
 Baseline path cost : 180
-Complex computational time: 578.908
-Complex transmittion cost : 0
-Complex path cost : 118
-Baseline computational cost: 19.54
-Baseline transmition cost : 0
+Istanza :17
+Baseline computational cost: 18.189
+Baseline transmition cost : 86.875
 Baseline path cost : 130
-No Solution Complex Case
+Istanza :18
 No Solution Baseline
-Complex computational time: 552.009
-Complex transmittion cost : 0
-Complex path cost : 45
-Baseline computational cost: 16.157
+Istanza :19
+Baseline computational cost: 14.811
 Baseline transmition cost : 0
 Baseline path cost : 45
-No Solution Complex Case
+Istanza :20
 No Solution Baseline
-Complex computational time: 427.329
-Complex transmittion cost : 0
-Complex path cost : 136
-Baseline computational cost: 16.893
-Baseline transmition cost : 58
+Istanza :21
+Baseline computational cost: 17.192
+Baseline transmition cost : 98.025
 Baseline path cost : 136
-No Solution Complex Case
+Istanza :22
 No Solution Baseline
-No Solution Complex Case
+Istanza :23
 No Solution Baseline
-Complex computational time: 983.915
-Complex transmittion cost : 0
-Complex path cost : 103
-Baseline computational cost: 31.206
-Baseline transmition cost : 0
+Istanza :24
+Baseline computational cost: 23.294
+Baseline transmition cost : 1.66639e-07
 Baseline path cost : 103
-No Solution Complex Case
+Istanza :25
 No Solution Baseline
-Complex computational time: 157.981
-Complex transmittion cost : 0
-Complex path cost : 29
-Baseline computational cost: 7.971
+Istanza :26
+Baseline computational cost: 5.408
 Baseline transmition cost : 0
 Baseline path cost : 29
-Complex computational time: 351.467
-Complex transmittion cost : 0
-Complex path cost : 58
-Baseline computational cost: 13.542
-Baseline transmition cost : 58
+Istanza :27
+Baseline computational cost: 12.066
+Baseline transmition cost : 207.25
 Baseline path cost : 58
-Complex computational time: 24.053
-Complex transmittion cost : 0
-Complex path cost : 16
-Baseline computational cost: 5.626
+Istanza :28
+Baseline computational cost: 4.212
 Baseline transmition cost : 0
 Baseline path cost : 16
-Complex computational time: 67.931
-Complex transmittion cost : 0
-Complex path cost : 13
-Baseline computational cost: 3.978
+Istanza :29
+Baseline computational cost: 2.484
 Baseline transmition cost : 0
 Baseline path cost : 13
-No Solution Complex Case
+Istanza :30
 No Solution Baseline
-Complex computational time: 1026.17
-Complex transmittion cost : 0
-Complex path cost : 131
-Baseline computational cost: 30.045
-Baseline transmition cost : 0
+Istanza :31
+Baseline computational cost: 26.742
+Baseline transmition cost : 2
 Baseline path cost : 143
-Complex computational time: 4.484
-Complex transmittion cost : 0
-Complex path cost : 4
-Baseline computational cost: 6.282
+Istanza :32
+Baseline computational cost: 4.156
 Baseline transmition cost : 0
 Baseline path cost : 4
-Complex computational time: 87.186
-Complex transmittion cost : 0
-Complex path cost : 16
-Baseline computational cost: 6.373
+Istanza :33
+Baseline computational cost: 3.637
 Baseline transmition cost : 0
 Baseline path cost : 16
-Complex computational time: 957.917
-Complex transmittion cost : 0
-Complex path cost : 217
-Baseline computational cost: 32.382
-Baseline transmition cost : 3
+Istanza :34
+Baseline computational cost: 28.78
+Baseline transmition cost : 62.4665
 Baseline path cost : 229
-Complex computational time: 33.02
-Complex transmittion cost : 0
-Complex path cost : 15
-Baseline computational cost: 5.862
+Istanza :35
+Baseline computational cost: 4.922
 Baseline transmition cost : 0
 Baseline path cost : 15
-Complex computational time: 727.221
-Complex transmittion cost : 0
-Complex path cost : 101
-Baseline computational cost: 34.771
-Baseline transmition cost : 0
+Istanza :36
+Baseline computational cost: 29.637
+Baseline transmition cost : 90.2857
 Baseline path cost : 127
-Complex computational time: 946.903
-Complex transmittion cost : 0
-Complex path cost : 116
-Baseline computational cost: 36.586
-Baseline transmition cost : 2.57143
+Istanza :37
+Baseline computational cost: 26.217
+Baseline transmition cost : 12.3278
 Baseline path cost : 126
-Complex computational time: 1132.29
-Complex transmittion cost : 1
-Complex path cost : 143
-Baseline computational cost: 33.729
-Baseline transmition cost : 42.25
+Istanza :38
+Baseline computational cost: 28.91
+Baseline transmition cost : 30
 Baseline path cost : 147
-Complex computational time: 620.82
-Complex transmittion cost : 0
-Complex path cost : 63
-Baseline computational cost: 22.561
+Istanza :39
+Baseline computational cost: 18.49
 Baseline transmition cost : 0
 Baseline path cost : 65
-Complex computational time: 27.712
-Complex transmittion cost : 0
-Complex path cost : 11
-Baseline computational cost: 9.162
+Istanza :40
+Baseline computational cost: 5.153
 Baseline transmition cost : 0
 Baseline path cost : 15
-Complex computational time: 1172.43
-Complex transmittion cost : 0
-Complex path cost : 145
-Baseline computational cost: 29.43
-Baseline transmition cost : 0
+Istanza :41
+Baseline computational cost: 26.811
+Baseline transmition cost : 1.01918e-07
 Baseline path cost : 147
-No Solution Complex Case
+Istanza :42
 No Solution Baseline
-No Solution Complex Case
+Istanza :43
 No Solution Baseline
-No Solution Complex Case
+Istanza :44
 No Solution Baseline
-Complex computational time: 324.828
-Complex transmittion cost : 0
-Complex path cost : 66
-Baseline computational cost: 14.466
+Istanza :45
+Baseline computational cost: 11.668
 Baseline transmition cost : 0
 Baseline path cost : 66
-No Solution Complex Case
+Istanza :46
 No Solution Baseline
-No Solution Complex Case
+Istanza :47
 No Solution Baseline
-No Solution Complex Case
+Istanza :48
 No Solution Baseline
-Complex computational time: 335.707
-Complex transmittion cost : 0
-Complex path cost : 44
-Baseline computational cost: 18.969
+Istanza :49
+Baseline computational cost: 8.224
 Baseline transmition cost : 0
 Baseline path cost : 44
-Complex computational time: 1127.44
-Complex transmittion cost : 0
-Complex path cost : 71
-Baseline computational cost: 55.328
-Baseline transmition cost : 0
+Istanza :50
+Baseline computational cost: 26.915
+Baseline transmition cost : 5.42502e-07
 Baseline path cost : 91
-No Solution Complex Case
+Istanza :51
 No Solution Baseline
-Complex computational time: 1126.01
-Complex transmittion cost : 0
-Complex path cost : 60
-Baseline computational cost: 57.196
-Baseline transmition cost : 1.8
+Istanza :52
+Baseline computational cost: 29.086
+Baseline transmition cost : 15.5982
 Baseline path cost : 110
-Complex computational time: 120.578
-Complex transmittion cost : 0
-Complex path cost : 17
-Baseline computational cost: 15.852
+Istanza :53
+Baseline computational cost: 6.608
 Baseline transmition cost : 0
 Baseline path cost : 17
-Complex computational time: 116
-Complex transmittion cost : 0
-Complex path cost : 58
-Baseline computational cost: 12.414
+Istanza :54
+Baseline computational cost: 5.21
 Baseline transmition cost : 0
 Baseline path cost : 58
-Complex computational time: 308.343
-Complex transmittion cost : 0
-Complex path cost : 62
-Baseline computational cost: 13.441
-Baseline transmition cost : 73
+Istanza :55
+Baseline computational cost: 7.074
+Baseline transmition cost : 0
 Baseline path cost : 60
-No Solution Complex Case
+Istanza :56
 No Solution Baseline
-Complex computational time: 1288.97
-Complex transmittion cost : 0
-Complex path cost : 138
-Baseline computational cost: 59.452
-Baseline transmition cost : 11.6
+Istanza :57
+Baseline computational cost: 28.716
+Baseline transmition cost : 20.9556
 Baseline path cost : 156
-No Solution Complex Case
+Istanza :58
 No Solution Baseline
-Complex computational time: 1041.83
-Complex transmittion cost : 0
-Complex path cost : 120
-Baseline computational cost: 42.393
-Baseline transmition cost : 1
+Istanza :59
+Baseline computational cost: 22.37
+Baseline transmition cost : 0
 Baseline path cost : 122
-Complex computational time: 8.828
-Complex transmittion cost : 0
-Complex path cost : 19
-Baseline computational cost: 8.98
+Istanza :60
+Baseline computational cost: 4.209
 Baseline transmition cost : 0
 Baseline path cost : 19
-Complex computational time: 862.077
-Complex transmittion cost : 0
-Complex path cost : 73
-Baseline computational cost: 34.061
+Istanza :61
+Baseline computational cost: 14.466
 Baseline transmition cost : 0
 Baseline path cost : 73
-Complex computational time: 1122.97
-Complex transmittion cost : 0
-Complex path cost : 90
-Baseline computational cost: 61.401
-Baseline transmition cost : 0
+Istanza :62
+Baseline computational cost: 29.543
+Baseline transmition cost : 55.475
 Baseline path cost : 132
-No Solution Complex Case
+Istanza :63
 No Solution Baseline
-Complex computational time: 367.207
-Complex transmittion cost : 0
-Complex path cost : 94
-Baseline computational cost: 15.411
+Istanza :64
+Baseline computational cost: 6.997
 Baseline transmition cost : 0
 Baseline path cost : 98
-Complex computational time: 978.157
-Complex transmittion cost : 0
-Complex path cost : 87
-Baseline computational cost: 53.493
-Baseline transmition cost : 0
+Istanza :65
+Baseline computational cost: 25.312
+Baseline transmition cost : 90.2823
 Baseline path cost : 105
-No Solution Complex Case
+Istanza :66
 No Solution Baseline
-Complex computational time: 389.053
-Complex transmittion cost : 0
-Complex path cost : 22
-Baseline computational cost: 16.375
+Istanza :67
+Baseline computational cost: 6.528
 Baseline transmition cost : 0
 Baseline path cost : 22
-Complex computational time: 1247.94
-Complex transmittion cost : 0
-Complex path cost : 131
-Baseline computational cost: 55.915
-Baseline transmition cost : 0
+Istanza :68
+Baseline computational cost: 26.66
+Baseline transmition cost : 0.071429
 Baseline path cost : 143
-Complex computational time: 671.372
-Complex transmittion cost : 0
-Complex path cost : 40
-Baseline computational cost: 31.785
+Istanza :69
+Baseline computational cost: 15.292
 Baseline transmition cost : 0
 Baseline path cost : 40
-Complex computational time: 264.997
-Complex transmittion cost : 0
-Complex path cost : 19
-Baseline computational cost: 12.549
+Istanza :70
+Baseline computational cost: 6.276
 Baseline transmition cost : 0
 Baseline path cost : 19
-No Solution Complex Case
+Istanza :71
 No Solution Baseline
-Complex computational time: 863.646
-Complex transmittion cost : 0
-Complex path cost : 139
-Baseline computational cost: 38.146
-Baseline transmition cost : 8.75
+Istanza :72
+Baseline computational cost: 20.195
+Baseline transmition cost : 86.875
 Baseline path cost : 151
-Complex computational time: 1251.52
-Complex transmittion cost : 0
-Complex path cost : 152
-Baseline computational cost: 56.46
-Baseline transmition cost : 1.95686e-07
+Istanza :73
+Baseline computational cost: 28.627
+Baseline transmition cost : 97.875
 Baseline path cost : 164
-No Solution Complex Case
+Istanza :74
 No Solution Baseline
-No Solution Complex Case
+Istanza :75
 No Solution Baseline
-Complex computational time: 1484.38
-Complex transmittion cost : 0
-Complex path cost : 220
-Baseline computational cost: 65.1
-Baseline transmition cost : 42.25
+Istanza :76
+Baseline computational cost: 32.136
+Baseline transmition cost : 0.357143
 Baseline path cost : 224
-Complex computational time: 508.732
-Complex transmittion cost : 0
-Complex path cost : 35
-Baseline computational cost: 30.103
-Baseline transmition cost : 0
-Baseline path cost : 47
-No Solution Complex Case
+Istanza :77
+Baseline computational cost: 13.59
+Baseline transmition cost : 15.1
+Baseline path cost : 45
+Istanza :78
 No Solution Baseline
-No Solution Complex Case
+Istanza :79
 No Solution Baseline
-Complex computational time: 1420.2
-Complex transmittion cost : 0
-Complex path cost : 80
-Baseline computational cost: 44.916
+Istanza :80
+Baseline computational cost: 22.873
 Baseline transmition cost : 0
 Baseline path cost : 82
-Complex computational time: 425.747
-Complex transmittion cost : 0
-Complex path cost : 61
-Baseline computational cost: 25.304
+Istanza :81
+Baseline computational cost: 13.139
 Baseline transmition cost : 0
 Baseline path cost : 61
-Complex computational time: 1521.1
-Complex transmittion cost : 0
-Complex path cost : 104
-Baseline computational cost: 52.715
-Baseline transmition cost : 40
+Istanza :82
+Baseline computational cost: 27.673
+Baseline transmition cost : 10.5833
 Baseline path cost : 102
-Complex computational time: 150.549
-Complex transmittion cost : 0
-Complex path cost : 22
-Baseline computational cost: 10.119
+Istanza :83
+Baseline computational cost: 4.188
 Baseline transmition cost : 0
 Baseline path cost : 22
-Complex computational time: 17.533
-Complex transmittion cost : 0
-Complex path cost : 23
-Baseline computational cost: 3.336
+Istanza :84
+Baseline computational cost: 1.711
 Baseline transmition cost : 0
 Baseline path cost : 23
-No Solution Complex Case
+Istanza :85
 No Solution Baseline
-Complex computational time: 47.058
-Complex transmittion cost : 0
-Complex path cost : 27
-Baseline computational cost: 14.938
+Istanza :86
+Baseline computational cost: 4.57
 Baseline transmition cost : 0
 Baseline path cost : 27
-Complex computational time: 1097.57
-Complex transmittion cost : 0
-Complex path cost : 62
-Baseline computational cost: 40.751
+Istanza :87
+Baseline computational cost: 21.133
 Baseline transmition cost : 0
 Baseline path cost : 62
-Complex computational time: 1471.74
-Complex transmittion cost : 0
-Complex path cost : 138
-Baseline computational cost: 58.621
-Baseline transmition cost : 0
+Istanza :88
+Baseline computational cost: 29.741
+Baseline transmition cost : 7.04167
 Baseline path cost : 148
-Complex computational time: 625.036
-Complex transmittion cost : 0
-Complex path cost : 36
-Baseline computational cost: 26.964
+Istanza :89
+Baseline computational cost: 12.968
 Baseline transmition cost : 0
 Baseline path cost : 36
-No Solution Complex Case
+Istanza :90
 No Solution Baseline
-No Solution Complex Case
+Istanza :91
 No Solution Baseline
-No Solution Complex Case
+Istanza :92
 No Solution Baseline
-No Solution Complex Case
+Istanza :93
 No Solution Baseline
-Complex computational time: 613.662
-Complex transmittion cost : 0
-Complex path cost : 72
-Baseline computational cost: 25.582
+Istanza :94
+Baseline computational cost: 12.895
 Baseline transmition cost : 0
 Baseline path cost : 72
-Complex computational time: 774.842
-Complex transmittion cost : 0
-Complex path cost : 69
-Baseline computational cost: 40.335
-Baseline transmition cost : 0
+Istanza :95
+Baseline computational cost: 20.009
+Baseline transmition cost : 6.3092e-08
 Baseline path cost : 79
-No Solution Complex Case
+Istanza :96
 No Solution Baseline
-No Solution Complex Case
+Istanza :97
 No Solution Baseline
-Complex computational time: 9.157
-Complex transmittion cost : 0
-Complex path cost : 15
-Baseline computational cost: 4.662
+Istanza :98
+Baseline computational cost: 1.991
 Baseline transmition cost : 0
 Baseline path cost : 15
-Complex computational time: 1182
-Complex transmittion cost : 0
-Complex path cost : 90
-Baseline computational cost: 42.739
+Istanza :99
+Baseline computational cost: 22.168
 Baseline transmition cost : 0
 Baseline path cost : 90
+Istanza :100
+Baseline computational cost: 13.75
+Baseline transmition cost : 0
+Baseline path cost : 47
+Istanza :101
+Baseline computational cost: 18.013
+Baseline transmition cost : 4.39824e-08
+Baseline path cost : 83
 Buffer Size 30
->>>>>>> branch 'BaselineNew06052017' of https://github.com/Arlind1992/TesiPlanner.git
+Time to create Baseline graph (nodes with bigger Rate): 3729.95
+Istanza :1
+Baseline computational cost: 29.709
+Baseline transmition cost : 27.0417
+Baseline path cost : 177
+Istanza :2
+Baseline computational cost: 30.081
+Baseline transmition cost : 56.5
+Baseline path cost : 140
+Istanza :3
+Baseline computational cost: 18.665
+Baseline transmition cost : 55.7417
+Baseline path cost : 130
+Istanza :4
+Baseline computational cost: 3.249
+Baseline transmition cost : 0
+Baseline path cost : 23
+Istanza :5
+No Solution Baseline
+Istanza :6
+Baseline computational cost: 17.337
+Baseline transmition cost : 0
+Baseline path cost : 74
+Istanza :7
+Baseline computational cost: 20.642
+Baseline transmition cost : 14
+Baseline path cost : 118
+Istanza :8
+No Solution Baseline
+Istanza :9
+Baseline computational cost: 30.625
+Baseline transmition cost : 12.5992
+Baseline path cost : 152
+Istanza :10
+Baseline computational cost: 27.554
+Baseline transmition cost : 62.0667
+Baseline path cost : 94
+Istanza :11
+Baseline computational cost: 8.776
+Baseline transmition cost : 0
+Baseline path cost : 92
+Istanza :12
+No Solution Baseline
+Istanza :13
+Baseline computational cost: 27.164
+Baseline transmition cost : 23.6
+Baseline path cost : 166
+Istanza :14
+Baseline computational cost: 26.319
+Baseline transmition cost : 45.1033
+Baseline path cost : 166
+Istanza :15
+Baseline computational cost: 16.759
+Baseline transmition cost : 0
+Baseline path cost : 81
+Istanza :16
+Baseline computational cost: 29.562
+Baseline transmition cost : 2.18395e-08
+Baseline path cost : 160
+Istanza :17
+No Solution Baseline
+Istanza :18
+Baseline computational cost: 29.957
+Baseline transmition cost : 7.25
+Baseline path cost : 168
+Istanza :19
+Baseline computational cost: 10.535
+Baseline transmition cost : 0
+Baseline path cost : 48
+Istanza :20
+Baseline computational cost: 26.554
+Baseline transmition cost : 3.275
+Baseline path cost : 104
+Istanza :21
+No Solution Baseline
+Istanza :22
+No Solution Baseline
+Istanza :23
+Baseline computational cost: 4.886
+Baseline transmition cost : 0
+Baseline path cost : 16
+Istanza :24
+No Solution Baseline
+Istanza :25
+Baseline computational cost: 4.635
+Baseline transmition cost : 0
+Baseline path cost : 12
+Istanza :26
+Baseline computational cost: 16.745
+Baseline transmition cost : 0
+Baseline path cost : 74
+Istanza :27
+Baseline computational cost: 6.491
+Baseline transmition cost : 0
+Baseline path cost : 36
+Istanza :28
+Baseline computational cost: 10.956
+Baseline transmition cost : 27.2248
+Baseline path cost : 125
+Istanza :29
+Baseline computational cost: 3.769
+Baseline transmition cost : 0
+Baseline path cost : 10
+Istanza :30
+Baseline computational cost: 28.624
+Baseline transmition cost : 1.1534e-07
+Baseline path cost : 119
+Istanza :31
+Baseline computational cost: 6.965
+Baseline transmition cost : 0
+Baseline path cost : 27
+Istanza :32
+Baseline computational cost: 3.961
+Baseline transmition cost : 0
+Baseline path cost : 18
+Istanza :33
+Baseline computational cost: 5.014
+Baseline transmition cost : 0
+Baseline path cost : 20
+Istanza :34
+No Solution Baseline
+Istanza :35
+Baseline computational cost: 16.725
+Baseline transmition cost : 0
+Baseline path cost : 53
+Istanza :36
+Baseline computational cost: 7.207
+Baseline transmition cost : 0
+Baseline path cost : 39
+Istanza :37
+Baseline computational cost: 8.652
+Baseline transmition cost : 26.8943
+Baseline path cost : 110
+Istanza :38
+Baseline computational cost: 9.151
+Baseline transmition cost : 0
+Baseline path cost : 34
+Istanza :39
+Baseline computational cost: 32.588
+Baseline transmition cost : 19.1111
+Baseline path cost : 176
+Istanza :40
+Baseline computational cost: 16.533
+Baseline transmition cost : 0
+Baseline path cost : 39
+Istanza :41
+Baseline computational cost: 12.931
+Baseline transmition cost : 149.678
+Baseline path cost : 142
+Istanza :42
+Baseline computational cost: 10.05
+Baseline transmition cost : 0
+Baseline path cost : 40
+Istanza :43
+Baseline computational cost: 4.996
+Baseline transmition cost : 0
+Baseline path cost : 5
+Istanza :44
+Baseline computational cost: 5.739
+Baseline transmition cost : 0
+Baseline path cost : 65
+Istanza :45
+Baseline computational cost: 4.415
+Baseline transmition cost : 0
+Baseline path cost : 4
+Istanza :46
+Baseline computational cost: 24.417
+Baseline transmition cost : 0
+Baseline path cost : 82
+Istanza :47
+Baseline computational cost: 7.485
+Baseline transmition cost : 0
+Baseline path cost : 77
+Istanza :48
+Baseline computational cost: 0.488
+Baseline transmition cost : 0
+Baseline path cost : 4
+Istanza :49
+Baseline computational cost: 14.414
+Baseline transmition cost : 20.45
+Baseline path cost : 131
+Istanza :50
+Baseline computational cost: 27.155
+Baseline transmition cost : 5.20172e-07
+Baseline path cost : 85
+Istanza :51
+Baseline computational cost: 25.752
+Baseline transmition cost : 4.25758e-07
+Baseline path cost : 125
+Istanza :52
+Baseline computational cost: 12.8
+Baseline transmition cost : 0
+Baseline path cost : 65
+Istanza :53
+Baseline computational cost: 28.527
+Baseline transmition cost : 62.3583
+Baseline path cost : 112
+Istanza :54
+Baseline computational cost: 15.66
+Baseline transmition cost : 0
+Baseline path cost : 105
+Istanza :55
+Baseline computational cost: 21.913
+Baseline transmition cost : 0
+Baseline path cost : 65
+Istanza :56
+Baseline computational cost: 5.19
+Baseline transmition cost : 0
+Baseline path cost : 15
+Istanza :57
+Baseline computational cost: 24.308
+Baseline transmition cost : 53.5417
+Baseline path cost : 174
+Istanza :58
+Baseline computational cost: 8.364
+Baseline transmition cost : 120
+Baseline path cost : 44
+Istanza :59
+Baseline computational cost: 7.059
+Baseline transmition cost : 13.5998
+Baseline path cost : 79
+Istanza :60
+Baseline computational cost: 24.961
+Baseline transmition cost : 3.85019e-07
+Baseline path cost : 140
+Istanza :61
+Baseline computational cost: 24.728
+Baseline transmition cost : 12.8333
+Baseline path cost : 148
+Istanza :62
+Baseline computational cost: 26.485
+Baseline transmition cost : 4.43637e-07
+Baseline path cost : 140
+Istanza :63
+Baseline computational cost: 4.077
+Baseline transmition cost : 0
+Baseline path cost : 27
+Istanza :64
+Baseline computational cost: 19.773
+Baseline transmition cost : 0
+Baseline path cost : 53
+Istanza :65
+Baseline computational cost: 9.194
+Baseline transmition cost : 0
+Baseline path cost : 45
+Istanza :66
+Baseline computational cost: 15.102
+Baseline transmition cost : 0
+Baseline path cost : 73
+Istanza :67
+Baseline computational cost: 23.718
+Baseline transmition cost : 0
+Baseline path cost : 67
+Istanza :68
+Baseline computational cost: 30.558
+Baseline transmition cost : 3.97663e-07
+Baseline path cost : 170
+Istanza :69
+Baseline computational cost: 33.188
+Baseline transmition cost : 11.5476
+Baseline path cost : 171
+Istanza :70
+Baseline computational cost: 6.533
+Baseline transmition cost : 0
+Baseline path cost : 57
+Istanza :71
+Baseline computational cost: 26.103
+Baseline transmition cost : 0
+Baseline path cost : 111
+Istanza :72
+Baseline computational cost: 26.282
+Baseline transmition cost : 0
+Baseline path cost : 87
+Istanza :73
+Baseline computational cost: 11.923
+Baseline transmition cost : 141.042
+Baseline path cost : 108
+Istanza :74
+Baseline computational cost: 32.5
+Baseline transmition cost : 14.4965
+Baseline path cost : 133
+Istanza :75
+Baseline computational cost: 9.565
+Baseline transmition cost : 138
+Baseline path cost : 55
+Istanza :76
+Baseline computational cost: 18.811
+Baseline transmition cost : 23.6
+Baseline path cost : 109
+Istanza :77
+Baseline computational cost: 30.498
+Baseline transmition cost : 2.12329e-07
+Baseline path cost : 99
+Istanza :78
+No Solution Baseline
+Istanza :79
+Baseline computational cost: 14.757
+Baseline transmition cost : 89.425
+Baseline path cost : 142
+Istanza :80
+Baseline computational cost: 22.887
+Baseline transmition cost : 0
+Baseline path cost : 99
+Istanza :81
+Baseline computational cost: 24.442
+Baseline transmition cost : 0
+Baseline path cost : 84
+Istanza :82
+Baseline computational cost: 16.237
+Baseline transmition cost : 0
+Baseline path cost : 49
+Istanza :83
+Baseline computational cost: 6.93
+Baseline transmition cost : 0
+Baseline path cost : 22
+Istanza :84
+Baseline computational cost: 7.993
+Baseline transmition cost : 0
+Baseline path cost : 25
+Istanza :85
+Baseline computational cost: 21.591
+Baseline transmition cost : 39.0417
+Baseline path cost : 128
+Istanza :86
+Baseline computational cost: 19.333
+Baseline transmition cost : 0
+Baseline path cost : 67
+Istanza :87
+Baseline computational cost: 2.138
+Baseline transmition cost : 0
+Baseline path cost : 4
+Istanza :88
+Baseline computational cost: 13.893
+Baseline transmition cost : 0
+Baseline path cost : 65
+Istanza :89
+Baseline computational cost: 3.531
+Baseline transmition cost : 0
+Baseline path cost : 19
+Istanza :90
+Baseline computational cost: 11.033
+Baseline transmition cost : 42.8167
+Baseline path cost : 86
+Istanza :91
+Baseline computational cost: 17.912
+Baseline transmition cost : 0
+Baseline path cost : 91
+Istanza :92
+Baseline computational cost: 26.245
+Baseline transmition cost : 3.91683e-07
+Baseline path cost : 123
+Istanza :93
+Baseline computational cost: 25.524
+Baseline transmition cost : 0
+Baseline path cost : 116
+Istanza :94
+Baseline computational cost: 5.967
+Baseline transmition cost : 0
+Baseline path cost : 24
+Istanza :95
+Baseline computational cost: 6.944
+Baseline transmition cost : 0
+Baseline path cost : 91
+Istanza :96
+No Solution Baseline
+Istanza :97
+Baseline computational cost: 13.18
+Baseline transmition cost : 0
+Baseline path cost : 36
+Istanza :98
+Baseline computational cost: 6.313
+Baseline transmition cost : 0
+Baseline path cost : 34
+Istanza :99
+Baseline computational cost: 11.464
+Baseline transmition cost : 0
+Baseline path cost : 38
+Istanza :100
+Baseline computational cost: 17.445
+Baseline transmition cost : 89.425
+Baseline path cost : 145
+Istanza :101
+Baseline computational cost: 4.581
+Baseline transmition cost : 0
+Baseline path cost : 27
+Buffer Size 40
+Time to create Baseline graph (nodes with bigger Rate): 3757.41
+Istanza :1
+Baseline computational cost: 25.157
+Baseline transmition cost : 0
+Baseline path cost : 91
+Istanza :2
+Baseline computational cost: 30.378
+Baseline transmition cost : 3.84619e-07
+Baseline path cost : 198
+Istanza :3
+Baseline computational cost: 6.324
+Baseline transmition cost : 0
+Baseline path cost : 19
+Istanza :4
+Baseline computational cost: 27.527
+Baseline transmition cost : 0
+Baseline path cost : 96
+Istanza :5
+Baseline computational cost: 28.869
+Baseline transmition cost : 6.15
+Baseline path cost : 108
+Istanza :6
+Baseline computational cost: 9.371
+Baseline transmition cost : 0
+Baseline path cost : 47
+Istanza :7
+Baseline computational cost: 4.89
+Baseline transmition cost : 0
+Baseline path cost : 19
+Istanza :8
+Baseline computational cost: 21.758
+Baseline transmition cost : 0
+Baseline path cost : 84
+Istanza :9
+Baseline computational cost: 26.499
+Baseline transmition cost : 4.18546e-07
+Baseline path cost : 106
+Istanza :10
+Baseline computational cost: 3.878
+Baseline transmition cost : 0
+Baseline path cost : 45
+Istanza :11
+Baseline computational cost: 10.153
+Baseline transmition cost : 0
+Baseline path cost : 71
+Istanza :12
+Baseline computational cost: 4.891
+Baseline transmition cost : 0
+Baseline path cost : 24
+Istanza :13
+Baseline computational cost: 18.387
+Baseline transmition cost : 0
+Baseline path cost : 73
+Istanza :14
+Baseline computational cost: 22.631
+Baseline transmition cost : 0
+Baseline path cost : 72
+Istanza :15
+Baseline computational cost: 11.334
+Baseline transmition cost : 0
+Baseline path cost : 47
+Istanza :16
+No Solution Baseline
+Istanza :17
+Baseline computational cost: 19.543
+Baseline transmition cost : 0
+Baseline path cost : 66
+Istanza :18
+Baseline computational cost: 27.605
+Baseline transmition cost : 8.68446e-07
+Baseline path cost : 142
+Istanza :19
+Baseline computational cost: 29.229
+Baseline transmition cost : 8.85133e-07
+Baseline path cost : 122
+Istanza :20
+Baseline computational cost: 14.631
+Baseline transmition cost : 29.2
+Baseline path cost : 88
+Istanza :21
+Baseline computational cost: 23.343
+Baseline transmition cost : 27.4
+Baseline path cost : 188
+Istanza :22
+Baseline computational cost: 18.152
+Baseline transmition cost : 0
+Baseline path cost : 45
+Istanza :23
+Baseline computational cost: 31.195
+Baseline transmition cost : 0
+Baseline path cost : 138
+Istanza :24
+Baseline computational cost: 4.782
+Baseline transmition cost : 0
+Baseline path cost : 16
+Istanza :25
+Baseline computational cost: 32.036
+Baseline transmition cost : 98.6262
+Baseline path cost : 173
+Istanza :26
+Baseline computational cost: 24.232
+Baseline transmition cost : 6.55186e-08
+Baseline path cost : 139
+Istanza :27
+Baseline computational cost: 5.493
+Baseline transmition cost : 0
+Baseline path cost : 18
+Istanza :28
+Baseline computational cost: 22.039
+Baseline transmition cost : 0
+Baseline path cost : 65
+Istanza :29
+Baseline computational cost: 12.959
+Baseline transmition cost : 0
+Baseline path cost : 57
+Istanza :30
+Baseline computational cost: 6.722
+Baseline transmition cost : 0
+Baseline path cost : 40
+Istanza :31
+Baseline computational cost: 9.148
+Baseline transmition cost : 0
+Baseline path cost : 55
+Istanza :32
+Baseline computational cost: 20.369
+Baseline transmition cost : 0
+Baseline path cost : 56
+Istanza :33
+Baseline computational cost: 9.068
+Baseline transmition cost : 0
+Baseline path cost : 50
+Istanza :34
+Baseline computational cost: 28.974
+Baseline transmition cost : 2.87336e-07
+Baseline path cost : 129
+Istanza :35
+No Solution Baseline
+Istanza :36
+Baseline computational cost: 23.547
+Baseline transmition cost : 5.68483e-07
+Baseline path cost : 125
+Istanza :37
+Baseline computational cost: 10.478
+Baseline transmition cost : 0
+Baseline path cost : 51
+Istanza :38
+Baseline computational cost: 24.307
+Baseline transmition cost : 28
+Baseline path cost : 119
+Istanza :39
+Baseline computational cost: 12.801
+Baseline transmition cost : 0
+Baseline path cost : 57
+Istanza :40
+Baseline computational cost: 27.974
+Baseline transmition cost : 543.442
+Baseline path cost : 175
+Istanza :41
+Baseline computational cost: 17.227
+Baseline transmition cost : 0
+Baseline path cost : 43
+Istanza :42
+Baseline computational cost: 14.024
+Baseline transmition cost : 0
+Baseline path cost : 49
+Istanza :43
+Baseline computational cost: 9.686
+Baseline transmition cost : 0
+Baseline path cost : 61
+Istanza :44
+Baseline computational cost: 22.802
+Baseline transmition cost : 0
+Baseline path cost : 67
+Istanza :45
+Baseline computational cost: 30.053
+Baseline transmition cost : 4.16693e-07
+Baseline path cost : 94
+Istanza :46
+Baseline computational cost: 12.346
+Baseline transmition cost : 0
+Baseline path cost : 58
+Istanza :47
+Baseline computational cost: 9.214
+Baseline transmition cost : 0
+Baseline path cost : 38
+Istanza :48
+Baseline computational cost: 9.839
+Baseline transmition cost : 0
+Baseline path cost : 39
+Istanza :49
+Baseline computational cost: 25.191
+Baseline transmition cost : 55.7821
+Baseline path cost : 141
+Istanza :50
+Baseline computational cost: 10.98
+Baseline transmition cost : 36.7667
+Baseline path cost : 103
+Istanza :51
+Baseline computational cost: 2.52
+Baseline transmition cost : 0
+Baseline path cost : 27
+Istanza :52
+Baseline computational cost: 27.978
+Baseline transmition cost : 0
+Baseline path cost : 128
+Istanza :53
+Baseline computational cost: 30.515
+Baseline transmition cost : 7.96836e-07
+Baseline path cost : 202
+Istanza :54
+Baseline computational cost: 2.274
+Baseline transmition cost : 0
+Baseline path cost : 10
+Istanza :55
+Baseline computational cost: 5.1
+Baseline transmition cost : 0
+Baseline path cost : 33
+Istanza :56
+Baseline computational cost: 21.169
+Baseline transmition cost : 0
+Baseline path cost : 56
+Istanza :57
+Baseline computational cost: 26.573
+Baseline transmition cost : 4.22851e-07
+Baseline path cost : 186
+Istanza :58
+Baseline computational cost: 29.447
+Baseline transmition cost : 9.09203e-07
+Baseline path cost : 141
+Istanza :59
+Baseline computational cost: 24.701
+Baseline transmition cost : 0
+Baseline path cost : 67
+Istanza :60
+Baseline computational cost: 21.714
+Baseline transmition cost : 0
+Baseline path cost : 86
+Istanza :61
+Baseline computational cost: 21.575
+Baseline transmition cost : 205.425
+Baseline path cost : 146
+Istanza :62
+Baseline computational cost: 27.287
+Baseline transmition cost : 0
+Baseline path cost : 131
+Istanza :63
+Baseline computational cost: 17.852
+Baseline transmition cost : 0
+Baseline path cost : 71
+Istanza :64
+Baseline computational cost: 11.717
+Baseline transmition cost : 0
+Baseline path cost : 52
+Istanza :65
+Baseline computational cost: 12.19
+Baseline transmition cost : 0
+Baseline path cost : 83
+Istanza :66
+Baseline computational cost: 4.063
+Baseline transmition cost : 0
+Baseline path cost : 7
+Istanza :67
+Baseline computational cost: 13.811
+Baseline transmition cost : 0
+Baseline path cost : 39
+Istanza :68
+Baseline computational cost: 10.402
+Baseline transmition cost : 0
+Baseline path cost : 61
+Istanza :69
+No Solution Baseline
+Istanza :70
+Baseline computational cost: 5.611
+Baseline transmition cost : 0
+Baseline path cost : 34
+Istanza :71
+Baseline computational cost: 21.338
+Baseline transmition cost : 0
+Baseline path cost : 100
+Istanza :72
+Baseline computational cost: 24.881
+Baseline transmition cost : 2.29591e-07
+Baseline path cost : 103
+Istanza :73
+Baseline computational cost: 30.229
+Baseline transmition cost : 0
+Baseline path cost : 141
+Istanza :74
+Baseline computational cost: 17.714
+Baseline transmition cost : 0
+Baseline path cost : 60
+Istanza :75
+Baseline computational cost: 23.263
+Baseline transmition cost : 0
+Baseline path cost : 94
+Istanza :76
+Baseline computational cost: 15.223
+Baseline transmition cost : 15.05
+Baseline path cost : 93
+Istanza :77
+Baseline computational cost: 16.565
+Baseline transmition cost : 0
+Baseline path cost : 73
+Istanza :78
+Baseline computational cost: 7.093
+Baseline transmition cost : 0
+Baseline path cost : 71
+Istanza :79
+Baseline computational cost: 4.684
+Baseline transmition cost : 0
+Baseline path cost : 30
+Istanza :80
+Baseline computational cost: 11.367
+Baseline transmition cost : 0
+Baseline path cost : 46
+Istanza :81
+Baseline computational cost: 23.72
+Baseline transmition cost : 2.22185e-07
+Baseline path cost : 117
+Istanza :82
+Baseline computational cost: 10.083
+Baseline transmition cost : 0
+Baseline path cost : 87
+Istanza :83
+Baseline computational cost: 6.312
+Baseline transmition cost : 0
+Baseline path cost : 46
+Istanza :84
+Baseline computational cost: 20.865
+Baseline transmition cost : 0
+Baseline path cost : 69
+Istanza :85
+Baseline computational cost: 9.206
+Baseline transmition cost : 0
+Baseline path cost : 75
+Istanza :86
+No Solution Baseline
+Istanza :87
+Baseline computational cost: 15.023
+Baseline transmition cost : 0
+Baseline path cost : 52
+Istanza :88
+Baseline computational cost: 8.441
+Baseline transmition cost : 0
+Baseline path cost : 49
+Istanza :89
+No Solution Baseline
+Istanza :90
+Baseline computational cost: 26.446
+Baseline transmition cost : 6.211e-07
+Baseline path cost : 119
+Istanza :91
+Baseline computational cost: 26.872
+Baseline transmition cost : 0
+Baseline path cost : 113
+Istanza :92
+Baseline computational cost: 19.023
+Baseline transmition cost : 0
+Baseline path cost : 52
+Istanza :93
+Baseline computational cost: 25.023
+Baseline transmition cost : 4.11042e-07
+Baseline path cost : 125
+Istanza :94
+Baseline computational cost: 10.889
+Baseline transmition cost : 0
+Baseline path cost : 60
+Istanza :95
+Baseline computational cost: 19.836
+Baseline transmition cost : 0
+Baseline path cost : 86
+Istanza :96
+Baseline computational cost: 18.433
+Baseline transmition cost : 0
+Baseline path cost : 49
+Istanza :97
+Baseline computational cost: 23.984
+Baseline transmition cost : 0
+Baseline path cost : 79
+Istanza :98
+Baseline computational cost: 18.506
+Baseline transmition cost : 0
+Baseline path cost : 76
+Istanza :99
+Baseline computational cost: 29.546
+Baseline transmition cost : 3.87045e-07
+Baseline path cost : 130
+Istanza :100
+Baseline computational cost: 27.386
+Baseline transmition cost : 26.2
+Baseline path cost : 154
+Istanza :101
+Baseline computational cost: 6.414
+Baseline transmition cost : 0
+Baseline path cost : 50
+Buffer Size 50
+Time to create Baseline graph (nodes with bigger Rate): 3744.92
+Istanza :1
+Baseline computational cost: 15.626
+Baseline transmition cost : 0
+Baseline path cost : 114
+Istanza :2
+Baseline computational cost: 10.907
+Baseline transmition cost : 0
+Baseline path cost : 43
+Istanza :3
+Baseline computational cost: 5.074
+Baseline transmition cost : 0
+Baseline path cost : 49
+Istanza :4
+Baseline computational cost: 28.382
+Baseline transmition cost : 22.7339
+Baseline path cost : 101
+Istanza :5
+Baseline computational cost: 14.178
+Baseline transmition cost : 0
+Baseline path cost : 34
+Istanza :6
+Baseline computational cost: 19.814
+Baseline transmition cost : 0
+Baseline path cost : 63
+Istanza :7
+Baseline computational cost: 29.678
+Baseline transmition cost : 46.6333
+Baseline path cost : 209
+Istanza :8
+Baseline computational cost: 23.827
+Baseline transmition cost : 73.2784
+Baseline path cost : 179
+Istanza :9
+Baseline computational cost: 26.523
+Baseline transmition cost : 9.93884e-07
+Baseline path cost : 120
+Istanza :10
+Baseline computational cost: 8.937
+Baseline transmition cost : 0
+Baseline path cost : 60
+Istanza :11
+Baseline computational cost: 12.378
+Baseline transmition cost : 19.8
+Baseline path cost : 124
+Istanza :12
+Baseline computational cost: 14.223
+Baseline transmition cost : 64.4
+Baseline path cost : 68
+Istanza :13
+Baseline computational cost: 20.03
+Baseline transmition cost : 0
+Baseline path cost : 84
+Istanza :14
+Baseline computational cost: 23.19
+Baseline transmition cost : 0
+Baseline path cost : 102
+Istanza :15
+Baseline computational cost: 27.655
+Baseline transmition cost : 37.1344
+Baseline path cost : 170
+Istanza :16
+Baseline computational cost: 5.507
+Baseline transmition cost : 0
+Baseline path cost : 34
+Istanza :17
+Baseline computational cost: 21.014
+Baseline transmition cost : 0
+Baseline path cost : 83
+Istanza :18
+Baseline computational cost: 32.446
+Baseline transmition cost : 9.375
+Baseline path cost : 138
+Istanza :19
+Baseline computational cost: 16.949
+Baseline transmition cost : 0
+Baseline path cost : 55
+Istanza :20
+Baseline computational cost: 19.648
+Baseline transmition cost : 0
+Baseline path cost : 75
+Istanza :21
+Baseline computational cost: 5.692
+Baseline transmition cost : 0
+Baseline path cost : 26
+Istanza :22
+Baseline computational cost: 7.515
+Baseline transmition cost : 0
+Baseline path cost : 28
+Istanza :23
+Baseline computational cost: 9.449
+Baseline transmition cost : 130.08
+Baseline path cost : 100
+Istanza :24
+Baseline computational cost: 26.245
+Baseline transmition cost : 0
+Baseline path cost : 104
+Istanza :25
+Baseline computational cost: 30.838
+Baseline transmition cost : 332.975
+Baseline path cost : 189
+Istanza :26
+Baseline computational cost: 5.082
+Baseline transmition cost : 0
+Baseline path cost : 17
+Istanza :27
+Baseline computational cost: 21.341
+Baseline transmition cost : 27.2
+Baseline path cost : 187
+Istanza :28
+Baseline computational cost: 16.561
+Baseline transmition cost : 0
+Baseline path cost : 42
+Istanza :29
+Baseline computational cost: 31.398
+Baseline transmition cost : 214.867
+Baseline path cost : 186
+Istanza :30
+Baseline computational cost: 14.398
+Baseline transmition cost : 0
+Baseline path cost : 61
+Istanza :31
+Baseline computational cost: 23.134
+Baseline transmition cost : 0
+Baseline path cost : 88
+Istanza :32
+Baseline computational cost: 23.167
+Baseline transmition cost : 2.98098e-07
+Baseline path cost : 120
+Istanza :33
+Baseline computational cost: 29.244
+Baseline transmition cost : 8.51709e-07
+Baseline path cost : 136
+Istanza :34
+Baseline computational cost: 28.013
+Baseline transmition cost : 97.0417
+Baseline path cost : 160
+Istanza :35
+Baseline computational cost: 9.627
+Baseline transmition cost : 0
+Baseline path cost : 51
+Istanza :36
+Baseline computational cost: 26.17
+Baseline transmition cost : 0
+Baseline path cost : 68
+Istanza :37
+Baseline computational cost: 4.929
+Baseline transmition cost : 0
+Baseline path cost : 35
+Istanza :38
+Baseline computational cost: 8.122
+Baseline transmition cost : 0
+Baseline path cost : 54
+Istanza :39
+Baseline computational cost: 28.307
+Baseline transmition cost : 4.71876e-07
+Baseline path cost : 162
+Istanza :40
+Baseline computational cost: 24.881
+Baseline transmition cost : 25.2
+Baseline path cost : 136
+Istanza :41
+Baseline computational cost: 11.542
+Baseline transmition cost : 0
+Baseline path cost : 128
+Istanza :42
+Baseline computational cost: 26.6
+Baseline transmition cost : 0
+Baseline path cost : 119
+Istanza :43
+Baseline computational cost: 22.038
+Baseline transmition cost : 0
+Baseline path cost : 82
+Istanza :44
+Baseline computational cost: 12.309
+Baseline transmition cost : 0
+Baseline path cost : 49
+Istanza :45
+Baseline computational cost: 26.652
+Baseline transmition cost : 7.22101e-07
+Baseline path cost : 88
+Istanza :46
+Baseline computational cost: 4.528
+Baseline transmition cost : 0
+Baseline path cost : 16
+Istanza :47
+Baseline computational cost: 28.985
+Baseline transmition cost : 1.20536
+Baseline path cost : 127
+Istanza :48
+Baseline computational cost: 27.792
+Baseline transmition cost : 1.05012e-06
+Baseline path cost : 112
+Istanza :49
+Baseline computational cost: 3.809
+Baseline transmition cost : 0
+Baseline path cost : 29
+Istanza :50
+Baseline computational cost: 30.064
+Baseline transmition cost : 176.775
+Baseline path cost : 138
+Istanza :51
+Baseline computational cost: 24.818
+Baseline transmition cost : 6.19083e-07
+Baseline path cost : 115
+Istanza :52
+Baseline computational cost: 9.68
+Baseline transmition cost : 0
+Baseline path cost : 103
+Istanza :53
+Baseline computational cost: 20.65
+Baseline transmition cost : 25.75
+Baseline path cost : 77
+Istanza :54
+Baseline computational cost: 29.753
+Baseline transmition cost : 4.01785e-07
+Baseline path cost : 125
+Istanza :55
+Baseline computational cost: 9.924
+Baseline transmition cost : 55.0417
+Baseline path cost : 65
+Istanza :56
+Baseline computational cost: 21.059
+Baseline transmition cost : 0
+Baseline path cost : 56
+Istanza :57
+Baseline computational cost: 23.204
+Baseline transmition cost : 0
+Baseline path cost : 113
+Istanza :58
+Baseline computational cost: 12.445
+Baseline transmition cost : 230.867
+Baseline path cost : 117
+Istanza :59
+Baseline computational cost: 22.238
+Baseline transmition cost : 18.2874
+Baseline path cost : 94
+Istanza :60
+Baseline computational cost: 17.806
+Baseline transmition cost : 0
+Baseline path cost : 152
+Istanza :61
+Baseline computational cost: 11.855
+Baseline transmition cost : 0
+Baseline path cost : 52
+Istanza :62
+Baseline computational cost: 6.388
+Baseline transmition cost : 0
+Baseline path cost : 28
+Istanza :63
+Baseline computational cost: 19.454
+Baseline transmition cost : 0
+Baseline path cost : 69
+Istanza :64
+Baseline computational cost: 9.572
+Baseline transmition cost : 0
+Baseline path cost : 43
+Istanza :65
+Baseline computational cost: 32.366
+Baseline transmition cost : 28.2222
+Baseline path cost : 182
+Istanza :66
+Baseline computational cost: 1.924
+Baseline transmition cost : 0
+Baseline path cost : 10
+Istanza :67
+Baseline computational cost: 9.252
+Baseline transmition cost : 0
+Baseline path cost : 78
+Istanza :68
+Baseline computational cost: 6.024
+Baseline transmition cost : 0
+Baseline path cost : 31
+Istanza :69
+Baseline computational cost: 23.959
+Baseline transmition cost : 36.1915
+Baseline path cost : 184
+Istanza :70
+Baseline computational cost: 3.247
+Baseline transmition cost : 0
+Baseline path cost : 26
+Istanza :71
+Baseline computational cost: 31.071
+Baseline transmition cost : 438.867
+Baseline path cost : 178
+Istanza :72
+Baseline computational cost: 12.942
+Baseline transmition cost : 0
+Baseline path cost : 48
+Istanza :73
+Baseline computational cost: 32.607
+Baseline transmition cost : 11.625
+Baseline path cost : 145
+Istanza :74
+Baseline computational cost: 5.915
+Baseline transmition cost : 0
+Baseline path cost : 50
+Istanza :75
+Baseline computational cost: 26.59
+Baseline transmition cost : 0
+Baseline path cost : 125
+Istanza :76
+Baseline computational cost: 15.006
+Baseline transmition cost : 0
+Baseline path cost : 91
+Istanza :77
+Baseline computational cost: 4.949
+Baseline transmition cost : 0
+Baseline path cost : 9
+Istanza :78
+Baseline computational cost: 8.729
+Baseline transmition cost : 0
+Baseline path cost : 57
+Istanza :79
+Baseline computational cost: 1.41
+Baseline transmition cost : 0
+Baseline path cost : 8
+Istanza :80
+Baseline computational cost: 6.652
+Baseline transmition cost : 0
+Baseline path cost : 43
+Istanza :81
+Baseline computational cost: 28.599
+Baseline transmition cost : 5.98267e-07
+Baseline path cost : 150
+Istanza :82
+Baseline computational cost: 7.967
+Baseline transmition cost : 0
+Baseline path cost : 53
+Istanza :83
+Baseline computational cost: 10.712
+Baseline transmition cost : 0
+Baseline path cost : 83
+Istanza :84
+Baseline computational cost: 10.789
+Baseline transmition cost : 0
+Baseline path cost : 52
+Istanza :85
+Baseline computational cost: 6.412
+Baseline transmition cost : 0
+Baseline path cost : 24
+Istanza :86
+Baseline computational cost: 5.852
+Baseline transmition cost : 0
+Baseline path cost : 16
+Istanza :87
+Baseline computational cost: 5.538
+Baseline transmition cost : 0
+Baseline path cost : 37
+Istanza :88
+Baseline computational cost: 8.568
+Baseline transmition cost : 33
+Baseline path cost : 60
+Istanza :89
+Baseline computational cost: 15.714
+Baseline transmition cost : 0
+Baseline path cost : 65
+Istanza :90
+Baseline computational cost: 4.273
+Baseline transmition cost : 0
+Baseline path cost : 21
+Istanza :91
+Baseline computational cost: 29.147
+Baseline transmition cost : 4.47711e-07
+Baseline path cost : 176
+Istanza :92
+Baseline computational cost: 5.614
+Baseline transmition cost : 0
+Baseline path cost : 32
+Istanza :93
+Baseline computational cost: 25.423
+Baseline transmition cost : 0
+Baseline path cost : 124
+Istanza :94
+Baseline computational cost: 5.215
+Baseline transmition cost : 0
+Baseline path cost : 26
+Istanza :95
+Baseline computational cost: 26.524
+Baseline transmition cost : 8.65559e-07
+Baseline path cost : 124
+Istanza :96
+Baseline computational cost: 4.398
+Baseline transmition cost : 0
+Baseline path cost : 18
+Istanza :97
+Baseline computational cost: 3.603
+Baseline transmition cost : 0
+Baseline path cost : 12
+Istanza :98
+Baseline computational cost: 26.192
+Baseline transmition cost : 0
+Baseline path cost : 87
+Istanza :99
+Baseline computational cost: 6.871
+Baseline transmition cost : 0
+Baseline path cost : 34
+Istanza :100
+Baseline computational cost: 32.515
+Baseline transmition cost : 51.3167
+Baseline path cost : 176
+Istanza :101
+Baseline computational cost: 9.166
+Baseline transmition cost : 0
+Baseline path cost : 82

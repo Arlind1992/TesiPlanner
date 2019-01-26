@@ -178,6 +178,7 @@ void View::DrawScreen(SDL_Surface* screen)
 void View::DrawScreenSameBaseLine(SDL_Surface* screen)
 	{
 
+
 	    if(SDL_MUSTLOCK(screen))
 	    {
 	        if(SDL_LockSurface(screen) < 0) return;
@@ -223,7 +224,7 @@ Cell View::pixelToMatCoo(int x,int y){
 }
 
 void View::drawSolution(SDL_Surface *screen,std::vector<rrt_planning::Cell> vec,int complex){
-
+	std::cout<<"end (dddddddddddddddddd)"<<std::endl;
 	for(int i=0;i<vec.size()-1;i++){
 		Cell cOne=matToPixelCoo(vec[i]);
 		Cell cTwo=matToPixelCoo(vec[i+1]);
@@ -387,6 +388,7 @@ void View::handleInputMultipleBaseline(SDL_Event event){
 					this->baselineSol=this->baseline->makePlan(std::make_pair(27,96),std::make_pair(68,40),this->baselineSolution);
 					this->baselineSol2=this->baseline2->makePlan(std::make_pair(27,96),std::make_pair(68,40),this->baselineSolution2);
 					this->baselineSol3=this->baseline3->makePlan(std::make_pair(27,96),std::make_pair(68,40),this->baselineSolution3);
+					std::cout<<"aaaaaaaaaaaaaaaaaaend ("<<std::endl;
 
 
 					//this->baselineSol=this->pl->makePlan(end,start,this->baselineSolution,20);

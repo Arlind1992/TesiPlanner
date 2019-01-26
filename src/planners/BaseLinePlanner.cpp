@@ -35,7 +35,7 @@ bool planner::BaseLinePlanner::makePlan(Cell start,Cell end,std::vector<Cell> &r
 			result.push_back(std::make_pair(p.x,p.y));
 		}
 		*cost=counter;
-		*bufferCost=solver.dist(endNode);
+		*bufferCost=(int)solver.dist(endNode);
 		result.push_back(start);
 		reverse(result.begin(),result.end());
 		return true;

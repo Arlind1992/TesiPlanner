@@ -31,6 +31,7 @@ public:
 		void makePlanAllNodes(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances);
 		void makePlanAllNodesDistanceAsCost(Cell start,std::vector<Cell>& cells,int buffer,std::vector<int>& distances);
 		 void createGraph();
+			std::map<std::pair<Cell,Cell>,std::vector<Cell>> paths;
 private:
 
 
@@ -44,6 +45,7 @@ private:
 	LiGraph::NodeMap<lemon::dim2::Point<int> > nodePoint;
 	//std::map<Cell,LiGraph::Node> cellNodes;
 	GridPlanner *gridPlanner;
+
 
 
 	/*

@@ -70,10 +70,22 @@ bool planner::Baseline::makePlan(Cell cgoal,Cell cinit
 			 int cost;
 			 int buffCost;
 			 blPlanner->makePlan(startCell,endCell,vec,&cost,&buffCost);
+			 //vec=blPlanner->paths[std::make_pair(startCell,endCell)];
 			 //vec.clear();
 			 //grPlanner->makePlan(startCell,endCell,vec,buffCost);
-			 toCalculateT.push_back(startCell);
-			 costForT.push_back(buffCost);
+			 for(int veci=0;veci<vec.size()-1;veci++){
+				 if(grid->getSpeed(vec.at(veci))>baseUnit&grid->getSpeed(vec.at(veci+1))>baseUnit){
+					 toCalculateT.push_back(vec.at(veci));
+					 costForT.push_back(1);
+				 }else{
+					 if(grid->getSpeed(vec.at(veci))>baseUnit&grid->getSpeed(vec.at(veci+1))<=baseUnit){
+						 toCalculateT.push_back(vec.at(veci));
+						 costForT.push_back(buffCost);
+					 }
+				 }
+
+			 }
+
 			 reverse(vec.begin(),vec.end());
 			 result.insert(result.end(),vec.begin(),vec.end());
 			 vec.clear();
@@ -85,7 +97,6 @@ bool planner::Baseline::makePlan(Cell cgoal,Cell cinit
 	    result.erase(unique(result.begin(),result.end()),result.end());
 	    int stop_s=clock();
 	    movingTime=solver.dist(cellNodes[cgoal]);
-
 	    if(!isCommInit){
 	    	this->graph.erase(first);
 	    	cellNodes.erase(cinit);
