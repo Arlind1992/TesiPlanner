@@ -52,24 +52,23 @@ void testFixed8Base(){
 				planner::BaseLinePlanner basePlan(&gridMap,baseUnit,&plan);
 				basePlan.createGraph();
 
+				std::map<Cell,int> buffV;
 
-				//planner::GridPlanner plan(&gridMap);
-				//plan.createGraph();
 				for(int bufferTest1=1;bufferTest1<=55;bufferTest1++){
 						myfile3<<"Buffer "<<bufferTest1<<std::endl;
 						planner::Baseline baseLTest(&gridMap,baseUnit,baseRate,bufferTest1,&myfile3,&basePlan,&plan);
 								baseLTest.createGraph();
 
-								//planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,bufferTest1,&myfile3);
+								planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,bufferTest1,&myfile3);
 
 								//compPl.createGraphs();
-								//grPlanner.createGraphs();
+								grPlanner.createGraphs();
 								std::vector<Cell> vNew;
 
 								if(!baseLTest.makePlan(std::make_pair(27,96),std::make_pair(68,40),vNew))
 									myfile3<<"No Solution baseline"<<std::endl;
-								//if(!grPlanner.makePlan(std::make_pair(27,96),std::make_pair(68,40),c,buffV))
-									//myfile3<<"No Solution Complex Case"<<std::endl;
+								if(!grPlanner.makePlan(std::make_pair(27,96),std::make_pair(68,40),c,buffV))
+									myfile3<<"No Solution Complex Case"<<std::endl;
 					}
 
 }
@@ -124,7 +123,7 @@ int counter=0;
 		planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,buffer,&myfile);
 
 		//compPl.createGraphs();
-		//grPlanner.createGraphs();
+		grPlanner.createGraphs();
 
 		if(!baseL.makePlan(std::make_pair(27,96),std::make_pair(68,40),sd))
 			myfile<<"No Solution baseline"<<std::endl;
@@ -179,10 +178,10 @@ void testRandom8Base(){
 	planner::Baseline baseLTest(&gridMap,baseUnit,baseRate,buff,&myfile,&basePlan,&plan);
 		baseLTest.createGraph();
 
-		//planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,buff,&myfile);
+		planner::ComplexPlanner grPlanner(&gridMap,baseUnit,baseRate,&plan,buff,&myfile);
 
 		//compPl.createGraphs();
-		//grPlanner.createGraphs();
+		grPlanner.createGraphs();
 		int istanza=1;
 			while(counter<100){
 
@@ -194,9 +193,9 @@ void testRandom8Base(){
 			if(gridMap.isFree(std::make_pair(x,y))&&gridMap.isFree(std::make_pair(xend,yend))){
 				myfile<<"Istanza :"<<istanza<<std::endl;
 
-				/*if(!grPlanner.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c,buffV)){
+				if(!grPlanner.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c,buffV)){
 					myfile<<"No Solution Complex Case"<<std::endl;
-				}*/
+				}
 				if(!baseLTest.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c)){
 					myfile<<"No Solution Baseline"<<std::endl;
 				}
@@ -250,7 +249,7 @@ void testRandom2Base(){
 			planner::ComplexPlanner grPlanner(&gridMap2,baseUnit,baseRate2,&plan2,buff,&myfile2);
 
 			//compPl.createGraphs();
-			//grPlanner.createGraphs();
+			grPlanner.createGraphs();
 			int istanza=1;
 		while(counter<101){
 
@@ -261,9 +260,9 @@ void testRandom2Base(){
 				if(gridMap2.isFree(std::make_pair(x,y))&&gridMap2.isFree(std::make_pair(xend,yend))){
 					 myfile2<<"Istanza :"<<istanza<<std::endl;
 
-					/*if(!grPlanner.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c,buffV)){
+					if(!grPlanner.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c,buffV)){
 						myfile2<<"No Solution Complex Case"<<std::endl;
-					}*/
+					}
 					if(!baseLTest.makePlan(std::make_pair(xend,yend),std::make_pair(x,y),c)){
 						myfile2<<"No Solution Baseline"<<std::endl;
 					}
@@ -279,8 +278,8 @@ void testRandom2Base(){
 
 int main(int argc, char* argv[])
 {
-	//testFixed8Base();
-	testFixed2Base();
+	testFixed8Base();
+	//testFixed2Base();
 	//testRandom2Base();
 	//testRandom8Base();
 

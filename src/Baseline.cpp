@@ -92,7 +92,7 @@ bool planner::Baseline::makePlan(Cell cgoal,Cell cinit
 	    }
 		reverse(toCalculateT.begin(),toCalculateT.end());
 		reverse(costForT.begin(),costForT.end());
-		transmittionTime=this->calculateTime(toCalculateT,costForT);
+		transmittionTime=(int)this->calculateTime(toCalculateT,costForT)+1;
 	    reverse(result.begin(),result.end());
 	    result.erase(unique(result.begin(),result.end()),result.end());
 	    int stop_s=clock();
