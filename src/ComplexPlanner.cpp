@@ -72,7 +72,6 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
     	  vec.push_back(endCell);
     	  reverse(vec.begin(),vec.end());
     	  vec.push_back(startCell);
-
     	  result.insert(result.end(),vec.begin(),vec.end());
     	  vec.clear();
     	  movingTime=movingTime+this->lengthComplex[arc];
@@ -99,7 +98,6 @@ bool planner::ComplexPlanner::makePlan(Cell cgoal,Cell cinit
 
     this->lastNodeToNormal.clear();
     this->cellLastNode.clear();
-
      (*myfile)<<"Complex computational time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 <<"\n";
 	(*myfile)<<"Complex transmittion cost : "<<transmittionTime<<"\n";
 	(*myfile)<<"Complex path cost : "<<movingTime<<"\n";
@@ -283,29 +281,40 @@ void planner::ComplexPlanner::createArcsSameNodes(){
 
 void planner::ComplexPlanner::connectGoalCellComplex(Cell end ){
 	DiGraph::Node endNode=this->cellNode[end];
-			DiGraph::Node endComplexNode=complexCaseGraph.addNode();
-			lastNodeToNormal[endNode]=endComplexNode;
-			this->cellLastNode[end]=endComplexNode;
-			this->complexToNormal[endComplexNode]=endNode;
-	//add end node in the graph
-		for(DiGraph::InArcIt in(graph,endNode);in!=INVALID;++in){
-				//next node in the normal graph connected
-				DiGraph::Node nod=graph.source(in);
+	DiGraph::Node endComplexNode=complexCaseGraph.addNode();
+	lastNodeToNormal[endNode]=endComplexNode;
+	this->cellLastNode[end]=endComplexNode;
+	this->complexToNormal[endComplexNode]=endNode;
+    //add end node in the graph
+	for(DiGraph::InArcIt in(graph,endNode);in!=INVALID;++in){
+			//next node in the normal graph connected
+			DiGraph::Node nod=graph.source(in);
 
 
-				if(grid->isComm(std::make_pair(this->nodePoint[nod].x,this->nodePoint[nod].y))){
+			if(grid->isComm(std::make_pair(this->nodePoint[nod].x,this->nodePoint[nod].y))){
 
 				int distance=this->length[in];
 				if(distance==0)
 					continue;
 				std::vector<DiGraph::Node> vecSourceNodes=nodeToVec[nod];
-			for(int j=0;j<(1+(buffer-distance))*(this->baseUnit/this->baseRate);j++){
-					DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecSourceNodes.at(j),endComplexNode);
-					this->lengthComplex[addedArc]=distance;
-				}
+				if(grid->areFourConnected(std::make_pair(this->nodePoint[nod].x,this->nodePoint[nod].y),end)
+										&grid->isComm(end)){
+					int speeddiff=std::abs(grid->getSpeed(end)-grid->getSpeed(std::make_pair(this->nodePoint[nod].x,this->nodePoint[nod].y)));
+					for(int j=0;j<(1+(buffer))*(this->baseUnit/this->baseRate)-speeddiff;j++){
+											DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecSourceNodes.at(j),endComplexNode);
+											this->lengthComplex[addedArc]=distance;
+									}
+								}else{
+							for(int j=0;j<(1+(buffer-distance))*(this->baseUnit/this->baseRate);j++){
+									DiGraph::Arc addedArc=this->complexCaseGraph.addArc(vecSourceNodes.at(j),endComplexNode);
+									this->lengthComplex[addedArc]=distance;
+							}
+								}
+
+
 
 			}
-		}
+	}
 }
 
 void planner::ComplexPlanner::connectDifferentNodes(){
